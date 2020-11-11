@@ -22,8 +22,10 @@ Other possible inspirations:
 
 ** Maintenance Page
 
-Page generated via ...
+Page generated via "Better Error Pages" free service (provided by [[https://www.statuspage.io/][Statuspage]]) but without all scripts.
 
 But still too much bloated IMHO.
 
 *** TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
+
+*** TODO Org-mode TODO syntax seems to not be well supported by GitHub previewier ; better to move "Roadmap" section to specific file (eg: "ROADMAP.org").
