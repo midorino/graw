@@ -1,0 +1,29 @@
+#+TITLE:     GRAW
+#+SUBTITLE:  Garmin Race Around the World
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: Simple progress viewer for custom Garmin challenge inspired from the Circumpolar Race Around the World 2020-2021
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+# This README is inspired from: https://github.com/fniessen/refcard-org-mode/blob/master/README.org
+
+* Versioning
+
+Based on [[https://zach-gollwitzer.medium.com/git-crash-course-a-simple-workflow-for-small-teams-and-startups-c491919c9f77]].
+
+Other possible inspirations:
+
+- https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0aaee7bf
+- https://nvie.com/posts/a-successful-git-branching-model/
+
+* Roadmap
+
+** Maintenance Page
+
+Page generated via ...
+
+But still too much bloated IMHO.
+
+*** TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
