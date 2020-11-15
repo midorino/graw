@@ -45,9 +45,9 @@ List of regions, as stated in CRAW (distances in km - for number of steps: x 100
 | 04 | Antarctica | 5305 | 442.08 | 14.53 |
 | 05 | Down Under | 4246 | 353.83 | 11.63 |
 | 06 | The Islands | 3360 | 280.00 | 09.21 |
-| 07 | Southeast Asia | 3201 | 266.75 |  |
+| 07 | Southeast Asia | 3201 | 266.75 | 08.77 |
 | 08 | Indian Subcontinent | 2673 | 222.75 | 07.32 |
-| 09 | The Stans | 3731 | 310.93 | 10.22 | 08.77 |
+| 09 | The Stans | 3731 | 310.93 | 10.22 |
 | 10 | Europe | 4338 | 361.50 | 11.88 |
 | 11 | Great White North | 4321 | 360.08 | 11.84 |
 | 12 | Lower 48 | 3311 | 275.92 | 09.07 |
