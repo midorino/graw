@@ -60,4 +60,4 @@ In order to give more appeal to the challenge, it seems interesting to setup a m
 
 The main idea is to show on a world map, for each region, its complete trace and the corresponding progression of each participant.
 
-To keep it simple, this results in a simple static webpage hosted via GitHub Pages: [[https://midorino.githu.io/graw]].
+To keep it simple, this results in a simple static webpage hosted via GitHub Pages: [[https://midorino.github.io/graw]].
