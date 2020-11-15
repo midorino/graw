@@ -10,3 +10,23 @@
 * TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
 
 * TODO Org-mode TODO syntax seems to not be well supported by GitHub previewier ; better to move "Roadmap" section to specific file (eg: "ROADMAP.org").
+
+* [#A] GRAW :D/GRAW:
+DEADLINE: <2020-11-15 Sun>
+:PROPERTIES:
+:CREATED:  [2020-11-08 Sun 18:26]
+:LAST_REPEAT: [2020-11-10 Tue 18:33]
+:END:
+
+* :GRAW: Update Garmin challenge
+SCHEDULED: <2020-12-01 Tue .+1m>
+:PROPERTIES:
+:CREATED:  [2020-11-04 Wed 15:16]
+:END:
+
+* Register activities :CRAW:
+SCHEDULED: <2020-11-15 Sun .+1w>
+:PROPERTIES:
+:CREATED:  [2020-11-04 Wed 15:17]
+:LAST_REPEAT: [2020-11-08 Sun 09:08]
+:END:
