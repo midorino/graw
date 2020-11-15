@@ -9,31 +9,54 @@
 
 # This README is inspired from: https://github.com/fniessen/refcard-org-mode/blob/master/README.org
 
-* Versioning
+* Context
 
-Based on [[https://zach-gollwitzer.medium.com/git-crash-course-a-simple-workflow-for-small-teams-and-startups-c491919c9f77]].
+** CRAW
 
-Other possible inspirations:
+The "Circumpolar Race Around the World" (CRAW), is a relay race for teams of up to 10 runners, or 10 cyclists/multisport, each.
 
-- https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0aaee7bf
-- https://nvie.com/posts/a-successful-git-branching-model/
+Teams race 48,550 km / 30,167 miles, through 12 regions of the world (35 countries), following a North-South axe (rather than a West-East one).
 
-* Roadmap
+2020/2021 edition is runned from 2020-09-01 to 2021-12-31.
 
-** Maintenance Page
+References:
 
-Page generated via "Better Error Pages" free service (provided by [[https://www.statuspage.io/][Statuspage]]) but without all scripts.
+- Official website: [[https://www.craw.racing/]]
+- Official Youtube channel: [[https://www.youtube.com/channel/UCWHNnGzy5Wy3rNtbgMzEPYQ]]
+- Course traces presentation: [[https://www.youtube.com/watch?v=F0oui252e9k]]
 
-But still too much bloated IMHO.
+** GRAW
 
-*** TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
+Inspired by this event, a group of Garmin (Connect) users challenged themselves by adapting the CRAW course to a "Garmin Race Around the World" (GRAW) challenge - with some tweaks:
 
-*** TODO Org-mode TODO syntax seems to not be well supported by GitHub previewier ; better to move "Roadmap" section to specific file (eg: "ROADMAP.org").
+- a total of 12 participants max, one per region, which work as a team - each individual ;
+- no consideration for the "relay" part - every participant may progress at the same time as others ;
+- to be more accessible, and so to not only take account of running activities for instance, challenge is based on number of steps (Garmin challenge feature) - even daily walking (not even registered as proper activity) does count ;
+- the total distance of assigned region must be "crossed" in one year and this starting from 2020-11-01 - considering an average conversion of 1 meter for 1 step) ;
+- as a limit of Garmin challenges (max duration of 1 month), 12 monthly challenges will be used - with each month end, a new challenge is created and previous progression reported - completion of monthly distance is not required.
 
-** Publication
+List of regions, as stated in CRAW (distances in km - for number of steps: x 1000):
 
-As it is intended to be shared / viewed by the challenge participants, production code is published as static webpage (HTML/CSS/JS) only via GitHub Pages service.
+## | Région | Dist | Dist/m | Dist/j
+01 | Latin America | 4009 | 334.08 | 10.98
+02 | Andes | 4948 | 412.33 | 13.56
+03 | Pampas | 5106 | 425.50 | 13.99
+04 | Antarctica | 5305 | 442.08 | 14.53
+05 | Down Under | 4246 | 353.83 | 11.63
+06 | The Islands | 3360 | 280.00 | 09.21
+07 | Southeast Asia | 3201 | 266.75
+08 | Indian Subcontinent | 2673 | 222.75 | 07.32
+09 | The Stans | 3731 | 310.93 | 10.22
+10 | Europe | 4338 | 361.50 | 11.88
+11 | Great White North | 4321 | 360.08 | 11.84
+12 | Lower 48 | 3311 | 275.92 | 09.07
 
-In order to do so, from the GitHub repository settings, section "Options / GitHub Pages, simply put the source on branch "main" and folder "/ (root)".
+* Concept
 
-Consequence: to test production code, "develop" branch must be merged into "main" branch" beforhand.
+Garmin challenge are simple leaderboards.
+
+In order to give more appeal to the challenge, it seems interesting to setup a more visual transcription.
+
+The main idea is to show on a world map, for each region, its complete trace and the corresponding progression of each participant.
+
+To keep it simple, this results in a simple static webpage hosted via GitHub Pages: [[https://midorino.githu.io/graw]].
