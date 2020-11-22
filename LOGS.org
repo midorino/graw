@@ -68,4 +68,4 @@ Note that =<wpt>= does not count as =<trkpt>= - both are required to get a =<wpt
 Add some metadata to =<wpt>= (=<name>=, =<desc>=) - displayed by default when clicked.
 Prelude to "checkpoints" (cities, POI, aso) in GRAW challenge?
 
-Test some line styling ([[https://github.com/mpetazzoni/leaflet-gpx#line-styling]]) from GPX data.
+Test some line styling ([[https://github.com/mpetazzoni/leaflet-gpx#line-styling]]) from GPX data and with JS override (with two GPX data sources - preferred method - complete track vs progress track).

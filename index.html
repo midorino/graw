@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<div id="mapid" style="width: 600px; height: 400px;"></div>
+<div id="mapid" style="width: 800px; height: 600px;"></div>
 
 <script>
 
@@ -78,63 +78,95 @@
 
 	mymap.on('click', onMapClick2);
 	
-	var gpx = '<?xml version="1.0" encoding="UTF-8"?> \
+	var gpx1 = '<?xml version="1.0" encoding="UTF-8"?> \
 	<gpx version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"> \
- <metadata> \
-  <time>2016-08-28T13:03:35Z</time> \
- </metadata> \
- <trk> \
-  <name>2016 Santa Rosa Marathon</name> \
-<trkseg> \
-<extensions> \
-    <line xmlns="http://www.topografix.com/GPX/gpx_style/0/2"> \
-      <color>000000</color> \
-      <opacity>0.5</opacity> \
-      <weight>3</weight> \
-      <linecap>square</linecap> \
-    </line> \
-</extensions> \
-   <trkpt lat="51.495" lon="-0.090"> \
-    <ele>40.0</ele> \
-    <time>2016-08-28T13:03:35Z</time> \
-   </trkpt> \
-   <trkpt lat="51.505" lon="-0.092"> \
-    <ele>160.0</ele> \
-    <time>2016-08-28T13:04:37Z</time> \
-   </trkpt> \
-   <wpt lat="51.505" lon="-0.092"> \
-    <ele>160.0</ele> \
-    <time>2016-08-28T13:04:37Z</time> \
-    <name>POI</name> \
-    <desc>Truly great view!</desc> \
-   </wpt> \
-   <trkpt lat="51.515" lon="-0.091"> \
-    <ele>120.0</ele> \
-    <time>2016-08-28T13:05:37Z</time> \
-   </trkpt> \
-</trkseg> \
-  <trkseg> \
-   <extensions> \
-    <line xmlns="http://www.topografix.com/GPX/gpx_style/0/2"> \
-      <color>FF0000</color> \
-      <opacity>1.0</opacity> \
-      <weight>5</weight> \
-      <linecap>square</linecap> \
-    </line> \
-  </extensions> \
-   <trkpt lat="51.495" lon="-0.090"> \
-    <ele>40.0</ele> \
-    <time>2016-08-28T13:03:35Z</time> \
-   </trkpt> \
-   <trkpt lat="51.505" lon="-0.092"> \
-    <ele>160.0</ele> \
-    <time>2016-08-28T13:04:37Z</time> \
-   </trkpt> \
-</trkseg> \
-</trk> \
-</gpx> \
-'; // URL to your GPX file or the GPX itself
-	new L.GPX(gpx, {async: true}).on('loaded', function(e) {
+	<metadata> \
+		<time>2016-08-28T13:03:35Z</time> \
+	</metadata> \
+	<trk> \
+		<name>2016 Santa Rosa Marathon</name> \
+		<trkseg> \
+			<extensions> \
+				<line xmlns="http://www.topografix.com/GPX/gpx_style/0/2"> \
+					<color>000000</color> \
+					<opacity>0.75</opacity> \
+					<weight>3</weight> \
+					<linecap>square</linecap> \
+				</line> \
+			</extensions> \
+			<trkpt lat="51.495" lon="-0.090"> \
+				<ele>40.0</ele> \
+				<time>2016-08-28T13:03:35Z</time> \
+			</trkpt> \
+			<trkpt lat="51.505" lon="-0.092"> \
+				<ele>160.0</ele> \
+				<time>2016-08-28T13:04:37Z</time> \
+			</trkpt> \
+			<wpt lat="51.505" lon="-0.092"> \
+				<ele>160.0</ele> \
+				<time>2016-08-28T13:04:37Z</time> \
+				<name>POI</name> \
+				<desc>Truly great view!</desc> \
+			</wpt> \
+			<trkpt lat="51.515" lon="-0.091"> \
+				<ele>120.0</ele> \
+				<time>2016-08-28T13:05:37Z</time> \
+			</trkpt> \
+		</trkseg> \
+	</trk> \
+	</gpx> \
+	'; // URL to your GPX file or the GPX itself
+
+	var gpx2 = '<?xml version="1.0" encoding="UTF-8"?> \
+	<gpx version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"> \
+	<metadata> \
+		<time>2016-08-28T13:03:35Z</time> \
+	</metadata> \
+	<trk> \
+		<name>2016 Santa Rosa Marathon</name> \
+		<trkseg> \
+			<extensions> \
+				<line xmlns="http://www.topografix.com/GPX/gpx_style/0/2"> \
+					<color>FF0000</color> \
+					<opacity>1.0</opacity> \
+					<weight>5</weight> \
+					<linecap>square</linecap> \
+				</line> \
+			</extensions> \
+			<trkpt lat="51.495" lon="-0.090"> \
+				<ele>40.0</ele> \
+				<time>2016-08-28T13:03:35Z</time> \
+			</trkpt> \
+			<trkpt lat="51.505" lon="-0.092"> \
+				<ele>160.0</ele> \
+				<time>2016-08-28T13:04:37Z</time> \
+			</trkpt> \
+		</trkseg> \
+	</trk> \
+	</gpx> \
+	'; // URL to your GPX file or the GPX itself
+
+	new L.GPX(gpx1, {
+		async: true,
+		polyline_options: {
+			color: 'red',
+			opacity: 0.75,
+			weight: 3,
+			lineCap: 'square'
+		}
+	}).on('loaded', function(e) {
+		mymap.fitBounds(e.target.getBounds());
+	}).addTo(mymap);
+	
+	new L.GPX(gpx2, {
+		async: true,
+		polyline_options: {
+			color: 'green',
+			opacity: 1.0,
+			weight: 5,
+			lineCap: 'round'
+		}
+	}).on('loaded', function(e) {
 		mymap.fitBounds(e.target.getBounds());
 	}).addTo(mymap);
 </script>
