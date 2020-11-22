@@ -7,6 +7,17 @@
 
 #+HTML_LINK_HOME: https://midorino.github.io
 
+* 2020-11-22
+:PROPERTIES:
+:CREATED:  [2020-11-22]
+:END:
+
+For development workflow, switch GitHub Pages settings to "develop" branch.
+
+
+
+-----
+
 * TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
 
 * TODO Org-mode TODO syntax seems to not be well supported by GitHub previewier ; better to move "Roadmap" section to specific file (eg: "ROADMAP.org").
