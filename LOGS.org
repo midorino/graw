@@ -1,0 +1,52 @@
+#+TITLE:     GRAW - Logs
+#+SUBTITLE:  Garmin Race Around the World - Logs
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-04
+CLOSED: [2020-11-04]
+:PROPERTIES:
+:CREATED:  [2020-11-04]
+:END:
+
+Quick study for Garmin API x Google Maps API.
+
+Only for business ; backup: manual (or semi-auto?) data transfers.
+
+* 2020-11-22
+:PROPERTIES:
+:CREATED:  [2020-11-22]
+:END:
+
+For development workflow, switch GitHub Pages settings to current working branch ("develop" or "feat-*").
+
+Consider some delay (1-2 minutes) for GitHub to actually commit updates from repository to GitHub Pages.
+
+** [FEAT-AAA] Test of [[https://leafletjs.com/][Leaflet.js]] library.
+
+Check the [[https://leafletjs.com/examples/quick-start/][Quick Start Guide]] examples.
+
+[[https://leafletjs.com/examples/quick-start/example-basic.html][Basic Example]] local test (i.e. open local files from web browser) is successful.
+
+But wonder about the first argument of =L.tileLayer()= call - seems to be an API key - is it freely usable?
+
+Actually, "Leaflet Basic example" description explains this: the "mapbox/streets-v11" tiles from Mapbox’s Static Tiles API are used - and in order to use tiles from Mapbox, an access token must be requested.
+
+But for now, the provided Leaflet access token will be used.
+The access token value is simply moved to a variable to ease its future update.
+
+Note that a GET request is made in live version for "https://midorino.github.io/graw/favicon.ico" - unsuccessful. But no element from "index.html" seems to be the source of this request (maybe in the Leaflet CSS or JS?).
+
+** [FEAT-AAB] Leaflet Drawing
+
+Consider [[https://leafletjs.com/examples/quick-start/example-overlays.html]] and [[https://leafletjs.com/examples/quick-start/example-popups.html]] and easily add marker, circle, polygons and popups (attached to figures or standalones).
+
+Examples description explains that use =openOn= instead of =addTo= to handle automatic closing of a previously opened popup when opening a new one which is good for usability. But it seems to be no pratical difference when both are tested.
+
+** [FEAT-AAC] Leaflet Events
+
+Consider final part of Leaflet "Quick Start Guide" relative to events management - NSTR.
