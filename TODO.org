@@ -25,6 +25,7 @@
 
 - https://github.com/mapbox/leaflet-omnivore
 - https://github.com/makinacorpus/Leaflet.FileLayer
+- https://mercantour.info/gpxmap.html
 
 ** Exploit +Leaflet GPX+ plugin custom markers (start, end, waypoints, aso).
 
