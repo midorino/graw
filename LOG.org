@@ -12,9 +12,17 @@
 :CREATED:  [2020-11-22]
 :END:
 
-For development workflow, switch GitHub Pages settings to "develop" branch.
+For development workflow, switch GitHub Pages settings to current working branch ("develop" or "feat-*").
 
+Consider some delay (1-2 minutes) for GitHub to actually commit updates from repository to GitHub Pages.
 
+** [FEAT-AAA] Test of [[https://leafletjs.com/][Leaflet.js]] library.
+
+Check the [[https://leafletjs.com/examples/quick-start/][Quick Start Guide]] examples.
+
+[[https://leafletjs.com/examples/quick-start/example-basic.html][Basic Example]] local test (i.e. open local files from web browser) is successful.
+
+*** TODO But wonder about the first argument of =L.tileLayer()= call - seems to be an API key - is it freely usable?
 
 -----
 
