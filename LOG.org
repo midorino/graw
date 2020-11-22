@@ -35,6 +35,14 @@ Note that a GET request is made in live version for "https://midorino.github.io/
 
 *** TODO Investigate further the "favicon" GET request in live version.
 
+** [FEAT-AAB] Leaflet Drawing
+
+Consider [[https://leafletjs.com/examples/quick-start/example-overlays.html]] and [[https://leafletjs.com/examples/quick-start/example-popups.html]] and easily add marker, circle, polygons and popups (attached to figures or standalones).
+
+Examples description explains that use =openOn= instead of =addTo= to handle automatic closing of a previously opened popup when opening a new one which is good for usability. But it seems to be no pratical difference when both are tested.
+
+*** TODO Investigate further the difference between =addTo()= and =openOn()= in Leaflet.
+
 -----
 
 * TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
