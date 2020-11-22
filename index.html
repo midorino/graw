@@ -91,18 +91,19 @@
 		}
 	}).on('loaded', function(e) {
 		mymap.fitBounds(e.target.getBounds());
-	}).addTo(mymap);
-	
-	new L.GPX(gpx2, {
-		async: true,
-		polyline_options: {
-			color: 'green',
-			opacity: 1.0,
-			weight: 5,
-			lineCap: 'round'
-		}
-	}).on('loaded', function(e) {
-		mymap.fitBounds(e.target.getBounds());
+		
+		// Load progress data only after initial data load
+		new L.GPX(gpx2, {
+			async: true,
+			polyline_options: {
+				color: 'green',
+				opacity: 1.0,
+				weight: 5,
+				lineCap: 'round'
+			}
+		}).on('loaded', function(e) {
+			mymap.fitBounds(e.target.getBounds());
+		}).addTo(mymap);
 	}).addTo(mymap);
 </script>
 
