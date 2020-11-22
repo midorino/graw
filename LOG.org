@@ -43,6 +43,10 @@ Examples description explains that use =openOn= instead of =addTo= to handle aut
 
 *** TODO Investigate further the difference between =addTo()= and =openOn()= in Leaflet.
 
+** [FEAT-AAC] Leaflet Events
+
+Consider final part of Leaflet "Quick Start Guide" relative to events management - NSTR.
+
 -----
 
 * TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
