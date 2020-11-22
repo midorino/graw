@@ -1,0 +1,97 @@
+<html>
+    <head>
+		<title>V-CRAW 2020-2021</title>
+		<style>
+			body {
+				margin: 0;
+			}
+		</style>
+		<style>		
+			#map {
+				height: 100%;
+			}
+		</style>		
+
+    </head>
+    <body>
+        <div id="map"></div>
+        <script type="text/javascript">
+			function createMap(){
+				var opts = {
+					center: {
+						lat: 48.856614,
+						lng: 2.352222,
+					},
+					zoom: 11,
+					styles: [],
+					maxZoom: 20,
+					minZoom: 0,
+					mapTypeId: 'roadmap',
+				};
+
+
+					opts.clickableIcons = true;
+                    opts.disableDoubleClickZoom = false;
+                    opts.draggable = true;
+                    opts.keyboardShortcuts = true;
+                    opts.scrollwheel = true;
+				
+
+				var map = new google.maps.Map(document.getElementById('map'), opts);
+
+
+				(function(){
+					var markerOptions = {
+						map: map,
+						position: {
+							lat: 48.856614,
+							lng: 2.352222,
+						}
+					};
+					var marker = new google.maps.Marker(markerOptions);
+
+
+				})();
+				
+				(function(){
+					var markerOptions = {
+						map: map,
+						position: {
+							lat: 44.837789,
+							lng: -0.57918,
+						}
+					};
+
+					markerOptions.icon = {
+						path: 'M10 13.9c-2.8-0.5-5-2.9-5-5.9 0-3.3 2.7-6 6-6 3.3 0 6 2.7 6 6 0 3-2.2 5.4-5 5.9l0 8.1 -2 0 0-8.1',
+						scale: 1.6363636363636363636363636364,
+						anchor: new google.maps.Point(11, 22),
+						fillOpacity: 1,
+						fillColor: '#f44336',
+						strokeOpacity: 0
+					};
+										var marker = new google.maps.Marker(markerOptions);
+
+
+				})();
+				
+				const flightPlanCoordinates = [
+					{ lat: 37.772, lng: -122.214 },
+					{ lat: 21.291, lng: -157.821 },
+					{ lat: -18.142, lng: 178.431 },
+					{ lat: -27.467, lng: 153.027 },
+				  ];
+				  const flightPath = new google.maps.Polyline({
+					path: flightPlanCoordinates,
+					geodesic: true,
+					strokeColor: "#FF0000",
+					strokeOpacity: 1.0,
+					strokeWeight: 2,
+				  });
+				  flightPath.setMap(map);				
+			}
+        </script>
+		<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNnMZxWOJElchD0wFy5RwlqXw_vb7jByE&v=3.31&language=en&libraries=places,geometry&callback=createMap"></script>
+    </body>
+</html>
+

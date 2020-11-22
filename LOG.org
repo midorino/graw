@@ -1,0 +1,98 @@
+#+TITLE:     GRAW - Logs
+#+SUBTITLE:  Garmin Race Around the World - Logs
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: Ideas, todos, aso
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
+
+* TODO Org-mode TODO syntax seems to not be well supported by GitHub previewier ; better to move "Roadmap" section to specific file (eg: "ROADMAP.org").
+
+* [#A] GRAW
+DEADLINE: <2020-11-15 Sun>
+:PROPERTIES:
+:CREATED:  [2020-11-08 Sun 18:26]
+:LAST_REPEAT: [2020-11-10 Tue 18:33]
+:END:
+
+* Update Garmin challenge
+SCHEDULED: <2020-12-01 Tue .+1m>
+:PROPERTIES:
+:CREATED:  [2020-11-04 Wed 15:16]
+:END:
+
+* Register activities
+SCHEDULED: <2020-11-15 Sun .+1w>
+:PROPERTIES:
+:CREATED:  [2020-11-04 Wed 15:17]
+:LAST_REPEAT: [2020-11-08 Sun 09:08]
+:END:
+
+* Tools to get GPX
+
+- *Google Maps x https://mapstogpx.com/*
+- https://maps.openrouteservice.org
+
+* TODO
+
+For Google Maps API, registring a billing account is required, though 200$-worth calls are free ; possibility to configure daily limits to not exceed.
+
+Ref: https://developers.google.com/maps/documentation/javascript/error-messages?utm_source=maps_js&utm_medium=degraded&utm_campaign=billing#api-key-and-billing-errors
+
+---
+
+Alt: OpenStreetMap API?
+
+Orientation to Leaflet
+
+Best way seems to get global GPX of CRAW to display total routes and add another route for each participant from partial GPX data (with Leaflet GPX plugin: https://github.com/mpetazzoni/leaflet-gpx).
+
+---
+
+How to generate partial progress GPX data from calculate ratio of progress?
+
+---
+
+In addition to the map, progress bars on the side?
+
+* Virtual race progress via online map
+
+https://www.e-monsite.com/pages/tutoriels/configuration-avancee-du-site/obtenir-une-cle-google-maps-api.html
+
+https://console.developers.google.com/apis/
+
+https://snazzymaps.com/download-example/1
+
+https://developers.google.com/maps/documentation/javascript/shapes#maps_polyline_simple-javascript
+
+For CRAW map: https://www.craw.racing/results/
+
+* Update Garmin challenge
+SCHEDULED: <2020-12-01 Tue .+1m>
+:PROPERTIES:
+:CREATED:  [2020-11-04 Wed 15:16]
+:END:
+
+* DONE +Garmin API+ x Google Maps API
+CLOSED: [2020-11-04 Wed 16:17]
+:PROPERTIES:
+:CREATED:  [2020-11-04 Wed 15:59]
+:ARCHIVE_TIME: 2020-11-10 Tue 07:57
+:ARCHIVE_FILE: ~/O/Inbox.org
+:ARCHIVE_CATEGORY: Inbox
+:ARCHIVE_TODO: DONE
+:END:
+
+Only for business ; backup: manual (or semi-auto?) data transfers.
+
+* TODO Further Links
+
+https://en.wikipedia.org/wiki/Race_Across_the_World
+https://runsignup.com/Race/CHH/AnywhereAnyPlace/CircumpolarRaceAroundtheWorld
+https://www.facebook.com/groups/619915252295357/
+https://fr.wikipedia.org/wiki/Nellie_Bly#Le_tour_du_monde_en_72_jours
+https://fr.wikipedia.org/wiki/Le_Tour_du_monde_en_72_jours
+https://blog.zombiesrungame.com/2020/09/25/nellie-bly-this-gal-someone-should-be-talking-about-her/
