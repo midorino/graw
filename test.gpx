@@ -6,6 +6,14 @@
  <trk>
   <name>2016 Santa Rosa Marathon</name>
   <trkseg>
+	  <extensions>
+		  <line xmlns="http://www.topografix.com/GPX/gpx_style/0/2">
+			  <color>FF0000</color>
+			  <opacity>0.5</opacity>
+			  <weight>1</weight>
+			  <linecap>square</linecap>
+		  </line>
+	  </extensions>
    <trkpt lat="51.495" lon="-0.090">
     <ele>40.0</ele>
     <time>2016-08-28T13:03:35Z</time>

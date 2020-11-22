@@ -67,3 +67,5 @@ Add GPX waypoint for test purpose ([[https://www.topografix.com/gpx_manual.asp#w
 Note that =<wpt>= does not count as =<trkpt>= - both are required to get a =<wpt>= displayed on a =<trkpt>=.
 Add some metadata to =<wpt>= (=<name>=, =<desc>=) - displayed by default when clicked.
 Prelude to "checkpoints" (cities, POI, aso) in GRAW challenge?
+
+Test some line styling ([[https://github.com/mpetazzoni/leaflet-gpx#line-styling]]) from GPX data.
