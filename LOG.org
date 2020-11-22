@@ -22,7 +22,14 @@ Check the [[https://leafletjs.com/examples/quick-start/][Quick Start Guide]] exa
 
 [[https://leafletjs.com/examples/quick-start/example-basic.html][Basic Example]] local test (i.e. open local files from web browser) is successful.
 
-*** TODO But wonder about the first argument of =L.tileLayer()= call - seems to be an API key - is it freely usable?
+But wonder about the first argument of =L.tileLayer()= call - seems to be an API key - is it freely usable?
+
+Actually, "Leaflet Basic example" description explains this: the "mapbox/streets-v11" tiles from Mapbox’s Static Tiles API are used - and in order to use tiles from Mapbox, an access token must be requested.
+
+*** TODO Request a Mapbox access token: [[https://www.mapbox.com/studio/account/tokens/]].
+
+But for now, the provided Leaflet access token will be used.
+The access token value is simply moved to a variable to ease its future update.
 
 -----
 
