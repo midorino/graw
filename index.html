@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-	
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
 </head>
 <body>
 
@@ -76,6 +77,40 @@
 	}
 
 	mymap.on('click', onMapClick2);
+	
+	var gpx = '<?xml version="1.0" encoding="UTF-8"?> \
+	<gpx version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"> \
+ <metadata> \
+  <time>2016-08-28T13:03:35Z</time> \
+ </metadata> \
+ <trk> \
+  <name>2016 Santa Rosa Marathon</name> \
+  <trkseg> \
+   <trkpt lat="51.495" lon="-0.090"> \
+    <ele>40.0</ele> \
+    <time>2016-08-28T13:03:35Z</time> \
+   </trkpt> \
+   <trkpt lat="51.505" lon="-0.092"> \
+    <ele>160.0</ele> \
+    <time>2016-08-28T13:04:37Z</time> \
+   </trkpt> \
+   <wpt lat="51.505" lon="-0.092"> \
+    <ele>160.0</ele> \
+    <time>2016-08-28T13:04:37Z</time> \
+    <name>POI</name> \
+    <desc>Truly great view!</desc> \
+   </wpt> \
+   <trkpt lat="51.515" lon="-0.091"> \
+    <ele>120.0</ele> \
+    <time>2016-08-28T13:05:37Z</time> \
+   </trkpt> \
+</trkseg> \
+</trk> \
+</gpx> \
+'; // URL to your GPX file or the GPX itself
+	new L.GPX(gpx, {async: true}).on('loaded', function(e) {
+		mymap.fitBounds(e.target.getBounds());
+	}).addTo(mymap);
 </script>
 
 </body>

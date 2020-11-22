@@ -19,6 +19,17 @@
 
 ** https://leafletjs.com/examples.html
 
+** All remote resources (CSS, JS) in local versions?
+
+** +Leaflet GPX+ plugin alternatives?
+
+- https://github.com/mapbox/leaflet-omnivore
+- https://github.com/makinacorpus/Leaflet.FileLayer
+
+** Exploit +Leaflet GPX+ plugin custom markers (start, end, waypoints, aso).
+
+** Exploit +Leaflet GPX+ plugin functions (https://github.com/mpetazzoni/leaflet-gpx#available-functions).
+
 ** Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
 
 ** Org-mode TODO syntax seems to not be well supported by GitHub previewier ; better to move "Roadmap" section to specific file (eg: "ROADMAP.org").

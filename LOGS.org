@@ -50,3 +50,20 @@ Examples description explains that use =openOn= instead of =addTo= to handle aut
 ** [FEAT-AAC] Leaflet Events
 
 Consider final part of Leaflet "Quick Start Guide" relative to events management - NSTR.
+
+** [FEAT-AAD] Leaflet GPX Plugin
+
+Based on [[https://github.com/mpetazzoni/leaflet-gpx]] and [[https://mpetazzoni.github.io/leaflet-gpx/]].
+
+Use of a shortened version of +demo.gpx+ from +Leaflet GPX+ example as input.
+
+But local test impossible for "Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at file:///home/strobilyon/O/D/GRAW/test.gpx. (Reason: CORS request not http)."
+
+Backup solution: GPX directly put as a string in JS.
+
+Default marker icons of the plugin may be changed - for now, pull the default icons from plugin repository.
+
+Add GPX waypoint for test purpose ([[https://www.topografix.com/gpx_manual.asp#wpt]] for syntax).
+Note that =<wpt>= does not count as =<trkpt>= - both are required to get a =<wpt>= displayed on a =<trkpt>=.
+Add some metadata to =<wpt>= (=<name>=, =<desc>=) - displayed by default when clicked.
+Prelude to "checkpoints" (cities, POI, aso) in GRAW challenge?
