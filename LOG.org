@@ -49,6 +49,8 @@ Consider final part of Leaflet "Quick Start Guide" relative to events management
 
 -----
 
+* TODO https://leafletjs.com/examples.html
+
 * TODO Better get inspired from [[https://www.atlassian.com/blog/statuspage/maintenance-page-examples]] (especially "Product Hunt" example with Midorino logo for instance).
 
 * TODO Org-mode TODO syntax seems to not be well supported by GitHub previewier ; better to move "Roadmap" section to specific file (eg: "ROADMAP.org").
