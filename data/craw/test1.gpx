@@ -18,11 +18,25 @@
 			<ele>40.0</ele>
 			<time>2016-08-28T13:03:35Z</time>
 		</trkpt>
+		<trkpt lat="51.500" lon="-0.090">
+			<ele>40.0</ele>
+			<time>2016-08-28T13:03:35Z</time>
+		</trkpt>
 		<trkpt lat="51.505" lon="-0.092">
 			<ele>160.0</ele>
 			<time>2016-08-28T13:04:37Z</time>
 		</trkpt>
 		<wpt lat="51.505" lon="-0.092">
+			<ele>160.0</ele>
+			<time>2016-08-28T13:04:37Z</time>
+			<name>POI</name>
+			<desc>Truly great view!</desc>
+		</wpt>
+		<trkpt lat="51.510" lon="-0.092">
+			<ele>160.0</ele>
+			<time>2016-08-28T13:04:37Z</time>
+		</trkpt>
+		<wpt lat="51.510" lon="-0.092">
 			<ele>160.0</ele>
 			<time>2016-08-28T13:04:37Z</time>
 			<name>POI</name>

@@ -12,6 +12,8 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
+    
+    <script src="GPXParser.min.js"></script>
 </head>
 <body>
 
@@ -78,9 +80,57 @@
 
 	mymap.on('click', onMapClick2);
 	
-	var gpx1 = 'data/craw/test1.gpx'; // URL to your GPX file or the GPX itself
-	var gpx2 = 'data/craw/test2.gpx'; // URL to your GPX file or the GPX itself
+	var gpx1 = "data/craw/test1.gpx"; // URL to your GPX file or the GPX itself
+	var gpx2 = "data/craw/test2.gpx"; // URL to your GPX file or the GPX itself
 
+	function loadFile(filePath) {
+	  var result = null;
+	  var xmlhttp = new XMLHttpRequest();
+	  xmlhttp.open("GET", filePath, false);
+	  xmlhttp.send();
+	  if (xmlhttp.status==200) {
+		result = xmlhttp.responseText;
+	  }
+	  return result;
+	}
+	
+	var gpxtxt = loadFile(gpx1);
+	let gpx = new gpxParser(); //Create gpxParser Object
+    gpx.parse(gpxtxt); //parse gpx file from string data
+    let total_distance = gpx.tracks[0].distance.total;
+    console.log("[GPXParser] Total distance: " + total_distance + " m");
+    
+    // Build a progress GPX track from complete GPX track
+    
+    var progress_distance = 1000;
+    var cumuls = gpx.tracks[0].distance.cumul
+    console.log(gpx.tracks[0])
+    
+    /* Not the best way
+    cumuls.forEach(checkProgress);
+
+	function checkProgress(item, index) {} 
+	*/
+	
+	var i,f;
+	for (i = 0; i < cumuls.length; i++) {
+		if(cumuls[i] > progress_distance) {
+			f = i ;
+			break ;
+		}
+	}
+	
+	// Remove not covered data
+	// Surely a cleaner way to do this...
+	gpx.tracks[0].points.length = f+2;
+	// geojson.features.length = (f-1)?
+	
+	// GPXParser: export to GeoJSON - Remove not covered data - LeafletGPX: draw from GeoJSON
+	
+	var geojson = gpx.toGeoJSON();
+	
+	console.log(geojson);
+	
 	new L.GPX(gpx1, {
 		async: true,
 		polyline_options: {
@@ -90,20 +140,24 @@
 			lineCap: 'square'
 		}
 	}).on('loaded', function(e) {
+		var gpx = e.target;
+		
+		// Just for the sake of comparison with GPXParser
+		var track_distance = gpx.get_distance();
+		console.log("[LeafletGPX] Total distance: " + track_distance + " m");
+		
 		mymap.fitBounds(e.target.getBounds());
 		
 		// Load progress data only after initial data load
-		new L.GPX(gpx2, {
-			async: true,
-			polyline_options: {
+		new L.geoJSON(geojson, {
+			style: {
 				color: 'green',
 				opacity: 1.0,
 				weight: 5,
 				lineCap: 'round'
 			}
-		}).on('loaded', function(e) {
-			mymap.fitBounds(e.target.getBounds());
 		}).addTo(mymap);
+		
 	}).addTo(mymap);
 </script>
 

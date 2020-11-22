@@ -69,3 +69,32 @@ Add some metadata to =<wpt>= (=<name>=, =<desc>=) - displayed by default when cl
 Prelude to "checkpoints" (cities, POI, aso) in GRAW challenge?
 
 Test some line styling ([[https://github.com/mpetazzoni/leaflet-gpx#line-styling]]) from GPX data and with JS override (with two GPX data sources - preferred method - complete track vs progress track).
+
+** Local testing environment
+
+XAMPP, WAMP or better here: Python HTTP Server ([[https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server]]) and test at =http://localhost:8000/=.
+
+** [FEAT-AAE] Relative track progress
+
+Consider a giving progress distance, display an approximate progress track over the complete track base on its complete distance.
+
+Get track total distance is easy with "Leaflet GPX" plugin +get_distance()+.
+
+But get parsed elements (points or tracks) does not seem to be as immediate.
+
+Analysis of =gpx.js= (main JS in "Leaflet GPX" library): member +_layers+ seems to contain corresponding data but no solution to access it.
+Alternative: keep "Leaflet GPX" plugin to draw tracks, use another method to parse and calculate it.
+
+[[https://luuka.github.io/GPXParser.js/]] seems a good candidate.
+
+No remote repository for =GPXParser.js= (test with GitHub rep not functionnal) ; JS downloaded in local web folder.
+
+First, GPX file must be converted to a string - more difficult than it seems but found one possible hack: [[https://stackoverflow.com/questions/36921947/read-a-server-side-file-using-javascript/41133213]].
+
+Note that =GPXParser= and =Leaflet GPX= give slightly different total distances results.
+
+=GPXParse= allows to loop through the points and accumulated distances (comparison with progress distance - fix variable here but actually calculated from Garmin challenge number of steps).
+
+Then, remove not covered-by-progress elements from GPX parsed object, then export to GeoJSON data, which is drawable with =LeafletGPX=.
+
+Code cleaning is required but functionnal.
