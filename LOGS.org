@@ -196,4 +196,6 @@ Must also update GPXParser code because new GPX file structure does not contain 
 - Remove test data from =data=
 - Update HTML <head>
 - Add favicon ([[https://medium.com/theagilemanager/how-to-add-a-favicon-to-github-pages-403935604460]] / [[https://realfavicongenerator.net]])
-- Move JS code in =src= folder
+- Move JS code to =index.js=
+- Validate code
+- Beautify code
