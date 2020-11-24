@@ -194,6 +194,6 @@ Must also update GPXParser code because new GPX file structure does not contain 
 - All external libraries (JS, CSS, aso) in =lib= folder
 - All images in =img= folder
 - Remove test data from =data=
+- Update HTML <head>
 - Move JS code in =src= folder
-- Rename page title
 - Add favicon
