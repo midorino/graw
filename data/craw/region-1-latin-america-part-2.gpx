@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="mapstogpx.com" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.mapstogpx.com">
+      <text>Sverrir Sigmundarson</text>
+    </link>
+    <!--desc>Map data copyright 2020 Google</desc-->
+    <!--copyright author="Google Inc">
+    	<year>2020</year>
+    	<license>https://developers.google.com/maps/terms</license>
+    </copyright-->
+    <!--url>https://www.google.co.uk/maps/dir/Santiago de Veraguas, Panama/Rio Hato, Panama/Colón, Panama?hl=en</url-->
+    <time>2020-11-23T15:25:43Z</time>
+  </metadata>
+  <wpt lat="8.0884943" lon="-80.9760556">
+    <name>Santiago</name>
+    <desc>Santiago, Panama</desc>
+  </wpt>
+  <wpt lat="8.4140603" lon="-80.109357">
+    <name>Rio Hato</name>
+    <desc>Rio Hato, Panama</desc>
+  </wpt>
+  <wpt lat="9.359302" lon="-79.8998608">
+    <name>Colón</name>
+    <desc>Colón, Panama</desc>
+  </wpt>
+<rte>
+  <name>Latin America (2/2)</name>
+  <rtept lat="8.0887526" lon="-80.9758584">
+    <name>RP001</name>
+  </rtept>
+  <rtept lat="8.0939822" lon="-80.9747327">
+    <name>RP002</name>
+  </rtept>
+  <rtept lat="8.097587" lon="-80.9745947">
+    <name>RP003</name>
+  </rtept>
+  <rtept lat="8.1000913" lon="-80.9673245">
+    <name>RP004</name>
+  </rtept>
+  <rtept lat="8.3955039" lon="-80.0944703">
+    <name>RP005</name>
+  </rtept>
+  <rtept lat="8.4314943" lon="-80.1039804">
+    <name>RP006</name>
+  </rtept>
+  <rtept lat="8.4183601" lon="-80.1067462">
+    <name>RP007</name>
+  </rtept>
+  <rtept lat="8.4314943" lon="-80.1039804">
+    <name>RP008</name>
+  </rtept>
+  <rtept lat="8.4208388" lon="-80.0981596">
+    <name>RP009</name>
+  </rtept>
+  <rtept lat="8.39559" lon="-80.0945314">
+    <name>RP010</name>
+  </rtept>
+  <rtept lat="8.8543836" lon="-79.8103163">
+    <name>RP011</name>
+  </rtept>
+  <rtept lat="8.8563416" lon="-79.8075467">
+    <name>RP012</name>
+  </rtept>
+  <rtept lat="8.9482269" lon="-79.6642505">
+    <name>RP013</name>
+  </rtept>
+  <rtept lat="9.0364876" lon="-79.6288905">
+    <name>RP014</name>
+  </rtept>
+  <rtept lat="9.0351768" lon="-79.6298637">
+    <name>RP015</name>
+  </rtept>
+  <rtept lat="9.0577351" lon="-79.6386874">
+    <name>RP016</name>
+  </rtept>
+  <rtept lat="9.1034007" lon="-79.6151891">
+    <name>RP017</name>
+  </rtept>
+  <rtept lat="9.1220196" lon="-79.6175608">
+    <name>RP018</name>
+  </rtept>
+  <rtept lat="9.1229558" lon="-79.617356">
+    <name>RP019</name>
+  </rtept>
+  <rtept lat="9.1250233" lon="-79.6194644">
+    <name>RP020</name>
+  </rtept>
+  <rtept lat="9.31448" lon="-79.8015666">
+    <name>RP021</name>
+  </rtept>
+  <rtept lat="9.3375147" lon="-79.8809313">
+    <name>RP022</name>
+  </rtept>
+  <rtept lat="9.3391612" lon="-79.8802641">
+    <name>RP023</name>
+  </rtept>
+  <rtept lat="9.3390301" lon="-79.8836474">
+    <name>RP024</name>
+  </rtept>
+  <rtept lat="9.3454483" lon="-79.8944414">
+    <name>RP025</name>
+  </rtept>
+  <rtept lat="9.3539676" lon="-79.9004538">
+    <name>RP026</name>
+  </rtept>
+  <rtept lat="9.3545403" lon="-79.8985675">
+    <name>RP027</name>
+  </rtept>
+</rte>
+</gpx>
