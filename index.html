@@ -32,54 +32,7 @@
 		accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
 	}).addTo(mymap);
 
-	var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-	var circle = L.circle([51.508, -0.11], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 500
-	}).addTo(mymap);
-
-	var polygon = L.polygon([
-		[51.509, -0.08],
-		[51.503, -0.06],
-		[51.51, -0.047]
-	]).addTo(mymap);
-
-	marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-	circle.bindPopup("I am a circle.");
-	polygon.bindPopup("I am a polygon.");
-
-	var popup1 = L.popup()
-    .setLatLng([51.5, -0.09])
-    .setContent("I am a standalone popup.")
-    .openOn(mymap); // automatic closing
-
-    var popup2 = L.popup()
-    .setLatLng([51.51, -0.091])
-    .setContent("I am a standalone popup.")
-    .addTo(mymap); // no automatic closing?
-
-	function onMapClick1(e) {
-		alert("You clicked the map at " + e.latlng);
-	}
-
-	mymap.on('click', onMapClick1);
-
-	var dynpopup = L.popup();
-
-	function onMapClick2(e) {
-		dynpopup
-			.setLatLng(e.latlng)
-			.setContent("You clicked the map at " + e.latlng.toString())
-			.openOn(mymap);
-	}
-
-	mymap.on('click', onMapClick2);
-
 	var gpx1 = "data/craw/region-1-latin-america.gpx"; // URL to your GPX file or the GPX itself
-	var gpx2 = "data/craw/test2.gpx"; // URL to your GPX file or the GPX itself
 
 	function loadFile(filePath) {
 	  var result = null;
@@ -100,7 +53,7 @@
 
     // Build a progress GPX track from complete GPX track
 
-    var progress_distance = 100000;
+    var progress_distance = 200000;
     var cumuls = gpx.routes[0].distance.cumul
     console.log(gpx.routes[0])
 
@@ -121,40 +74,61 @@
 	// Remove not covered data
 	// Surely a cleaner way to do this...
 	gpx.routes[0].points.length = f+2;
-	// geojson.features.length = (f-1)?
 
 	// GPXParser: export to GeoJSON
 	var geojson = gpx.toGeoJSON();
 
 	new L.GPX(gpx1, {
 		async: true,
+		gpx_options: {
+		    parseElements: ['route']
+		},
 		polyline_options: {
 			color: 'red',
 			opacity: 0.75,
 			weight: 3,
 			lineCap: 'square'
-		}
+		},
+		marker_options: {
+		    startIconUrl: 'pin-icon-start.png',
+            endIconUrl: 'pin-icon-end.png',
+            shadowUrl: 'pin-shadow.png',
+            wptIconUrls: {
+              // pin-icon-wpt.png
+              // Useless if gpx_options / parseElements does not contain 'waypoints'
+            }
+        }
 	}).on('loaded', function(e) {
-		var gpx = e.target;
+		var gpx1data = e.target;
 
 		// Just for the sake of comparison with GPXParser
-		var track_distance = gpx.get_distance();
+		var track_distance = gpx1data.get_distance();
 		console.log("[LeafletGPX] Total distance: " + track_distance + " m");
 
 		mymap.fitBounds(e.target.getBounds());
 
 		// Load progress data only after initial data load
 		new L.geoJSON(geojson, {
+		    pointToLayer: function(geoJsonPoint, latlng) {
+                //return L.marker(latlng, {icon: ...});
+                return null;
+            },
 			style: {
-				color: 'green',
+				color: 'blue',
 				opacity: 1.0,
 				weight: 5,
-				lineCap: 'round'
+				lineCap: 'round',
 			}
 		}).addTo(mymap);
 
+		// Add marker at current progress position
+		var last = gpx.routes[0].points.length - 1;
+		var myIcon = L.icon({
+		    iconUrl: 'pin-icon-runner.png',
+		    iconSize: [35, 35]
+		});
+        L.marker(gpx.routes[0].points[last], {icon: myIcon}).addTo(mymap);
 	}).addTo(mymap);
 </script>
-
 </body>
 </html>
