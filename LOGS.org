@@ -172,3 +172,19 @@ Settings:
 *** Manual merge (specific)
 
 Manual merge of GPX files into one (=<metadata>=, =<wpt>=, =<rte>(<name>)=)
+
+*** PythonAnyWhere Test Server
+
+Even with "Beginner" account, it is possible to create /one/ Web App with =pythonanywhere.com=.
+
+Here, the setup is:
+
+- Manual configuration
+- =Static files=:
+  - =URL=: /
+  - =Directory=: ~/graw
+- Web App available at: =<login>.<domain>.pythonanywhere.com=
+- =Reload= when necessary (settings updates - not required for source code updates)
+
+Update JS to take new GPX file as input.
+Must also update GPXParser code because new GPX file structure does not contain +tracks+ but +routes+ (or possibly +waypoints+).

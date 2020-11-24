@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
 	<title>Quick Start - Leaflet</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
-    
+
     <script src="GPXParser.min.js"></script>
 </head>
 <body>
@@ -20,7 +19,6 @@
 <div id="mapid" style="width: 800px; height: 600px;"></div>
 
 <script>
-
 	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -33,16 +31,16 @@
 		zoomOffset: -1,
 		accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
 	}).addTo(mymap);
-	
+
 	var marker = L.marker([51.5, -0.09]).addTo(mymap);
-	
+
 	var circle = L.circle([51.508, -0.11], {
 		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 0.5,
 		radius: 500
 	}).addTo(mymap);
-	
+
 	var polygon = L.polygon([
 		[51.509, -0.08],
 		[51.503, -0.06],
@@ -52,12 +50,12 @@
 	marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 	circle.bindPopup("I am a circle.");
 	polygon.bindPopup("I am a polygon.");
-	
+
 	var popup1 = L.popup()
     .setLatLng([51.5, -0.09])
     .setContent("I am a standalone popup.")
     .openOn(mymap); // automatic closing
-    
+
     var popup2 = L.popup()
     .setLatLng([51.51, -0.091])
     .setContent("I am a standalone popup.")
@@ -79,8 +77,8 @@
 	}
 
 	mymap.on('click', onMapClick2);
-	
-	var gpx1 = "data/craw/test1.gpx"; // URL to your GPX file or the GPX itself
+
+	var gpx1 = "data/craw/region-1-latin-america.gpx"; // URL to your GPX file or the GPX itself
 	var gpx2 = "data/craw/test2.gpx"; // URL to your GPX file or the GPX itself
 
 	function loadFile(filePath) {
@@ -93,25 +91,25 @@
 	  }
 	  return result;
 	}
-	
+
 	var gpxtxt = loadFile(gpx1);
 	let gpx = new gpxParser(); //Create gpxParser Object
     gpx.parse(gpxtxt); //parse gpx file from string data
-    let total_distance = gpx.tracks[0].distance.total;
+    let total_distance = gpx.routes[0].distance.total;
     console.log("[GPXParser] Total distance: " + total_distance + " m");
-    
+
     // Build a progress GPX track from complete GPX track
-    
-    var progress_distance = 1000;
-    var cumuls = gpx.tracks[0].distance.cumul
-    console.log(gpx.tracks[0])
-    
+
+    var progress_distance = 100000;
+    var cumuls = gpx.routes[0].distance.cumul
+    console.log(gpx.routes[0])
+
     /* Not the best way
     cumuls.forEach(checkProgress);
 
-	function checkProgress(item, index) {} 
+	function checkProgress(item, index) {}
 	*/
-	
+
 	var i,f;
 	for (i = 0; i < cumuls.length; i++) {
 		if(cumuls[i] > progress_distance) {
@@ -119,18 +117,15 @@
 			break ;
 		}
 	}
-	
+
 	// Remove not covered data
 	// Surely a cleaner way to do this...
-	gpx.tracks[0].points.length = f+2;
+	gpx.routes[0].points.length = f+2;
 	// geojson.features.length = (f-1)?
-	
-	// GPXParser: export to GeoJSON - Remove not covered data - LeafletGPX: draw from GeoJSON
-	
+
+	// GPXParser: export to GeoJSON
 	var geojson = gpx.toGeoJSON();
-	
-	console.log(geojson);
-	
+
 	new L.GPX(gpx1, {
 		async: true,
 		polyline_options: {
@@ -141,13 +136,13 @@
 		}
 	}).on('loaded', function(e) {
 		var gpx = e.target;
-		
+
 		// Just for the sake of comparison with GPXParser
 		var track_distance = gpx.get_distance();
 		console.log("[LeafletGPX] Total distance: " + track_distance + " m");
-		
+
 		mymap.fitBounds(e.target.getBounds());
-		
+
 		// Load progress data only after initial data load
 		new L.geoJSON(geojson, {
 			style: {
@@ -157,7 +152,7 @@
 				lineCap: 'round'
 			}
 		}).addTo(mymap);
-		
+
 	}).addTo(mymap);
 </script>
 
