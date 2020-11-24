@@ -191,7 +191,7 @@ Must also update GPXParser code because new GPX file structure does not contain 
 
 ** Code cleaning
 
-- All external JS, CSS, aso in =lib= folder
+- All external libraries (JS, CSS, aso) in =lib= folder
 - All images in =img= folder
 - Remove test data from =data=
 - Move JS code in =src= folder

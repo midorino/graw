@@ -92,11 +92,11 @@
 			lineCap: 'square'
 		},
 		marker_options: {
-		    startIconUrl: 'pin-icon-start.png',
-            endIconUrl: 'pin-icon-end.png',
-            shadowUrl: 'pin-shadow.png',
+		    startIconUrl: 'img/pin-icon-start.png',
+            endIconUrl: 'img/pin-icon-end.png',
+            shadowUrl: 'img/pin-shadow.png',
             wptIconUrls: {
-              // pin-icon-wpt.png
+              // img/pin-icon-wpt.png
               // Useless if gpx_options / parseElements does not contain 'waypoints'
             }
         }
@@ -126,7 +126,7 @@
 		// Add marker at current progress position
 		var last = gpx.routes[0].points.length - 1;
 		var myIcon = L.icon({
-		    iconUrl: 'pin-icon-runner.png',
+		    iconUrl: 'img/pin-icon-runner.png',
 		    iconSize: [35, 35]
 		});
         L.marker(gpx.routes[0].points[last], {icon: myIcon}).addTo(mymap);
