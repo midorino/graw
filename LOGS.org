@@ -188,3 +188,12 @@ Here, the setup is:
 
 Update JS to take new GPX file as input.
 Must also update GPXParser code because new GPX file structure does not contain +tracks+ but +routes+ (or possibly +waypoints+).
+
+** Code cleaning
+
+- All external JS, CSS, aso in =lib= folder
+- All images in =img= folder
+- Remove test data from =data=
+- Move JS code in =src= folder
+- Rename page title
+- Add favicon
