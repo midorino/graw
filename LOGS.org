@@ -233,3 +233,9 @@ As =index.js= is here like a JS module, use of the "function" form of =strict= m
 Ref: [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode]].
 
 - Various syntax fixes.
+
+**** Beautify
+
+- https://beautifier.io/
+- https://codebeautify.org/
+- *http://beautifytools.com/*
