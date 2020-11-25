@@ -129,7 +129,9 @@ function strict() {
         'data/craw/region-4-antarctica.gpx',
         'data/craw/region-5-down-under.gpx',
         'data/craw/region-6-the-islands.gpx',
-        'data/craw/region-7-malay-peninsula.gpx'
+        'data/craw/region-7-malay-peninsula.gpx',
+        'data/craw/region-8-indian-subcontinent.gpx',
+        'data/craw/region-9-the-stans.gpx'
     ];
 
 	for (const gpxFile of gpxFiles) {
