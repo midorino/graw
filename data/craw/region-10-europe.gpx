@@ -9,8 +9,8 @@
     	<year>2020</year>
     	<license>https://developers.google.com/maps/terms</license>
     </copyright-->
-    <!--url>https://www.google.co.uk/maps/dir/Astrakhan, Russie/Louhansk, Ukraine/Tallinn, Estonie/Helsinki, Finlande/Oulu, Finlande/Kautokeino, Norvège/Alta, Norvège/Kåfjord, Norvège/@56.8709359,17.8566232,4z/data=!3m1!4b1!4m50!4m49!1m5!1m1!1s0x41a90584a786c9ed:0x5a2144fabe5dcac2!2m2!1d48.0569483!2d46.3586008!1m5!1m1!1s0x411fc564844c6285:0xf8e02e7e879e7164!2m2!1d39.307815!2d48.574041!1m5!1m1!1s0x46929499df5616bf:0x400b36d18fc6270!2m2!1d24.7535747!2d59.4369608!1m5!1m1!1s0x46920bc796210691:0xcd4ebd843be2f763!2m2!1d24.9383791!2d60.1698557!1m5!1m1!1s0x468032a8c02185c1:0x8bb02d322b12e97d!2m2!1d25.4650772!2d65.0120888!1m5!1m1!1s0x45ce2c42fc954615:0x13930e9d440ec01a!2m2!1d23.0470391!2d69.0180912!1m5!1m1!1s0x45cf1470ea806115:0xb7031db51607bfb3!2m2!1d23.2715496!2d69.9687376!1m5!1m1!1s0x45cf6d2d955bcb31:0x8a8801d24d9fb0ed!2m2!1d23.0233043!2d69.9351878!3e2?hl=en</url-->
-    <time>2020-11-25T15:01:45Z</time>
+    <!--url>https://www.google.co.uk/maps/dir/Astrakhan, Russie/Louhansk, Ukraine/Tallinn, Estonie/Helsinki, Finlande/Oulu, Finlande/Kautokeino, Norvège/Alta, Norvège/Olderfjord, Norvège/@70.2505961,25.8746473,7.25z/data=!4m50!4m49!1m5!1m1!1s0x41a90584a786c9ed:0x5a2144fabe5dcac2!2m2!1d48.0569483!2d46.3586008!1m5!1m1!1s0x411fc564844c6285:0xf8e02e7e879e7164!2m2!1d39.307815!2d48.574041!1m5!1m1!1s0x46929499df5616bf:0x400b36d18fc6270!2m2!1d24.7535747!2d59.4369608!1m5!1m1!1s0x46920bc796210691:0xcd4ebd843be2f763!2m2!1d24.9383791!2d60.1698557!1m5!1m1!1s0x468032a8c02185c1:0x8bb02d322b12e97d!2m2!1d25.4650772!2d65.0120888!1m5!1m1!1s0x45ce2c42fc954615:0x13930e9d440ec01a!2m2!1d23.0470391!2d69.0180912!1m5!1m1!1s0x45cf1470ea806115:0xb7031db51607bfb3!2m2!1d23.2715496!2d69.9687376!1m5!1m1!1s0x45c926f5caf8ba91:0xbfc2f498aea6415f!2m2!1d25.0712756!2d70.4737829!3e2?hl=en</url-->
+    <time>2020-11-25T15:03:43Z</time>
   </metadata>
   <wpt lat="46.3586008" lon="48.0569483">
     <name>Astrakhan</name>
@@ -40,9 +40,9 @@
     <name>Alta</name>
     <desc>Alta, Norway</desc>
   </wpt>
-  <wpt lat="69.9351878" lon="23.0233043">
-    <name>Kåfjord</name>
-    <desc>Kåfjord, 9518, Norway</desc>
+  <wpt lat="70.4737829" lon="25.0712756">
+    <name>Olderfjord</name>
+    <desc>Olderfjord, 9713, Norway</desc>
   </wpt>
 <rte>
   <name>Europe</name>
@@ -2347,38 +2347,59 @@
   <rtept lat="69.9687304" lon="23.2715373">
     <name>RP767</name>
   </rtept>
-  <rtept lat="69.9683443" lon="23.2706092">
+  <rtept lat="69.9689246" lon="23.2719033">
     <name>RP768</name>
   </rtept>
-  <rtept lat="69.9684249" lon="23.2703877">
+  <rtept lat="69.9719045" lon="23.280548">
     <name>RP769</name>
   </rtept>
-  <rtept lat="69.9611281" lon="23.2401935">
+  <rtept lat="69.972239" lon="23.2816315">
     <name>RP770</name>
   </rtept>
-  <rtept lat="69.9610334" lon="23.2402983">
+  <rtept lat="69.9722117" lon="23.2817204">
     <name>RP771</name>
   </rtept>
-  <rtept lat="69.9583265" lon="23.223234">
+  <rtept lat="69.9756818" lon="23.2909138">
     <name>RP772</name>
   </rtept>
-  <rtept lat="69.951158" lon="23.1999698">
+  <rtept lat="69.9765315" lon="23.2928609">
     <name>RP773</name>
   </rtept>
-  <rtept lat="69.9401858" lon="23.1325037">
+  <rtept lat="69.976629" lon="23.2926458">
     <name>RP774</name>
   </rtept>
-  <rtept lat="69.9272079" lon="23.1067762">
+  <rtept lat="69.9756895" lon="23.3085934">
     <name>RP775</name>
   </rtept>
-  <rtept lat="69.925959" lon="23.0977981">
+  <rtept lat="69.9755197" lon="23.3182126">
     <name>RP776</name>
   </rtept>
-  <rtept lat="69.9147353" lon="23.0287965">
+  <rtept lat="69.9708649" lon="23.3683333">
     <name>RP777</name>
   </rtept>
-  <rtept lat="69.9351144" lon="23.0262103">
+  <rtept lat="69.9702949" lon="23.372795">
     <name>RP778</name>
+  </rtept>
+  <rtept lat="69.9692856" lon="23.3729729">
+    <name>RP779</name>
+  </rtept>
+  <rtept lat="69.9689969" lon="23.3736771">
+    <name>RP780</name>
+  </rtept>
+  <rtept lat="69.9690057" lon="23.3740078">
+    <name>RP781</name>
+  </rtept>
+  <rtept lat="70.4325635" lon="24.5021083">
+    <name>RP782</name>
+  </rtept>
+  <rtept lat="70.4760497" lon="24.8575111">
+    <name>RP783</name>
+  </rtept>
+  <rtept lat="70.4724924" lon="24.9254158">
+    <name>RP784</name>
+  </rtept>
+  <rtept lat="70.47371" lon="25.0702551">
+    <name>RP785</name>
   </rtept>
 </rte>
 </gpx>
