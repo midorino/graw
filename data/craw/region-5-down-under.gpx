@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="mapstogpx.com" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.mapstogpx.com">
+      <text>Sverrir Sigmundarson</text>
+    </link>
+    <!--desc>Map data copyright 2020 Google</desc-->
+    <!--copyright author="Google Inc">
+    	<year>2020</year>
+    	<license>https://developers.google.com/maps/terms</license>
+    </copyright-->
+    <!--url>https://www.google.co.uk/maps/dir/Melbourne Victoria, Australie/Adelaide Australie-Méridionale, Australie/Port Augusta Australie-Méridionale, Australie/Alice Springs Territoire du Nord, Australie/Daly Waters Territoire du Nord, Australie/Darwin Territoire du Nord, Australie/@-24.8504214,128.8889657,5z/data=!3m1!4b1!4m38!4m37!1m5!1m1!1s0x6ad646b5d2ba4df7:0x4045675218ccd90!2m2!1d144.9630576!2d-37.8136276!1m5!1m1!1s0x6ab735c7c526b33f:0x4033654628ec640!2m2!1d138.6007456!2d-34.9284989!1m5!1m1!1s0x6abce0ea0e0381cf:0x5033654628f0010!2m2!1d137.7894394!2d-32.4952339!1m5!1m1!1s0x2b321c2bfac47793:0x40217a82a248470!2m2!1d133.8807471!2d-23.698042!1m5!1m1!1s0x2ca9a77949c66311:0x40217a82a248480!2m2!1d133.369167!2d-16.253333!1m5!1m1!1s0x2cc0a0fc9f59043f:0x30217a82a247c20!2m2!1d130.8456418!2d-12.4634403!3e2?hl=fr&hl=en</url-->
+    <time>2020-11-25T14:07:12Z</time>
+  </metadata>
+  <wpt lat="-37.8136276" lon="144.9630576">
+    <name>Melbourne Victoria</name>
+    <desc>Melbourne, Victoria, Australia</desc>
+  </wpt>
+  <wpt lat="-34.9284989" lon="138.6007456">
+    <name>Adelaide Australie-Méridionale</name>
+    <desc>Adelaide, South Australia, Australia</desc>
+  </wpt>
+  <wpt lat="-32.4952339" lon="137.7894394">
+    <name>Port Augusta Australie-Méridionale</name>
+    <desc>Port Augusta, South Australia, Australia</desc>
+  </wpt>
+  <wpt lat="-23.698042" lon="133.8807471">
+    <name>Alice Springs Territoire du Nord</name>
+    <desc>Alice Springs, Northern Territory, Australia</desc>
+  </wpt>
+  <wpt lat="-16.253333" lon="133.369167">
+    <name>Daly Waters Territoire du Nord</name>
+    <desc>Daly Waters, Northern Territory 0852, Australia</desc>
+  </wpt>
+  <wpt lat="-12.4634403" lon="130.8456418">
+    <name>Darwin Territoire du Nord</name>
+    <desc>Darwin, Northern Territory, Australia</desc>
+  </wpt>
+<rte>
+  <name>Down Under</name>
+  <rtept lat="-37.813644" lon="144.9630016">
+    <name>RP001</name>
+  </rtept>
+  <rtept lat="-37.8092319" lon="144.9609457">
+    <name>RP002</name>
+  </rtept>
+  <rtept lat="-37.8106899" lon="144.9559189">
+    <name>RP003</name>
+  </rtept>
+  <rtept lat="-37.8104042" lon="144.9557769">
+    <name>RP004</name>
+  </rtept>
+  <rtept lat="-37.8093319" lon="144.9525084">
+    <name>RP005</name>
+  </rtept>
+  <rtept lat="-37.80922" lon="144.9524429">
+    <name>RP006</name>
+  </rtept>
+  <rtept lat="-37.8101544" lon="144.9499371">
+    <name>RP007</name>
+  </rtept>
+  <rtept lat="-37.800503" lon="144.9063372">
+    <name>RP008</name>
+  </rtept>
+  <rtept lat="-37.799604" lon="144.8995372">
+    <name>RP009</name>
+  </rtept>
+  <rtept lat="-37.7923533" lon="144.8934109">
+    <name>RP010</name>
+  </rtept>
+  <rtept lat="-37.7560491" lon="144.7399784">
+    <name>RP011</name>
+  </rtept>
+  <rtept lat="-37.7526809" lon="144.7401173">
+    <name>RP012</name>
+  </rtept>
+  <rtept lat="-37.7524404" lon="144.7377897">
+    <name>RP013</name>
+  </rtept>
+  <rtept lat="-37.7523612" lon="144.7378059">
+    <name>RP014</name>
+  </rtept>
+  <rtept lat="-37.751961" lon="144.7375673">
+    <name>RP015</name>
+  </rtept>
+  <rtept lat="-37.751919" lon="144.7376535">
+    <name>RP016</name>
+  </rtept>
+  <rtept lat="-37.7507114" lon="144.7372603">
+    <name>RP017</name>
+  </rtept>
+  <rtept lat="-37.7490876" lon="144.7354036">
+    <name>RP018</name>
+  </rtept>
+  <rtept lat="-37.749199" lon="144.7352916">
+    <name>RP019</name>
+  </rtept>
+  <rtept lat="-37.7476789" lon="144.7327268">
+    <name>RP020</name>
+  </rtept>
+  <rtept lat="-37.7477137" lon="144.7326222">
+    <name>RP021</name>
+  </rtept>
+  <rtept lat="-37.747474" lon="144.7326167">
+    <name>RP022</name>
+  </rtept>
+  <rtept lat="-37.7466496" lon="144.7323491">
+    <name>RP023</name>
+  </rtept>
+  <rtept lat="-37.7457972" lon="144.7304499">
+    <name>RP024</name>
+  </rtept>
+  <rtept lat="-37.7462634" lon="144.7284252">
+    <name>RP025</name>
+  </rtept>
+  <rtept lat="-37.7461965" lon="144.7283753">
+    <name>RP026</name>
+  </rtept>
+  <rtept lat="-37.7463112" lon="144.7282957">
+    <name>RP027</name>
+  </rtept>
+  <rtept lat="-37.7460103" lon="144.7267047">
+    <name>RP028</name>
+  </rtept>
+  <rtept lat="-37.7458869" lon="144.7261266">
+    <name>RP029</name>
+  </rtept>
+  <rtept lat="-37.7449697" lon="144.726222">
+    <name>RP030</name>
+  </rtept>
+  <rtept lat="-37.7447447" lon="144.7262292">
+    <name>RP031</name>
+  </rtept>
+  <rtept lat="-37.7444163" lon="144.724427">
+    <name>RP032</name>
+  </rtept>
+  <rtept lat="-37.7410633" lon="144.701185">
+    <name>RP033</name>
+  </rtept>
+  <rtept lat="-37.7465224" lon="144.7007231">
+    <name>RP034</name>
+  </rtept>
+  <rtept lat="-37.7532155" lon="144.703791">
+    <name>RP035</name>
+  </rtept>
+  <rtept lat="-37.7462167" lon="144.6133695">
+    <name>RP036</name>
+  </rtept>
+  <rtept lat="-37.751687" lon="144.6122715">
+    <name>RP037</name>
+  </rtept>
+  <rtept lat="-37.7478305" lon="144.575755">
+    <name>RP038</name>
+  </rtept>
+  <rtept lat="-37.7416525" lon="144.5210267">
+    <name>RP039</name>
+  </rtept>
+  <rtept lat="-37.7054689" lon="144.4577897">
+    <name>RP040</name>
+  </rtept>
+  <rtept lat="-37.6868231" lon="144.4333864">
+    <name>RP041</name>
+  </rtept>
+  <rtept lat="-37.6864354" lon="144.4333787">
+    <name>RP042</name>
+  </rtept>
+  <rtept lat="-37.6874004" lon="144.4188896">
+    <name>RP043</name>
+  </rtept>
+  <rtept lat="-37.6892481" lon="144.4133809">
+    <name>RP044</name>
+  </rtept>
+  <rtept lat="-37.6962587" lon="144.3924365">
+    <name>RP045</name>
+  </rtept>
+  <rtept lat="-37.6668667" lon="144.3380866">
+    <name>RP046</name>
+  </rtept>
+  <rtept lat="-37.6095078" lon="144.2400928">
+    <name>RP047</name>
+  </rtept>
+  <rtept lat="-37.6071732" lon="144.2169411">
+    <name>RP048</name>
+  </rtept>
+  <rtept lat="-37.6001503" lon="144.2182073">
+    <name>RP049</name>
+  </rtept>
+  <rtept lat="-37.5985698" lon="144.2075373">
+    <name>RP050</name>
+  </rtept>
+  <rtept lat="-37.5982115" lon="144.2073526">
+    <name>RP051</name>
+  </rtept>
+  <rtept lat="-37.5846173" lon="144.1127453">
+    <name>RP052</name>
+  </rtept>
+  <rtept lat="-37.5796219" lon="144.0999026">
+    <name>RP053</name>
+  </rtept>
+  <rtept lat="-37.5799011" lon="144.0083489">
+    <name>RP054</name>
+  </rtept>
+  <rtept lat="-37.5676347" lon="144.0018925">
+    <name>RP055</name>
+  </rtept>
+  <rtept lat="-37.567784" lon="143.9846743">
+    <name>RP056</name>
+  </rtept>
+  <rtept lat="-37.5660164" lon="143.9664158">
+    <name>RP057</name>
+  </rtept>
+  <rtept lat="-37.5656201" lon="143.9341317">
+    <name>RP058</name>
+  </rtept>
+  <rtept lat="-37.5651202" lon="143.9335149">
+    <name>RP059</name>
+  </rtept>
+  <rtept lat="-37.5646485" lon="143.9331079">
+    <name>RP060</name>
+  </rtept>
+  <rtept lat="-37.5619395" lon="143.9259956">
+    <name>RP061</name>
+  </rtept>
+  <rtept lat="-37.5598446" lon="143.9162342">
+    <name>RP062</name>
+  </rtept>
+  <rtept lat="-37.5596374" lon="143.9159018">
+    <name>RP063</name>
+  </rtept>
+  <rtept lat="-37.5620156" lon="143.8703554">
+    <name>RP064</name>
+  </rtept>
+  <rtept lat="-37.5626382" lon="143.8660415">
+    <name>RP065</name>
+  </rtept>
+  <rtept lat="-37.5630557" lon="143.8647835">
+    <name>RP066</name>
+  </rtept>
+  <rtept lat="-37.5627773" lon="143.8645306">
+    <name>RP067</name>
+  </rtept>
+  <rtept lat="-37.5623148" lon="143.8606741">
+    <name>RP068</name>
+  </rtept>
+  <rtept lat="-37.5621906" lon="143.860693">
+    <name>RP069</name>
+  </rtept>
+  <rtept lat="-37.5464432" lon="143.7974027">
+    <name>RP070</name>
+  </rtept>
+  <rtept lat="-37.5398964" lon="143.8007716">
+    <name>RP071</name>
+  </rtept>
+  <rtept lat="-37.5389824" lon="143.8000826">
+    <name>RP072</name>
+  </rtept>
+  <rtept lat="-37.5143557" lon="143.7594149">
+    <name>RP073</name>
+  </rtept>
+  <rtept lat="-37.5137972" lon="143.7595118">
+    <name>RP074</name>
+  </rtept>
+  <rtept lat="-37.4799588" lon="143.7120834">
+    <name>RP075</name>
+  </rtept>
+  <rtept lat="-37.4794873" lon="143.7121117">
+    <name>RP076</name>
+  </rtept>
+  <rtept lat="-37.4300157" lon="143.3850581">
+    <name>RP077</name>
+  </rtept>
+  <rtept lat="-37.4256263" lon="143.3567745">
+    <name>RP078</name>
+  </rtept>
+  <rtept lat="-37.2857595" lon="142.9505167">
+    <name>RP079</name>
+  </rtept>
+  <rtept lat="-37.2821607" lon="142.9290878">
+    <name>RP080</name>
+  </rtept>
+  <rtept lat="-37.1871583" lon="142.8830943">
+    <name>RP081</name>
+  </rtept>
+  <rtept lat="-37.1785086" lon="142.8781213">
+    <name>RP082</name>
+  </rtept>
+  <rtept lat="-37.0649905" lon="142.7668526">
+    <name>RP083</name>
+  </rtept>
+  <rtept lat="-36.9932051" lon="142.665281">
+    <name>RP084</name>
+  </rtept>
+  <rtept lat="-36.7836077" lon="142.2917153">
+    <name>RP085</name>
+  </rtept>
+  <rtept lat="-36.7231964" lon="142.2046894">
+    <name>RP086</name>
+  </rtept>
+  <rtept lat="-36.7189971" lon="142.2001256">
+    <name>RP087</name>
+  </rtept>
+  <rtept lat="-36.7187598" lon="142.1997867">
+    <name>RP088</name>
+  </rtept>
+  <rtept lat="-36.7118176" lon="142.1995608">
+    <name>RP089</name>
+  </rtept>
+  <rtept lat="-36.698367" lon="142.171098">
+    <name>RP090</name>
+  </rtept>
+  <rtept lat="-36.5825791" lon="142.1166911">
+    <name>RP091</name>
+  </rtept>
+  <rtept lat="-36.5694968" lon="141.9957493">
+    <name>RP092</name>
+  </rtept>
+  <rtept lat="-36.5674406" lon="141.9928174">
+    <name>RP093</name>
+  </rtept>
+  <rtept lat="-36.5671682" lon="141.9928697">
+    <name>RP094</name>
+  </rtept>
+  <rtept lat="-36.5668933" lon="141.9915691">
+    <name>RP095</name>
+  </rtept>
+  <rtept lat="-36.5663666" lon="141.973573">
+    <name>RP096</name>
+  </rtept>
+  <rtept lat="-36.566325" lon="141.9735819">
+    <name>RP097</name>
+  </rtept>
+  <rtept lat="-36.566475" lon="141.9699787">
+    <name>RP098</name>
+  </rtept>
+  <rtept lat="-36.5534589" lon="141.8724282">
+    <name>RP099</name>
+  </rtept>
+  <rtept lat="-36.5532565" lon="141.8630776">
+    <name>RP100</name>
+  </rtept>
+  <rtept lat="-36.5471377" lon="141.8639699">
+    <name>RP101</name>
+  </rtept>
+  <rtept lat="-36.515883" lon="141.7697608">
+    <name>RP102</name>
+  </rtept>
+  <rtept lat="-36.4897291" lon="141.7469408">
+    <name>RP103</name>
+  </rtept>
+  <rtept lat="-36.4876065" lon="141.7323688">
+    <name>RP104</name>
+  </rtept>
+  <rtept lat="-36.4542885" lon="141.7135413">
+    <name>RP105</name>
+  </rtept>
+  <rtept lat="-36.4542259" lon="141.7125073">
+    <name>RP106</name>
+  </rtept>
+  <rtept lat="-36.4430219" lon="141.679216">
+    <name>RP107</name>
+  </rtept>
+  <rtept lat="-36.4352676" lon="141.6615329">
+    <name>RP108</name>
+  </rtept>
+  <rtept lat="-36.4350872" lon="141.6615582">
+    <name>RP109</name>
+  </rtept>
+  <rtept lat="-36.4246354" lon="141.6384476">
+    <name>RP110</name>
+  </rtept>
+  <rtept lat="-36.4077077" lon="141.5880834">
+    <name>RP111</name>
+  </rtept>
+  <rtept lat="-36.4069324" lon="141.5313108">
+    <name>RP112</name>
+  </rtept>
+  <rtept lat="-36.4057117" lon="141.5209704">
+    <name>RP113</name>
+  </rtept>
+  <rtept lat="-36.4022609" lon="141.4856011">
+    <name>RP114</name>
+  </rtept>
+  <rtept lat="-36.3918229" lon="141.3365695">
+    <name>RP115</name>
+  </rtept>
+  <rtept lat="-36.3784237" lon="141.2376276">
+    <name>RP116</name>
+  </rtept>
+  <rtept lat="-36.3627416" lon="141.1357202">
+    <name>RP117</name>
+  </rtept>
+  <rtept lat="-36.347207" lon="140.9890218">
+    <name>RP118</name>
+  </rtept>
+  <rtept lat="-36.344106" lon="140.9671035">
+    <name>RP119</name>
+  </rtept>
+  <rtept lat="-35.2754428" lon="139.4629521">
+    <name>RP120</name>
+  </rtept>
+  <rtept lat="-35.2722859" lon="139.4597913">
+    <name>RP121</name>
+  </rtept>
+  <rtept lat="-35.2660409" lon="139.4582426">
+    <name>RP122</name>
+  </rtept>
+  <rtept lat="-35.2660633" lon="139.4579369">
+    <name>RP123</name>
+  </rtept>
+  <rtept lat="-35.2579595" lon="139.455565">
+    <name>RP124</name>
+  </rtept>
+  <rtept lat="-35.256197" lon="139.4532684">
+    <name>RP125</name>
+  </rtept>
+  <rtept lat="-35.2578715" lon="139.4514775">
+    <name>RP126</name>
+  </rtept>
+  <rtept lat="-35.2579245" lon="139.4514239">
+    <name>RP127</name>
+  </rtept>
+  <rtept lat="-35.2531996" lon="139.4300935">
+    <name>RP128</name>
+  </rtept>
+  <rtept lat="-35.2433705" lon="139.4162421">
+    <name>RP129</name>
+  </rtept>
+  <rtept lat="-35.2435349" lon="139.4123528">
+    <name>RP130</name>
+  </rtept>
+  <rtept lat="-35.1543328" lon="139.2890333">
+    <name>RP131</name>
+  </rtept>
+  <rtept lat="-35.1508074" lon="139.2864495">
+    <name>RP132</name>
+  </rtept>
+  <rtept lat="-35.149244" lon="139.2818638">
+    <name>RP133</name>
+  </rtept>
+  <rtept lat="-35.1372089" lon="139.2314341">
+    <name>RP134</name>
+  </rtept>
+  <rtept lat="-35.1384256" lon="139.230182">
+    <name>RP135</name>
+  </rtept>
+  <rtept lat="-35.1383257" lon="139.2300274">
+    <name>RP136</name>
+  </rtept>
+  <rtept lat="-35.1398289" lon="139.2264829">
+    <name>RP137</name>
+  </rtept>
+  <rtept lat="-35.139894" lon="139.2262398">
+    <name>RP138</name>
+  </rtept>
+  <rtept lat="-35.1038587" lon="139.0351301">
+    <name>RP139</name>
+  </rtept>
+  <rtept lat="-35.1014945" lon="139.0029055">
+    <name>RP140</name>
+  </rtept>
+  <rtept lat="-35.1019705" lon="139.0017064">
+    <name>RP141</name>
+  </rtept>
+  <rtept lat="-35.0980044" lon="138.9644368">
+    <name>RP142</name>
+  </rtept>
+  <rtept lat="-35.0812058" lon="138.9258538">
+    <name>RP143</name>
+  </rtept>
+  <rtept lat="-35.0704898" lon="138.8908297">
+    <name>RP144</name>
+  </rtept>
+  <rtept lat="-35.0651096" lon="138.8677746">
+    <name>RP145</name>
+  </rtept>
+  <rtept lat="-35.0640342" lon="138.8666978">
+    <name>RP146</name>
+  </rtept>
+  <rtept lat="-35.0583656" lon="138.8619163">
+    <name>RP147</name>
+  </rtept>
+  <rtept lat="-35.0528205" lon="138.8574382">
+    <name>RP148</name>
+  </rtept>
+  <rtept lat="-35.0548757" lon="138.8531643">
+    <name>RP149</name>
+  </rtept>
+  <rtept lat="-35.0161358" lon="138.7857366">
+    <name>RP150</name>
+  </rtept>
+  <rtept lat="-35.0147867" lon="138.7844434">
+    <name>RP151</name>
+  </rtept>
+  <rtept lat="-35.0154319" lon="138.7822846">
+    <name>RP152</name>
+  </rtept>
+  <rtept lat="-35.0146807" lon="138.7762598">
+    <name>RP153</name>
+  </rtept>
+  <rtept lat="-35.01047" lon="138.7492597">
+    <name>RP154</name>
+  </rtept>
+  <rtept lat="-35.0073994" lon="138.7512877">
+    <name>RP155</name>
+  </rtept>
+  <rtept lat="-34.9945658" lon="138.7165967">
+    <name>RP156</name>
+  </rtept>
+  <rtept lat="-34.9975584" lon="138.7053414">
+    <name>RP157</name>
+  </rtept>
+  <rtept lat="-34.9976351" lon="138.7048894">
+    <name>RP158</name>
+  </rtept>
+  <rtept lat="-34.9972328" lon="138.7034833">
+    <name>RP159</name>
+  </rtept>
+  <rtept lat="-34.9970412" lon="138.7030927">
+    <name>RP160</name>
+  </rtept>
+  <rtept lat="-34.9967404" lon="138.7031616">
+    <name>RP161</name>
+  </rtept>
+  <rtept lat="-34.9948677" lon="138.7006163">
+    <name>RP162</name>
+  </rtept>
+  <rtept lat="-34.9881796" lon="138.6953979">
+    <name>RP163</name>
+  </rtept>
+  <rtept lat="-34.988541" lon="138.6961116">
+    <name>RP164</name>
+  </rtept>
+  <rtept lat="-34.9870207" lon="138.6955458">
+    <name>RP165</name>
+  </rtept>
+  <rtept lat="-34.978945" lon="138.6868147">
+    <name>RP166</name>
+  </rtept>
+  <rtept lat="-34.9782961" lon="138.6867082">
+    <name>RP167</name>
+  </rtept>
+  <rtept lat="-34.9757539" lon="138.6852628">
+    <name>RP168</name>
+  </rtept>
+  <rtept lat="-34.9760778" lon="138.6850955">
+    <name>RP169</name>
+  </rtept>
+  <rtept lat="-34.9761611" lon="138.6845829">
+    <name>RP170</name>
+  </rtept>
+  <rtept lat="-34.9742768" lon="138.6747207">
+    <name>RP171</name>
+  </rtept>
+  <rtept lat="-34.9743487" lon="138.6746736">
+    <name>RP172</name>
+  </rtept>
+  <rtept lat="-34.9731308" lon="138.6692173">
+    <name>RP173</name>
+  </rtept>
+  <rtept lat="-34.9723683" lon="138.6710709">
+    <name>RP174</name>
+  </rtept>
+  <rtept lat="-34.9684065" lon="138.67116">
+    <name>RP175</name>
+  </rtept>
+  <rtept lat="-34.9668664" lon="138.6681793">
+    <name>RP176</name>
+  </rtept>
+  <rtept lat="-34.9667163" lon="138.6681474">
+    <name>RP177</name>
+  </rtept>
+  <rtept lat="-34.9669485" lon="138.6664791">
+    <name>RP178</name>
+  </rtept>
+  <rtept lat="-34.9689409" lon="138.6604265">
+    <name>RP179</name>
+  </rtept>
+  <rtept lat="-34.9664328" lon="138.6488474">
+    <name>RP180</name>
+  </rtept>
+  <rtept lat="-34.9650082" lon="138.6472302">
+    <name>RP181</name>
+  </rtept>
+  <rtept lat="-34.9462814" lon="138.6250259">
+    <name>RP182</name>
+  </rtept>
+  <rtept lat="-34.9407777" lon="138.6160594">
+    <name>RP183</name>
+  </rtept>
+  <rtept lat="-34.9354028" lon="138.6071816">
+    <name>RP184</name>
+  </rtept>
+  <rtept lat="-34.9353607" lon="138.606515">
+    <name>RP185</name>
+  </rtept>
+  <rtept lat="-34.9334769" lon="138.6063681">
+    <name>RP186</name>
+  </rtept>
+  <rtept lat="-34.9282926" lon="138.6059804">
+    <name>RP187</name>
+  </rtept>
+  <rtept lat="-34.9285345" lon="138.6007486">
+    <name>RP188</name>
+  </rtept>
+  <rtept lat="-34.9285367" lon="138.6007083">
+    <name>RP189</name>
+  </rtept>
+  <rtept lat="-34.9271584" lon="138.5999569">
+    <name>RP190</name>
+  </rtept>
+  <rtept lat="-34.9094075" lon="138.5970637">
+    <name>RP191</name>
+  </rtept>
+  <rtept lat="-34.9019003" lon="138.5943993">
+    <name>RP192</name>
+  </rtept>
+  <rtept lat="-34.8480387" lon="138.6000983">
+    <name>RP193</name>
+  </rtept>
+  <rtept lat="-34.8480329" lon="138.600254">
+    <name>RP194</name>
+  </rtept>
+  <rtept lat="-34.8380559" lon="138.5994665">
+    <name>RP195</name>
+  </rtept>
+  <rtept lat="-34.5942982" lon="138.509227">
+    <name>RP196</name>
+  </rtept>
+  <rtept lat="-34.4434256" lon="138.5098704">
+    <name>RP197</name>
+  </rtept>
+  <rtept lat="-34.4379429" lon="138.5098543">
+    <name>RP198</name>
+  </rtept>
+  <rtept lat="-34.407732" lon="138.5098739">
+    <name>RP199</name>
+  </rtept>
+  <rtept lat="-34.344838" lon="138.5098624">
+    <name>RP200</name>
+  </rtept>
+  <rtept lat="-34.3302047" lon="138.4922597">
+    <name>RP201</name>
+  </rtept>
+  <rtept lat="-34.3302047" lon="138.4921601">
+    <name>RP202</name>
+  </rtept>
+  <rtept lat="-34.1618751" lon="138.4224725">
+    <name>RP203</name>
+  </rtept>
+  <rtept lat="-34.1454897" lon="138.4107301">
+    <name>RP204</name>
+  </rtept>
+  <rtept lat="-34.1431671" lon="138.4062648">
+    <name>RP205</name>
+  </rtept>
+  <rtept lat="-33.9016096" lon="138.2740409">
+    <name>RP206</name>
+  </rtept>
+  <rtept lat="-33.7929067" lon="138.2738184">
+    <name>RP207</name>
+  </rtept>
+  <rtept lat="-33.7713471" lon="138.273546">
+    <name>RP208</name>
+  </rtept>
+  <rtept lat="-33.7700758" lon="138.2708892">
+    <name>RP209</name>
+  </rtept>
+  <rtept lat="-33.7644495" lon="138.2734208">
+    <name>RP210</name>
+  </rtept>
+  <rtept lat="-33.7628504" lon="138.272316">
+    <name>RP211</name>
+  </rtept>
+  <rtept lat="-33.7625685" lon="138.2729418">
+    <name>RP212</name>
+  </rtept>
+  <rtept lat="-33.5739514" lon="138.2675207">
+    <name>RP213</name>
+  </rtept>
+  <rtept lat="-33.5515557" lon="138.2675036">
+    <name>RP214</name>
+  </rtept>
+  <rtept lat="-33.5026427" lon="138.2711065">
+    <name>RP215</name>
+  </rtept>
+  <rtept lat="-33.4625976" lon="138.257901">
+    <name>RP216</name>
+  </rtept>
+  <rtept lat="-33.3936357" lon="138.2479323">
+    <name>RP217</name>
+  </rtept>
+  <rtept lat="-33.3596514" lon="138.2124888">
+    <name>RP218</name>
+  </rtept>
+  <rtept lat="-33.357517" lon="138.2147126">
+    <name>RP219</name>
+  </rtept>
+  <rtept lat="-33.3554548" lon="138.2129736">
+    <name>RP220</name>
+  </rtept>
+  <rtept lat="-33.3483794" lon="138.204852">
+    <name>RP221</name>
+  </rtept>
+  <rtept lat="-33.3263714" lon="138.1845907">
+    <name>RP222</name>
+  </rtept>
+  <rtept lat="-33.198112" lon="138.0796876">
+    <name>RP223</name>
+  </rtept>
+  <rtept lat="-32.9970594" lon="138.0025117">
+    <name>RP224</name>
+  </rtept>
+  <rtept lat="-32.9970018" lon="138.0026772">
+    <name>RP225</name>
+  </rtept>
+  <rtept lat="-32.9049309" lon="137.9828042">
+    <name>RP226</name>
+  </rtept>
+  <rtept lat="-32.9049488" lon="137.9823172">
+    <name>RP227</name>
+  </rtept>
+  <rtept lat="-32.5257545" lon="137.8295089">
+    <name>RP228</name>
+  </rtept>
+  <rtept lat="-32.50224" lon="137.7805432">
+    <name>RP229</name>
+  </rtept>
+  <rtept lat="-32.4999413" lon="137.7781471">
+    <name>RP230</name>
+  </rtept>
+  <rtept lat="-32.4992582" lon="137.7787838">
+    <name>RP231</name>
+  </rtept>
+  <rtept lat="-32.4998536" lon="137.7802823">
+    <name>RP232</name>
+  </rtept>
+  <rtept lat="-32.4966799" lon="137.7869522">
+    <name>RP233</name>
+  </rtept>
+  <rtept lat="-32.4966016" lon="137.7843083">
+    <name>RP234</name>
+  </rtept>
+  <rtept lat="-32.4931391" lon="137.7816108">
+    <name>RP235</name>
+  </rtept>
+  <rtept lat="-32.4938686" lon="137.7803123">
+    <name>RP236</name>
+  </rtept>
+  <rtept lat="-32.4906113" lon="137.7777062">
+    <name>RP237</name>
+  </rtept>
+  <rtept lat="-32.4907006" lon="137.7775322">
+    <name>RP238</name>
+  </rtept>
+  <rtept lat="-32.4906071" lon="137.7772051">
+    <name>RP239</name>
+  </rtept>
+  <rtept lat="-32.4905216" lon="137.7770891">
+    <name>RP240</name>
+  </rtept>
+  <rtept lat="-32.4908634" lon="137.7767735">
+    <name>RP241</name>
+  </rtept>
+  <rtept lat="-32.4845385" lon="137.7717778">
+    <name>RP242</name>
+  </rtept>
+  <rtept lat="-32.4844481" lon="137.7719306">
+    <name>RP243</name>
+  </rtept>
+  <rtept lat="-32.4657843" lon="137.7672225">
+    <name>RP244</name>
+  </rtept>
+  <rtept lat="-32.4047388" lon="137.7552846">
+    <name>RP245</name>
+  </rtept>
+  <rtept lat="-32.4012002" lon="137.7501616">
+    <name>RP246</name>
+  </rtept>
+  <rtept lat="-32.3994514" lon="137.7506623">
+    <name>RP247</name>
+  </rtept>
+  <rtept lat="-32.052181" lon="137.5017016">
+    <name>RP248</name>
+  </rtept>
+  <rtept lat="-32.0418199" lon="137.4471388">
+    <name>RP249</name>
+  </rtept>
+  <rtept lat="-31.4249448" lon="136.9944856">
+    <name>RP250</name>
+  </rtept>
+  <rtept lat="-31.1739859" lon="136.8408896">
+    <name>RP251</name>
+  </rtept>
+  <rtept lat="-30.5133078" lon="136.8937555">
+    <name>RP252</name>
+  </rtept>
+  <rtept lat="-30.4789488" lon="136.8900696">
+    <name>RP253</name>
+  </rtept>
+  <rtept lat="-30.453553" lon="136.9070772">
+    <name>RP254</name>
+  </rtept>
+  <rtept lat="-30.3028353" lon="136.9395009">
+    <name>RP255</name>
+  </rtept>
+  <rtept lat="-30.2445177" lon="136.898892">
+    <name>RP256</name>
+  </rtept>
+  <rtept lat="-29.7286257" lon="137.0664499">
+    <name>RP257</name>
+  </rtept>
+  <rtept lat="-29.7159432" lon="137.0560601">
+    <name>RP258</name>
+  </rtept>
+  <rtept lat="-29.4076627" lon="136.8182819">
+    <name>RP259</name>
+  </rtept>
+  <rtept lat="-27.5905297" lon="135.4497027">
+    <name>RP260</name>
+  </rtept>
+  <rtept lat="-27.5502329" lon="135.4491049">
+    <name>RP261</name>
+  </rtept>
+  <rtept lat="-27.5447773" lon="135.4458961">
+    <name>RP262</name>
+  </rtept>
+  <rtept lat="-27.4207689" lon="135.3545337">
+    <name>RP263</name>
+  </rtept>
+  <rtept lat="-26.8430189" lon="135.2336041">
+    <name>RP264</name>
+  </rtept>
+  <rtept lat="-26.7651625" lon="135.2830424">
+    <name>RP265</name>
+  </rtept>
+  <rtept lat="-26.663422" lon="135.2237015">
+    <name>RP266</name>
+  </rtept>
+  <rtept lat="-26.6573422" lon="135.2107534">
+    <name>RP267</name>
+  </rtept>
+  <rtept lat="-26.1305294" lon="134.8504098">
+    <name>RP268</name>
+  </rtept>
+  <rtept lat="-26.1304746" lon="134.8511433">
+    <name>RP269</name>
+  </rtept>
+  <rtept lat="-26.089471" lon="134.8602654">
+    <name>RP270</name>
+  </rtept>
+  <rtept lat="-25.9987852" lon="134.8007121">
+    <name>RP271</name>
+  </rtept>
+  <rtept lat="-25.9499541" lon="134.7443165">
+    <name>RP272</name>
+  </rtept>
+  <rtept lat="-25.9499403" lon="134.7449948">
+    <name>RP273</name>
+  </rtept>
+  <rtept lat="-25.7315966" lon="134.620519">
+    <name>RP274</name>
+  </rtept>
+  <rtept lat="-25.7331135" lon="134.6199011">
+    <name>RP275</name>
+  </rtept>
+  <rtept lat="-25.6024115" lon="134.5879706">
+    <name>RP276</name>
+  </rtept>
+  <rtept lat="-25.5848362" lon="134.57747">
+    <name>RP277</name>
+  </rtept>
+  <rtept lat="-25.5825782" lon="134.5768632">
+    <name>RP278</name>
+  </rtept>
+  <rtept lat="-25.5807312" lon="134.5759609">
+    <name>RP279</name>
+  </rtept>
+  <rtept lat="-25.5757948" lon="134.5719793">
+    <name>RP280</name>
+  </rtept>
+  <rtept lat="-25.2889157" lon="134.4446467">
+    <name>RP281</name>
+  </rtept>
+  <rtept lat="-25.2591296" lon="134.4487342">
+    <name>RP282</name>
+  </rtept>
+  <rtept lat="-24.8926099" lon="134.2588576">
+    <name>RP283</name>
+  </rtept>
+  <rtept lat="-24.8895731" lon="134.2352027">
+    <name>RP284</name>
+  </rtept>
+  <rtept lat="-24.6900975" lon="134.0918444">
+    <name>RP285</name>
+  </rtept>
+  <rtept lat="-24.6713467" lon="134.0763392">
+    <name>RP286</name>
+  </rtept>
+  <rtept lat="-24.6703954" lon="134.072817">
+    <name>RP287</name>
+  </rtept>
+  <rtept lat="-24.6667066" lon="134.0713468">
+    <name>RP288</name>
+  </rtept>
+  <rtept lat="-24.3242761" lon="134.055222">
+    <name>RP289</name>
+  </rtept>
+  <rtept lat="-24.3237706" lon="134.0550943">
+    <name>RP290</name>
+  </rtept>
+  <rtept lat="-24.3164064" lon="134.0575205">
+    <name>RP291</name>
+  </rtept>
+  <rtept lat="-23.7924426" lon="133.8802998">
+    <name>RP292</name>
+  </rtept>
+  <rtept lat="-23.7896027" lon="133.879094">
+    <name>RP293</name>
+  </rtept>
+  <rtept lat="-23.7752118" lon="133.8752306">
+    <name>RP294</name>
+  </rtept>
+  <rtept lat="-23.7013134" lon="133.8767661">
+    <name>RP295</name>
+  </rtept>
+  <rtept lat="-23.701437" lon="133.878725">
+    <name>RP296</name>
+  </rtept>
+  <rtept lat="-23.6978888" lon="133.880557">
+    <name>RP297</name>
+  </rtept>
+  <rtept lat="-23.6979349" lon="133.8807897">
+    <name>RP298</name>
+  </rtept>
+  <rtept lat="-23.6978707" lon="133.8805976">
+    <name>RP299</name>
+  </rtept>
+  <rtept lat="-23.6957866" lon="133.8815962">
+    <name>RP300</name>
+  </rtept>
+  <rtept lat="-23.6949341" lon="133.8798348">
+    <name>RP301</name>
+  </rtept>
+  <rtept lat="-23.6667758" lon="133.865581">
+    <name>RP302</name>
+  </rtept>
+  <rtept lat="-20.6420969" lon="134.2218583">
+    <name>RP303</name>
+  </rtept>
+  <rtept lat="-20.6398188" lon="134.2226075">
+    <name>RP304</name>
+  </rtept>
+  <rtept lat="-20.608282" lon="134.2255334">
+    <name>RP305</name>
+  </rtept>
+  <rtept lat="-20.5717467" lon="134.2571524">
+    <name>RP306</name>
+  </rtept>
+  <rtept lat="-20.552284" lon="134.2654271">
+    <name>RP307</name>
+  </rtept>
+  <rtept lat="-19.6577104" lon="134.1871296">
+    <name>RP308</name>
+  </rtept>
+  <rtept lat="-19.0157214" lon="134.1372444">
+    <name>RP309</name>
+  </rtept>
+  <rtept lat="-18.9048611" lon="134.0996552">
+    <name>RP310</name>
+  </rtept>
+  <rtept lat="-16.3068329" lon="133.384921">
+    <name>RP311</name>
+  </rtept>
+  <rtept lat="-16.2740573" lon="133.3908154">
+    <name>RP312</name>
+  </rtept>
+  <rtept lat="-16.2551824" lon="133.3697437">
+    <name>RP313</name>
+  </rtept>
+  <rtept lat="-16.2533086" lon="133.369315">
+    <name>RP314</name>
+  </rtept>
+  <rtept lat="-16.2551824" lon="133.3697437">
+    <name>RP315</name>
+  </rtept>
+  <rtept lat="-16.2740573" lon="133.3908154">
+    <name>RP316</name>
+  </rtept>
+  <rtept lat="-14.4843939" lon="132.3984054">
+    <name>RP317</name>
+  </rtept>
+  <rtept lat="-14.4851077" lon="132.3392592">
+    <name>RP318</name>
+  </rtept>
+  <rtept lat="-14.4734533" lon="132.2902655">
+    <name>RP319</name>
+  </rtept>
+  <rtept lat="-14.1927172" lon="132.0375488">
+    <name>RP320</name>
+  </rtept>
+  <rtept lat="-13.8504105" lon="131.8388752">
+    <name>RP321</name>
+  </rtept>
+  <rtept lat="-13.850302" lon="131.83724">
+    <name>RP322</name>
+  </rtept>
+  <rtept lat="-13.8316732" lon="131.8322009">
+    <name>RP323</name>
+  </rtept>
+  <rtept lat="-13.8300952" lon="131.8295371">
+    <name>RP324</name>
+  </rtept>
+  <rtept lat="-13.8301869" lon="131.829422">
+    <name>RP325</name>
+  </rtept>
+  <rtept lat="-13.8291149" lon="131.8265069">
+    <name>RP326</name>
+  </rtept>
+  <rtept lat="-13.824671" lon="131.822854">
+    <name>RP327</name>
+  </rtept>
+  <rtept lat="-13.8168402" lon="131.8163789">
+    <name>RP328</name>
+  </rtept>
+  <rtept lat="-13.8022634" lon="131.8102688">
+    <name>RP329</name>
+  </rtept>
+  <rtept lat="-12.6808114" lon="131.0815498">
+    <name>RP330</name>
+  </rtept>
+  <rtept lat="-12.4616549" lon="130.9733838">
+    <name>RP331</name>
+  </rtept>
+  <rtept lat="-12.4638534" lon="130.9608258">
+    <name>RP332</name>
+  </rtept>
+  <rtept lat="-12.4568109" lon="130.9459949">
+    <name>RP333</name>
+  </rtept>
+  <rtept lat="-12.4569353" lon="130.9459381">
+    <name>RP334</name>
+  </rtept>
+  <rtept lat="-12.4540637" lon="130.8463232">
+    <name>RP335</name>
+  </rtept>
+  <rtept lat="-12.4545111" lon="130.8460476">
+    <name>RP336</name>
+  </rtept>
+  <rtept lat="-12.462336" lon="130.8458679">
+    <name>RP337</name>
+  </rtept>
+</rte>
+</gpx>

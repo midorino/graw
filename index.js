@@ -126,7 +126,8 @@ function strict() {
         'data/craw/region-1-latin-america.gpx',
         'data/craw/region-2-andes.gpx',
         'data/craw/region-3-pampas.gpx',
-        'data/craw/region-4-antarctica.gpx'
+        'data/craw/region-4-antarctica.gpx',
+        'data/craw/region-5-down-under.gpx'
     ];
 
 	for (const gpxFile of gpxFiles) {
