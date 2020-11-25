@@ -320,3 +320,4 @@ Actually, region GPX file loading works in production environment.
 *** Add CRAW other regions GPX data
 
 - Region 3 - Pampas : https://www.google.fr/maps/dir/Tacna,+Pérou/Calama,+Chili/Salta,+Province+de+Salta,+Argentine/Córdoba,+Argentine/Buenos+Aires,+Ville+Autonome+de+Buenos+Aires,+Argentine/Comodoro+Rivadavia,+Chubut,+Argentine/Río+Gallegos,+Province+de+Santa+Cruz,+Argentine/Ushuaia,+Terre+de+Feu,+Argentine
+- Region 4 - Antarctica : Base General Bernardo O'Higgins, Antarctique > Base antarctique Mario-Zucchelli, Antarctique x [[https://gpxstudio.github.io/]] x Manual migration
