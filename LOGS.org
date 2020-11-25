@@ -328,5 +328,6 @@ Actually, region GPX file loading works in production environment.
 - Region 9 - The Stans: https://www.google.fr/maps/dir/Lahore,+Pakistan/Islamabad,+Pakistan/Kaboul,+Afghanistan/Termez,+Ouzbékistan/Boukhara,+Ouzbékistan/Ourguentch,+Ouzbékistan/44.79813236391235,+56.13675289141385/Atyraou,+Kazakhstan/Astrakhan,+Russie
 - Region 10 - Europe: https://www.google.fr/maps/dir/Astrakhan,+Russie/Louhansk,+Ukraine/Tallinn,+Estonie/Helsinki,+Finlande/Oulu,+Finlande/Kautokeino,+Norvège/Alta,+Norvège/Olderfjord,+Norvège
 - Region 11 - Great White North: Prudhoe Bay, Alaska > Sagwon, Alaska > Anaktuvuk Pass, Alaska > Coldfoot > Stevens Village > Fairbanks > Chicken > Carmacks > Whitehorse > Watson Lake > Fort Nelson > Rivière-la-Paix > Slave Lake > Edmonton > Calgary > Sweet Grass x [[https://gpxstudio.github.io/]] x Manual migration
+- Region 12 - Lower 48: https://www.google.fr/maps/dir/Sweet+Grass,+Montana,+États-Unis/Brownsville,+Texas,+États-Unis
 
 **** TODO Region 11 GPX file too big - try another draw with =gpxstudio.github.io= but with settings without automatic "roads tracks" - even though with manual migration, file size ~ 1 MB.

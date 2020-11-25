@@ -133,7 +133,8 @@ function strict() {
         'data/craw/region-8-indian-subcontinent.gpx',
         'data/craw/region-9-the-stans.gpx',
         'data/craw/region-10-europe.gpx',
-        'data/craw/region-11-great-white-north.gpx'
+        'data/craw/region-11-great-white-north.gpx',
+        'data/craw/region-12-lower-48.gpx'
     ];
 
 	for (const gpxFile of gpxFiles) {
