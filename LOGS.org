@@ -283,3 +283,10 @@ loadGPX(gpxPath); // ASAP
 #+END_SRC
 
 For test purpose, +setTimeout()+ is added in +loadFile()+ to mimic long awaited response.
+
+** JS rewriting
+
+- Naming conventions
+  - https://www.robinwieruch.de/javascript-naming-conventions
+  - https://www.freecodecamp.org/news/javascript-naming-conventions-dos-and-don-ts-99c0e2fdd78a/
+- +var+ vs +let+ (anticipation for region / runnner loop)

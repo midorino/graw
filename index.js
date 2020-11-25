@@ -15,35 +15,50 @@ function strict() {
 	    });
 	}
 
-	async function loadGpx(gpxFilePath) {
-        var result = await loadFile(gpxFilePath);
-        var gpxtxt = result;
-	    var gpx = new gpxParser(); //Create gpxParser Object
-    	gpx.parse(gpxtxt); //parse gpx file from string data
-    	var total_distance = gpx.routes[0].distance.total;
-    	console.log("[GPXParser] Total distance: " + total_distance + " m");
-    	// Build a progress GPX track from complete GPX track
-    	var progress_distance = 200000;
-    	var cumuls = gpx.routes[0].distance.cumul;
-    	console.log(gpx.routes[0]);
-    	/* Not the best way
-    	cumuls.forEach(checkProgress);
+	async function loadGpxFile(gpxFilePath) {
+        let gpxTxt = await loadFile(gpxFilePath);
 
-    	function checkProgress(item, index) {}
-    	*/
-    	var i, f;
-    	for(i = 0; i < cumuls.length; i += i + 1) {
-    		if(cumuls[i] > progress_distance) {
+        /** Parse GPX data **/
+
+	    let gpxData = new gpxParser();
+    	gpxData.parse(gpxTxt);
+    	let gpxRoute = gpxData.routes[0];
+
+        console.log("[GPXParser] Name: " + gpxData.name);
+    	console.log("[GPXParser] Total distance: " + gpxRoute.distance.total + " m");
+    	console.log("[GPXParser] Route (below):");
+    	console.log(gpxRoute);
+
+    	/** ---------- **/
+
+    	/** Build progress GPX track from complete GPX track **/
+
+    	let progressDistance = 200000; // Will be loaded from CSV data actually
+
+    	let cumulDistances = gpxRoute.distance.cumul;
+
+    	let i, f;
+    	for(i = 0; i < cumulDistances.length; i += i + 1) {
+    		if(cumulDistances[i] > progressDistance) {
     			f = i;
     			break;
     		}
     	}
-    	// Remove not covered data
+
+    	// Remove not covered points
     	// Surely a cleaner way to do this...
-    	gpx.routes[0].points.length = f + 2;
-    	// GPXParser: export to GeoJSON
-    	var geojson = gpx.toGeoJSON();
-    	new L.GPX(gpx1, {
+    	// Must be done on 'gpxData' object to be able to export to GeoJSON after
+    	gpxData.routes[0].points.length = f + 2;
+
+    	// Export trimmed progress data to GeoJSON
+    	// Easiest way for now to draw the progress track
+    	let geojson = gpxData.toGeoJSON();
+
+    	/** ---------- **/
+
+        /** Draw complete track **/
+
+    	new L.GPX(gpxFilePath, {
     		async: true,
     		gpx_options: {
     			parseElements: ['route']
@@ -63,17 +78,21 @@ function strict() {
     				// Useless if gpx_options / parseElements does not contain 'waypoints'
     			}
     		}
+    	/** ---------- **/
     	}).on('loaded', function(e) {
-    		var gpx1data = e.target;
+    	    /** Draw progress track **/
+    	    // Only after complete track drawing complete
+
+    		let gpxData = e.target;
+
     		// Just for the sake of comparison with GPXParser
-    		var track_distance = gpx1data.get_distance();
-    		console.log("[LeafletGPX] Total distance: " + track_distance + " m");
-    		mymap.fitBounds(e.target.getBounds());
-    		// Load progress data only after initial data load
+    		console.log("[LeafletGPX] Total distance: " + gpxData.get_distance() + " m");
+
     		new L.geoJSON(geojson, {
     			pointToLayer: function(geoJsonPoint, latlng) {
-    				//return L.marker(latlng, {icon: ...});
+    				// No waypoint drawing
     				return null;
+    				// return L.marker(latlng, {icon: ...});
     			},
     			style: {
     				color: 'blue',
@@ -82,22 +101,28 @@ function strict() {
     				lineCap: 'round'
     			}
     		}).addTo(mymap);
+
     		// Add marker at current progress position
-    		var last = gpx.routes[0].points.length - 1;
-    		var myIcon = L.icon({
+    		let lastPosition = gpxRoute.points.length - 1;
+
+    		let myIcon = L.icon({
     			iconUrl: 'img/pin-icon-runner.png',
     			iconSize: [35, 35]
     		});
-    		L.marker(gpx.routes[0].points[last], {
+
+    		L.marker(gpxRoute.points[lastPosition], {
     			icon: myIcon
     		}).addTo(mymap);
+
     	}).addTo(mymap);
 	}
 
-	var gpx1 = "data/craw/region-1-latin-america.gpx"; // URL to your GPX file or the GPX itself
-	loadGpx(gpx1);
+    // TODO Loop through all the GPX (and CSV) files
+	var gpxFile = "data/craw/region-1-latin-america.gpx";
+	loadGpxFile(gpxFile);
 
-	var mymap = L.map('mapid').setView([0, 0], 2);
+    // Initial world map
+	var mymap = L.map('mapid').setView([0, 0], 1.4);
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 		maxZoom: 18,
