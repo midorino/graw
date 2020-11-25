@@ -124,7 +124,8 @@ function strict() {
     // TODO Loop through all the GPX (and CSV) files
     const gpxFiles = [
         'data/craw/region-1-latin-america.gpx',
-        'data/craw/region-2-andes.gpx'
+        'data/craw/region-2-andes.gpx',
+        'data/craw/region-3-pampas.gpx'
     ];
 
 	for (const gpxFile of gpxFiles) {

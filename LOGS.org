@@ -311,6 +311,12 @@ According to online XML validators, data structure is valid.
 
 PythonAnyWhere web app reloading does not solve the issue (as new asset 'region-2-andes.gpx' has been added).
 
-From dev tool "Network" in Firefox, ressource 'region-2-andes.gpx' request gets "403" status response ("Forbidden") ; constraint of office working environment?
+From dev tool "Network" in Firefox, ressource 'region-2-andes.gpx' request gets "403" status response ("Forbidden") ; constraint of office working environment (or PythonAnyWhere)?
 
 **** TODO In +loadFile()+, through +xmlhttp.status+, error(s) in external files loading must be handled.
+
+Actually, region GPX file loading works in production environment.
+
+*** Add CRAW other regions GPX data
+
+- Region 3 - Pampas : https://www.google.fr/maps/dir/Tacna,+Pérou/Calama,+Chili/Salta,+Province+de+Salta,+Argentine/Córdoba,+Argentine/Buenos+Aires,+Ville+Autonome+de+Buenos+Aires,+Argentine/Comodoro+Rivadavia,+Chubut,+Argentine/Río+Gallegos,+Province+de+Santa+Cruz,+Argentine/Ushuaia,+Terre+de+Feu,+Argentine
