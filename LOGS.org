@@ -247,3 +247,39 @@ Ref: [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_
 http://validator.w3.org/
 
 NSTR.
+
+** [FEAT-AAG] Asynchronous GPX data loading
+
+In order to improve responsiveness, main script =index.js= must not be waiting for resources loading (here: GPX data).
+"Lazy" (or asynchronous) loading must be used.
+
+For this, the +async+ keyword is used when calling the concerned +function+ (here: +loadFile()+).
+
+There seems to be multiple ways to handle this problematic here:
+
+- *https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/async_function*
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
+
+Here, mainly based on the below structure:
+
+#+BEGIN_SRC js
+function loadFile() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+        // Load file content into 'result'
+        resolve(result);
+    }, 5000);
+  });
+}
+
+async function loadGPX() {
+  var result = await loadFile(gpxFilePath);
+  // Rest of the process
+}
+
+var gpxPath = "..."
+loadGPX(gpxPath); // ASAP
+#+END_SRC
+
+For test purpose, +setTimeout()+ is added in +loadFile()+ to mimic long awaited response.
