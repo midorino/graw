@@ -132,7 +132,8 @@ function strict() {
         'data/craw/region-7-malay-peninsula.gpx',
         'data/craw/region-8-indian-subcontinent.gpx',
         'data/craw/region-9-the-stans.gpx',
-        'data/craw/region-10-europe.gpx'
+        'data/craw/region-10-europe.gpx',
+        'data/craw/region-11-great-white-north.gpx'
     ];
 
 	for (const gpxFile of gpxFiles) {
