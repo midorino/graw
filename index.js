@@ -128,7 +128,8 @@ function strict() {
         'data/craw/region-3-pampas.gpx',
         'data/craw/region-4-antarctica.gpx',
         'data/craw/region-5-down-under.gpx',
-        'data/craw/region-6-the-islands.gpx'
+        'data/craw/region-6-the-islands.gpx',
+        'data/craw/region-7-malay-peninsula.gpx'
     ];
 
 	for (const gpxFile of gpxFiles) {
