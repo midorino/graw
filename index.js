@@ -24,7 +24,7 @@ function strict() {
     	gpxData.parse(gpxTxt);
     	let gpxRoute = gpxData.routes[0];
 
-        console.log("[GPXParser] Name: " + gpxData.name);
+        console.log("[GPXParser] Name: " + gpxRoute.name);
     	console.log("[GPXParser] Total distance: " + gpxRoute.distance.total + " m");
     	console.log("[GPXParser] Route (below):");
     	console.log(gpxRoute);

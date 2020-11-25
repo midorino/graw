@@ -290,3 +290,7 @@ For test purpose, +setTimeout()+ is added in +loadFile()+ to mimic long awaited 
   - https://www.robinwieruch.de/javascript-naming-conventions
   - https://www.freecodecamp.org/news/javascript-naming-conventions-dos-and-don-ts-99c0e2fdd78a/
 - +var+ vs +let+ (anticipation for region / runnner loop)
+
+** Fix GPX track name display
+
+For now, the name displayed is the route's one (and not the global GPX file name) (+<rte>/<name>+).
