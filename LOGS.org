@@ -333,3 +333,9 @@ Actually, region GPX file loading works in production environment.
 **** TODO Region 11 GPX file too big - try another draw with =gpxstudio.github.io= but with settings without automatic "roads tracks" - even though with manual migration, file size ~ 1 MB.
 
 **** TODO Add annexes travels (boat, plane) in differentiate GPX file(s) / loop.
+
+** Update mock progress data
+
+Best mock display with progress data = 25 % of complete distance.
+
+*** TODO Update progress marker calculus - must not be calculated from number of waypoints but (if possible) from total "polygones / lines" length displayed.

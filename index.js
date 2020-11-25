@@ -37,7 +37,7 @@ function strict() {
 
     	/** Build progress GPX track from complete GPX track **/
 
-    	let progressDistance = 200000; // Will be loaded from CSV data actually
+    	let progressDistance = 0.25 * gpxRoute.distance.total; // Will be loaded from CSV data actually
 
     	let cumulDistances = gpxRoute.distance.cumul;
 
