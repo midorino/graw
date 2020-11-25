@@ -237,5 +237,13 @@ Ref: [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_
 **** Beautify
 
 - https://beautifier.io/
-- https://codebeautify.org/
-- *http://beautifytools.com/*
+- /https://codebeautify.org/
+- *http://beautifytools.com*
+
+*** HTML
+
+**** Validation
+
+http://validator.w3.org/
+
+NSTR.
