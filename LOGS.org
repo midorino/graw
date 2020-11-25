@@ -197,5 +197,39 @@ Must also update GPXParser code because new GPX file structure does not contain 
 - Update HTML <head>
 - Add favicon ([[https://medium.com/theagilemanager/how-to-add-a-favicon-to-github-pages-403935604460]] / [[https://realfavicongenerator.net]])
 - Move JS code to =index.js=
-- Validate code
-- Beautify code
+
+* 2020-11-25
+CLOSED: [2020-11-25]
+:PROPERTIES:
+:CREATED:  [2020-11-25]
+:END:
+
+** Code review
+
+*** Javascript
+
+**** Validation
+
+http://beautifytools.com/javascript-validator.php
+
+- Use of +let+ keyword for variables declarations
+
++var+ and +let+ are both used for variable declaration ; but difference : +var+ is function scoped and +let+ is block scoped - +var+ is defined throughout the program as compared to +let+.
+
+For now, update all +let+ to +var+.
+
+- Tool offers a beautify option too.
+
+-----
+
+https://codebeautify.org/jsvalidate
+
+- Use of =strict= mode
+
+Apply =strict= mode for entire =index.js= script (combination of function +strict()+ and +use 'strict'+).
+
+As =index.js= is here like a JS module, use of the "function" form of =strict= mode.
+
+Ref: [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode]].
+
+- Various syntax fixes.
