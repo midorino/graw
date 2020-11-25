@@ -331,3 +331,5 @@ Actually, region GPX file loading works in production environment.
 - Region 12 - Lower 48: https://www.google.fr/maps/dir/Sweet+Grass,+Montana,+États-Unis/Brownsville,+Texas,+États-Unis
 
 **** TODO Region 11 GPX file too big - try another draw with =gpxstudio.github.io= but with settings without automatic "roads tracks" - even though with manual migration, file size ~ 1 MB.
+
+**** TODO Add annexes travels (boat, plane) in differentiate GPX file(s) / loop.
