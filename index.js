@@ -3,20 +3,15 @@ function strict() {
 	'use strict';
 
 	function loadFile(filePath) {
-	    console.log("Waiting for data...");
 	    return new Promise(resolve => {
-    	    setTimeout(function(){
-    	        var result = null;
-    	        var xmlhttp = new XMLHttpRequest();
-        		xmlhttp.open("GET", filePath, false);
-        		xmlhttp.send();
-        		if(xmlhttp.status === 200) {
-        			result = xmlhttp.responseText;
-        		}
-        		console.log("Data available!")
-        		//return result;
-        		resolve(result);
-    	    }, 15000);
+	        var result = null;
+	        var xmlhttp = new XMLHttpRequest();
+    		xmlhttp.open("GET", filePath, false);
+    		xmlhttp.send();
+    		if(xmlhttp.status === 200) {
+    			result = xmlhttp.responseText;
+    		}
+    		resolve(result);
 	    });
 	}
 
