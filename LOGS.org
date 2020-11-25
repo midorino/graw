@@ -302,3 +302,15 @@ For now, the name displayed is the route's one (and not the global GPX file name
 Directions: https://www.google.com/maps/dir/Arboletes,+Antioquia,+Colombie/Medellín,+Antioquia,+Colombie/Cali,+Valle+del+Cauca,+Colombie/Quito,+Équateur/Guayaquil,+Équateur/Trujillo,+Pérou/Huánuco,+Pérou/Pisco,+Pérou/Tacna,+Pérou
 
 NSTR.
+
+*** Add loop through regions GPX data
+
+JS error during region 2 GPX file loading: "Erreur d’analyse XML : erreur de syntaxe"
+
+According to online XML validators, data structure is valid.
+
+PythonAnyWhere web app reloading does not solve the issue (as new asset 'region-2-andes.gpx' has been added).
+
+From dev tool "Network" in Firefox, ressource 'region-2-andes.gpx' request gets "403" status response ("Forbidden") ; constraint of office working environment?
+
+**** TODO In +loadFile()+, through +xmlhttp.status+, error(s) in external files loading must be handled.

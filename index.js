@@ -10,13 +10,18 @@ function strict() {
     		xmlhttp.send();
     		if(xmlhttp.status === 200) {
     			result = xmlhttp.responseText;
+    		} else {
+    		    // TODO Handle error
     		}
     		resolve(result);
 	    });
 	}
 
 	async function loadGpxFile(gpxFilePath) {
+	    console.log("Loading " + gpxFilePath + "...");
         let gpxTxt = await loadFile(gpxFilePath);
+        console.log(gpxFilePath + " loaded!");
+        console.log(gpxTxt);
 
         /** Parse GPX data **/
 
@@ -24,9 +29,8 @@ function strict() {
     	gpxData.parse(gpxTxt);
     	let gpxRoute = gpxData.routes[0];
 
-        console.log("[GPXParser] Name: " + gpxRoute.name);
-    	console.log("[GPXParser] Total distance: " + gpxRoute.distance.total + " m");
-    	console.log("[GPXParser] Route (below):");
+        console.log("[GPXParser] <" + gpxRoute.name + "> Total distance: " + gpxRoute.distance.total + " m");
+    	console.log("[GPXParser] <" + gpxRoute.name + "> Route (below):");
     	console.log(gpxRoute);
 
     	/** ---------- **/
@@ -118,8 +122,14 @@ function strict() {
 	}
 
     // TODO Loop through all the GPX (and CSV) files
-	var gpxFile = "data/craw/region-1-latin-america.gpx";
-	loadGpxFile(gpxFile);
+    const gpxFiles = [
+        'data/craw/region-1-latin-america.gpx',
+        'data/craw/region-2-andes.gpx'
+    ];
+
+	for (const gpxFile of gpxFiles) {
+	    loadGpxFile(gpxFile);
+    }
 
     // Initial world map
 	var mymap = L.map('mapid').setView([0, 0], 1.4);
