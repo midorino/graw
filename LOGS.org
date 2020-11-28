@@ -1,0 +1,376 @@
+#+TITLE:     GRAW - Logs
+#+SUBTITLE:  Garmin Race Around the World - Logs
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-04
+CLOSED: [2020-11-04]
+:PROPERTIES:
+:CREATED:  [2020-11-04]
+:END:
+
+Quick study for Garmin API x Google Maps API.
+
+Only for business ; backup: manual (or semi-auto?) data transfers.
+
+* 2020-11-22
+CLOSED: [2020-11-22]
+:PROPERTIES:
+:CREATED:  [2020-11-22]
+:END:
+
+For development workflow, switch GitHub Pages settings to current working branch ("develop" or "feat-*").
+
+Consider some delay (1-2 minutes) for GitHub to actually commit updates from repository to GitHub Pages.
+
+** [FEAT-AAA] Test of [[https://leafletjs.com/][Leaflet.js]] library.
+
+Check the [[https://leafletjs.com/examples/quick-start/][Quick Start Guide]] examples.
+
+[[https://leafletjs.com/examples/quick-start/example-basic.html][Basic Example]] local test (i.e. open local files from web browser) is successful.
+
+But wonder about the first argument of =L.tileLayer()= call - seems to be an API key - is it freely usable?
+
+Actually, "Leaflet Basic example" description explains this: the "mapbox/streets-v11" tiles from Mapbox’s Static Tiles API are used - and in order to use tiles from Mapbox, an access token must be requested.
+
+But for now, the provided Leaflet access token will be used.
+The access token value is simply moved to a variable to ease its future update.
+
+Note that a GET request is made in live version for "https://midorino.github.io/graw/favicon.ico" - unsuccessful. But no element from "index.html" seems to be the source of this request (maybe in the Leaflet CSS or JS?).
+
+** [FEAT-AAB] Leaflet Drawing
+
+Consider [[https://leafletjs.com/examples/quick-start/example-overlays.html]] and [[https://leafletjs.com/examples/quick-start/example-popups.html]] and easily add marker, circle, polygons and popups (attached to figures or standalones).
+
+Examples description explains that use =openOn= instead of =addTo= to handle automatic closing of a previously opened popup when opening a new one which is good for usability. But it seems to be no pratical difference when both are tested.
+
+** [FEAT-AAC] Leaflet Events
+
+Consider final part of Leaflet "Quick Start Guide" relative to events management - NSTR.
+
+** [FEAT-AAD] Leaflet GPX Plugin
+
+Based on [[https://github.com/mpetazzoni/leaflet-gpx]] and [[https://mpetazzoni.github.io/leaflet-gpx/]].
+
+Use of a shortened version of +demo.gpx+ from +Leaflet GPX+ example as input.
+
+But local test impossible for "Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at file:///home/strobilyon/O/D/GRAW/test.gpx. (Reason: CORS request not http)."
+
+Backup solution: GPX directly put as a string in JS.
+
+Default marker icons of the plugin may be changed - for now, pull the default icons from plugin repository.
+
+Add GPX waypoint for test purpose ([[https://www.topografix.com/gpx_manual.asp#wpt]] for syntax).
+Note that =<wpt>= does not count as =<trkpt>= - both are required to get a =<wpt>= displayed on a =<trkpt>=.
+Add some metadata to =<wpt>= (=<name>=, =<desc>=) - displayed by default when clicked.
+Prelude to "checkpoints" (cities, POI, aso) in GRAW challenge?
+
+Test some line styling ([[https://github.com/mpetazzoni/leaflet-gpx#line-styling]]) from GPX data and with JS override (with two GPX data sources - preferred method - complete track vs progress track).
+
+** Local testing environment
+
+XAMPP, WAMP or better here: Python HTTP Server ([[https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server]]) and test at =http://localhost:8000/=.
+
+** [FEAT-AAE] Relative track progress
+
+Consider a giving progress distance, display an approximate progress track over the complete track base on its complete distance.
+
+Get track total distance is easy with "Leaflet GPX" plugin +get_distance()+.
+
+But get parsed elements (points or tracks) does not seem to be as immediate.
+
+Analysis of =gpx.js= (main JS in "Leaflet GPX" library): member +_layers+ seems to contain corresponding data but no solution to access it.
+Alternative: keep "Leaflet GPX" plugin to draw tracks, use another method to parse and calculate it.
+
+[[https://luuka.github.io/GPXParser.js/]] seems a good candidate.
+
+No remote repository for =GPXParser.js= (test with GitHub rep not functionnal) ; JS downloaded in local web folder.
+
+First, GPX file must be converted to a string - more difficult than it seems but found one possible hack: [[https://stackoverflow.com/questions/36921947/read-a-server-side-file-using-javascript/41133213]].
+
+Note that =GPXParser= and =Leaflet GPX= give slightly different total distances results.
+
+=GPXParse= allows to loop through the points and accumulated distances (comparison with progress distance - fix variable here but actually calculated from Garmin challenge number of steps).
+
+Then, remove not covered-by-progress elements from GPX parsed object, then export to GeoJSON data, which is drawable with =LeafletGPX=.
+
+Code cleaning is required but functionnal.
+
+* 2020-11-23
+CLOSED: [2020-11-23]
+:PROPERTIES:
+:CREATED:  [2020-11-23]
+:END:
+
+** [FEAT-AAF] First real CRAW GPX data test
+
+References:
+
+- [[https://d368g9lw5ileu7.cloudfront.net/races/race95983-customSectionAttachment5f311a4752e335.90672475.pdf][Circumpolar Race Around the World - Course Details]]
+- [[https://www.youtube.com/embed/OR2yG-cXvIk]]
+
+Consider the "Latin America" region for first test.
+Countries: Mexico, Guatemala, El Salvador, Honduras, Nicaragua, Costa Rica, Panama.
+Total distance : 4009 km.
+Need more details / waypoints.
+
+*** Directions with =Google Maps=
+
+Based on auto directions walking features ~ approximate tracks and total distance.
+
+Identified directions:
+
+- Brownsville, Texas, États-Unis
+- Veracruz, Mexique
+- Coatzacoalcos, Veracruz, Mexique
+- Tuxtla Gutiérrez, Chiapas, Mexique
+- Tapachula, Chiapas, Mexique
+- Escuintla, Guatemala
+- San Salvador, El Salvador
+- Managua, Nicaragua
+- Liberia, Guanacaste, Costa Rica
+- Jacó, Puntarenas, Costa Rica
+- David, Panama
+- Santiago de Veraguas, Panama
+- Panama
+- Colon
+
+Note: on CRAW map, the ferry track from Colon to Arboletes is displayed.
+
+Problem: Google Maps (Web GUI) is limited to 10 destination points.
+
+Hack: Use URL syntax =https://www.google.com/maps/dir/City1,+Country1/City2,+Country2/aso= (a priori, up to 25 points)
+
+Here: =https://www.google.com/maps/dir/Brownsville/Veracruz,+Mexique/Coatzacoalcos,+Veracruz,+Mexique/Tuxtla+Gutiérrez,+Chiapas,+Mexique/Tapachula,+Chiapas,+Mexique/Escuintla,+Guatemala/San+Salvador,+El+Salvador/Managua,+Nicaragua/Guanacaste,+Liberia,+Costa+Rica/Puntarenas,+Jacó,+Costa+Rica/David,+Panama/Santiago+de+Veraguas,+Panama=
+
+OK but cannot calculate complete walking directions (a priori, problem for "Santiago de Veraguas - Panama - Colon") - OK up to Santiago de Veraguas: 2368 miles (/ 2491 total miles).
+
+Solution: Fusion of two GPX? Second one export from driving directions:
+=https://www.google.com/maps/dir/Santiago+de+Veraguas,+Panama/Colón,+Panama=
+
+*** GPX generation with =Maps to GPX=
+
+[[https://mapstogpx.com/][Maps to GPX]]
+
+Settings:
+
+- =Route Points= (=Track Points= generates bigger files - 7.63 MB vs 57.9 KB for part 1, 518 KB vs 3.52 KB for part 2)
+- =Route Name=: name of the region (here: "Latin America")
+- =Advanced Settings=:
+  - =Create Start/End Waypoints=
+  - =Include Elevation= (TBC)
+  - =GPX Output=
+
+*** Confirmation with =GPS Vizualizer=
+
+[[www.gpsvisualizer.com][GPS Vizualizer]]
+
+*** Manual merge (specific)
+
+Manual merge of GPX files into one (=<metadata>=, =<wpt>=, =<rte>(<name>)=)
+
+*** PythonAnyWhere Test Server
+
+Even with "Beginner" account, it is possible to create /one/ Web App with =pythonanywhere.com=.
+
+Here, the setup is:
+
+- Manual configuration
+- =Static files=:
+  - =URL=: /
+  - =Directory=: ~/graw
+- Web App available at: =<login>.<domain>.pythonanywhere.com=
+- =Reload= when necessary (settings updates - not required for source code updates)
+
+Update JS to take new GPX file as input.
+Must also update GPXParser code because new GPX file structure does not contain +tracks+ but +routes+ (or possibly +waypoints+).
+
+** Code cleaning
+
+- All external libraries (JS, CSS, aso) in =lib= folder
+- All images in =img= folder
+- Remove test data from =data=
+- Update HTML <head>
+- Add favicon ([[https://medium.com/theagilemanager/how-to-add-a-favicon-to-github-pages-403935604460]] / [[https://realfavicongenerator.net]])
+- Move JS code to =index.js=
+
+* 2020-11-25
+CLOSED: [2020-11-25]
+:PROPERTIES:
+:CREATED:  [2020-11-25]
+:END:
+
+** Code review
+
+*** Javascript
+
+**** Validation
+
+http://beautifytools.com/javascript-validator.php
+
+- Use of +let+ keyword for variables declarations
+
++var+ and +let+ are both used for variable declaration ; but difference : +var+ is function scoped and +let+ is block scoped - +var+ is defined throughout the program as compared to +let+.
+
+For now, update all +let+ to +var+.
+
+- Tool offers a beautify option too.
+
+-----
+
+https://codebeautify.org/jsvalidate
+
+- Use of =strict= mode
+
+Apply =strict= mode for entire =index.js= script (combination of function +strict()+ and +use 'strict'+).
+
+As =index.js= is here like a JS module, use of the "function" form of =strict= mode.
+
+Ref: [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode]].
+
+- Various syntax fixes.
+
+**** Beautify
+
+- https://beautifier.io/
+- /https://codebeautify.org/
+- *http://beautifytools.com*
+
+*** HTML
+
+**** Validation
+
+http://validator.w3.org/
+
+NSTR.
+
+** [FEAT-AAG] Asynchronous GPX data loading
+
+In order to improve responsiveness, main script =index.js= must not be waiting for resources loading (here: GPX data).
+"Lazy" (or asynchronous) loading must be used.
+
+For this, the +async+ keyword is used when calling the concerned +function+ (here: +loadFile()+).
+
+There seems to be multiple ways to handle this problematic here:
+
+- *https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Instructions/async_function*
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
+- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
+
+Here, mainly based on the below structure:
+
+#+BEGIN_SRC js
+function loadFile() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+        // Load file content into 'result'
+        resolve(result);
+    }, 5000);
+  });
+}
+
+async function loadGPX() {
+  var result = await loadFile(gpxFilePath);
+  // Rest of the process
+}
+
+var gpxPath = "..."
+loadGPX(gpxPath); // ASAP
+#+END_SRC
+
+For test purpose, +setTimeout()+ is added in +loadFile()+ to mimic long awaited response.
+
+** JS rewriting
+
+- Naming conventions
+  - https://www.robinwieruch.de/javascript-naming-conventions
+  - https://www.freecodecamp.org/news/javascript-naming-conventions-dos-and-don-ts-99c0e2fdd78a/
+- +var+ vs +let+ (anticipation for region / runnner loop)
+
+** Fix GPX track name display
+
+For now, the name displayed is the route's one (and not the global GPX file name) (+<rte>/<name>+).
+
+** [FEAT-AAH] Complete CRAW GPX data
+
+*** Add CRAW region 2 GPX data
+
+Directions: https://www.google.com/maps/dir/Arboletes,+Antioquia,+Colombie/Medellín,+Antioquia,+Colombie/Cali,+Valle+del+Cauca,+Colombie/Quito,+Équateur/Guayaquil,+Équateur/Trujillo,+Pérou/Huánuco,+Pérou/Pisco,+Pérou/Tacna,+Pérou
+
+NSTR.
+
+*** Add loop through regions GPX data
+
+JS error during region 2 GPX file loading: "Erreur d’analyse XML : erreur de syntaxe"
+
+According to online XML validators, data structure is valid.
+
+PythonAnyWhere web app reloading does not solve the issue (as new asset 'region-2-andes.gpx' has been added).
+
+From dev tool "Network" in Firefox, ressource 'region-2-andes.gpx' request gets "403" status response ("Forbidden") ; constraint of office working environment (or PythonAnyWhere)?
+
+**** TODO In +loadFile()+, through +xmlhttp.status+, error(s) in external files loading must be handled.
+
+Actually, region GPX file loading works in production environment.
+
+*** Add CRAW other regions GPX data
+
+- Region 3 - Pampas: https://www.google.fr/maps/dir/Tacna,+Pérou/Calama,+Chili/Salta,+Province+de+Salta,+Argentine/Córdoba,+Argentine/Buenos+Aires,+Ville+Autonome+de+Buenos+Aires,+Argentine/Comodoro+Rivadavia,+Chubut,+Argentine/Río+Gallegos,+Province+de+Santa+Cruz,+Argentine/Ushuaia,+Terre+de+Feu,+Argentine
+- Region 4 - Antarctica: Base General Bernardo O'Higgins, Antarctique > Base antarctique Mario-Zucchelli, Antarctique x [[https://gpxstudio.github.io/]] x Manual migration
+- Region 5 - Down Under: https://www.google.fr/maps/dir/Melbourne+Victoria,+Australie/Adelaide+Australie-Méridionale,+Australie/Port+Augusta+Australie-Méridionale,+Australie/Alice+Springs+Territoire+du+Nord,+Australie/Daly+Waters+Territoire+du+Nord,+Australie/Darwin+Territoire+du+Nord,+Australie
+- Region 6 - The Islands: https://www.google.fr/maps/dir/Díli,+Timor-Leste/Denpasar,+Denpasar+City,+Bali,+Indonésie/Surabaya,+Surabaya+City,+Java+oriental,+Indonésie/Semarang,+Semarang+City,+Java+central,+Indonésie/Cirebon,+Cirebon+City,+Java+occidental,+Indonésie/Jakarta,+Indonésie/Jambi,+Jambi+City,+Jambi,+Indonésie/Pekanbaru,+Pekanbaru+City,+Riau,+Indonésie/Dumai,+Riau,+Indonésie
+- Region 7 - Malay Peninsula: https://www.google.fr/maps/dir/Muar,+Johor,+Malaisie/Port+Kelang,+Selangor,+Malaisie/Teluk+Intan,+Perak,+Malaisie/Taiping,+Perak,+Malaisie/Sungai+Petani,+Kedah,+Malaisie/Jitra,+Kedah,+Malaisie/Hat+Yai/Khao+Luang+National+Park/Surat+Thani/Province+de+Chumpon,+Thaïlande/Mergui,+Myanmar+(Birmanie)/Tavoy,+Myanmar+(Birmanie)/Moulmein,+Myanmar+(Birmanie)/Naypyidaw,+Myanmar+(Birmanie)/Mandalay,+Myanmar+(Birmanie)/Imphāl,+Manipur,+Inde
+- Region 8 - Indian Subcontinent: https://www.google.fr/maps/dir/Imphāl,+Manipur,+Inde/Dacca,+Bangladesh/Pakur,+Jharkhand,+Inde/Patna,+Bihar,+Inde/Lucknow,+Uttar+Pradesh,+Inde/New+Delhi,+Delhi,+Inde/Ludiana,+Pendjab,+Inde/Lahore,+Pakistan
+- Region 9 - The Stans: https://www.google.fr/maps/dir/Lahore,+Pakistan/Islamabad,+Pakistan/Kaboul,+Afghanistan/Termez,+Ouzbékistan/Boukhara,+Ouzbékistan/Ourguentch,+Ouzbékistan/44.79813236391235,+56.13675289141385/Atyraou,+Kazakhstan/Astrakhan,+Russie
+- Region 10 - Europe: https://www.google.fr/maps/dir/Astrakhan,+Russie/Louhansk,+Ukraine/Tallinn,+Estonie/Helsinki,+Finlande/Oulu,+Finlande/Kautokeino,+Norvège/Alta,+Norvège/Olderfjord,+Norvège
+- Region 11 - Great White North: Prudhoe Bay, Alaska > Sagwon, Alaska > Anaktuvuk Pass, Alaska > Coldfoot > Stevens Village > Fairbanks > Chicken > Carmacks > Whitehorse > Watson Lake > Fort Nelson > Rivière-la-Paix > Slave Lake > Edmonton > Calgary > Sweet Grass x [[https://gpxstudio.github.io/]] x Manual migration
+- Region 12 - Lower 48: https://www.google.fr/maps/dir/Sweet+Grass,+Montana,+États-Unis/Brownsville,+Texas,+États-Unis
+
+**** TODO Region 11 GPX file too big - try another draw with =gpxstudio.github.io= but with settings without automatic "roads tracks" - even though with manual migration, file size ~ 1 MB.
+
+**** TODO Add annexes travels (boat, plane) in differentiate GPX file(s) / loop.
+
+** Update mock progress data
+
+Best mock display with progress data = 25 % of complete distance.
+
+* 2020-11-27
+CLOSED: [2020-11-27]
+:PROPERTIES:
+:CREATED:  [2020-11-27]
+:END:
+
+** [FEAT-AAI] Progress display
+
+Update progress marker calculus.
+Must not be calculated from number of waypoints.
+But (if possible) from total "polygones / lines" length displayed.
+
+- Line drawing = f(complete lines already drawed from GPX).
+- Marker position = coordinates of last line point drawed.
+
+Inspiration: https://stackoverflow.com/a/43017871
+
+* 2020-11-28
+
+** Full page view
+
+Ref: http://bl.ocks.org/d3noob/7654694
+
+** Fractional zoom
+
+Ref: https://leafletjs.com/examples/zoom-levels/#fractional-zoom
+
+For now, best render with initial zoom at 1.75.
+
+** Additional data display
+
+Several methods used:
+
+- https://leafletjs.com/reference-1.7.1.html#marker
+- http://bl.ocks.org/d3noob/7678758
+- https://stackoverflow.com/questions/34775308/leaflet-how-to-add-a-text-label-to-a-custom-marker-icon
