@@ -9,6 +9,16 @@
 
 * TODO
 
+** Waiting animation for Leaflet map loading
+
+- https://github.com/ebrelsford/Leaflet.loading
+- https://github.com/makinacorpus/Leaflet.Spin
+- http://leaflet.github.io/Leaflet.markercluster/example/marker-clustering-realworld.50000.html
+
+** Moving marker for runners progress
+
+https://github.com/ewoken/Leaflet.MovingMarker
+
 ** Investigate further on (semi)automatic data crawling from Garmin challenge ("BeautifulSoup"?).
 
 ** Request a Mapbox access token: [[https://www.mapbox.com/studio/account/tokens/]].

@@ -338,4 +338,19 @@ Actually, region GPX file loading works in production environment.
 
 Best mock display with progress data = 25 % of complete distance.
 
-*** TODO Update progress marker calculus - must not be calculated from number of waypoints but (if possible) from total "polygones / lines" length displayed.
+* 2020-11-27
+CLOSED: [2020-11-27]
+:PROPERTIES:
+:CREATED:  [2020-11-27]
+:END:
+
+** [FEAT-AAI] Progress display
+
+Update progress marker calculus.
+Must not be calculated from number of waypoints.
+But (if possible) from total "polygones / lines" length displayed.
+
+- Line drawing = f(complete lines already drawed from GPX).
+- Marker position = coordinates of last line point drawed.
+
+Inspiration: https://stackoverflow.com/a/43017871
