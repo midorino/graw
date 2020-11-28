@@ -2,39 +2,6 @@
 function strict() {
 	'use strict';
 
-    //-- Define radius function
-    if (typeof (Number.prototype.toRad) === "undefined") {
-        Number.prototype.toRad = function () {
-            return this * Math.PI / 180;
-        }
-    }
-
-    //-- Define degrees function
-    if (typeof (Number.prototype.toDeg) === "undefined") {
-        Number.prototype.toDeg = function () {
-            return this * (180 / Math.PI);
-        }
-    }
-
-    // Define middle point function
-    function middlePoint(lat1, lng1, lat2, lng2) {
-        // Longitude difference
-        let dLng = (lng2 - lng1).toRad();
-
-        // Convert to radians
-        lat1 = lat1.toRad();
-        lat2 = lat2.toRad();
-        lng1 = lng1.toRad();
-
-        let bX = Math.cos(lat2) * Math.cos(dLng);
-        let bY = Math.cos(lat2) * Math.sin(dLng);
-        let lat3 = Math.atan2(Math.sin(lat1) + Math.sin(lat2), Math.sqrt((Math.cos(lat1) + bX) * (Math.cos(lat1) + bX) + bY * bY));
-        let lng3 = lng1 + Math.atan2(bY, Math.cos(lat1) + bX);
-
-        return [lat3.toDeg(), lng3.toDeg()];
-    }
-
-
 	function loadFile(filePath) {
 	    return new Promise(resolve => {
 	        var result = null;
@@ -50,15 +17,13 @@ function strict() {
 	    });
 	}
 
-	async function loadCsvFile(csvFilePath) {
-	    // Mocking
-        return new Promise(resolve => {
-            setTimeout(() => {
-                // Load file content into 'result'
-                let result = "";
-                resolve(result);
-            }, 1000);
-        });
+	async function loadJsonFile(jsonFilePath) {
+        var jsonTxt = await loadFile(jsonFilePath);
+        runners = JSON.parse(jsonTxt);
+
+        for(let runner of runners) {
+    	    loadGpxFile(runner, gpxFiles[runner.region - 1]); // Beware: index != length
+        }
 	}
 
 	async function loadGpxFile(runner, gpxFilePath) {
@@ -187,76 +152,8 @@ function strict() {
 
     /** Load data **/
 
-    function getRndInteger(min, max) {
-      return Math.floor(Math.random() * (max - min) ) + min;
-    }
-
-    // TODO To be loaded from Garmin CSV data
-    var runners = [
-        {
-            id: 1,
-            region: 1,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12) // Between 100k and 500k for some months
-        },
-        {
-            id: 2,
-            region: 2,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 3,
-            region: 3,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 4,
-            region: 4,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 5,
-            region: 5,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 6,
-            region: 6,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 7,
-            region: 7,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 8,
-            region: 8,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 9,
-            region: 9,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 10,
-            region: 10,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 11,
-            region: 11,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        },
-        {
-            id: 12,
-            region: 12,
-            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
-        }
-    ];
-
-    // CSV data (progress routes)
-    // loadCsvFile();
+    // TODO To be loaded from Garmin data (JSON or CSV)
+    const runnersJsonFile = 'data/graw/20201130.json';
 
     // GPX data (complete routes)
     // Must be ordered by region number (link with runners[*].region)
@@ -275,10 +172,9 @@ function strict() {
         'data/craw/region-12-lower-48.gpx'
     ];
 
+    var runners = {};
     var globalRoutes = {};
 
-	for(let runner of runners) {
-	    loadGpxFile(runner, gpxFiles[runner.region - 1]); // Beware: index != length
-    }
+    loadJsonFile(runnersJsonFile);
 }
 strict();

@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "region": 1,
+        "steps": 1500000
+    },
+    {
+        "id": 2,
+        "region": 2,
+        "steps": 1500000
+    },
+    {
+        "id": 3,
+        "region": 3,
+        "steps": 1500000
+    },
+    {
+        "id": 4,
+        "region": 4,
+        "steps": 1500000
+    },
+    {
+        "id": 5,
+        "region": 5,
+        "steps": 1500000
+    },
+    {
+        "id": 6,
+        "region": 6,
+        "steps": 1500000
+    },
+    {
+        "id": 7,
+        "region": 7,
+        "steps": 1500000
+    },
+    {
+        "id": 8,
+        "region": 8,
+        "steps": 1500000
+    },
+    {
+        "id": 9,
+        "region": 9,
+        "steps": 1500000
+    },
+    {
+        "id": 10,
+        "region": 10,
+        "steps": 1500000
+    },
+    {
+        "id": 11,
+        "region": 11,
+        "steps": 1500000
+    },
+    {
+        "id": 12,
+        "region": 12,
+        "steps": 1500000
+    }
+]
