@@ -61,7 +61,7 @@ function strict() {
         });
 	}
 
-	async function loadGpxFile(gpxFilePath) {
+	async function loadGpxFile(runner, gpxFilePath) {
         var gpxTxt = await loadFile(gpxFilePath);
 
         /** Parse GPX data **/
@@ -97,42 +97,22 @@ function strict() {
     			}
     		}
     	/** ---------- **/
-    	}).on('layeradd', function(e) {
-    	    // Save processed coordinates in order to further calculate accurate progress position
-    	    // ACTUALLY CAN BE ACHIEVED AT THE END ON 'loaded' EVENT...
-    	    globalRoutes[gpxFilePath] = e.target.getLayers()[0].getLayers()[0].getLatLngs();
-    	    // console.debug(globalRoutes);
-    	})
-    	.on('loaded', function(e) {
+    	}).on('loaded', function(e) {
     	    /** Draw progress track **/
     	    // Only after complete track drawing complete
 
-            /** Build progress GPX track from complete GPX track **/
+            /** Build progress GPX data from complete GPX track **/
 
-            let progressRate = 0.33; // Will be calculated from steps of Garmin challenge (in CSV format) actually
+            // Link between loaded region track and corresponding runner? (via 'runners.region')
+            let progressRate = runner.progress; // Will be calculated from steps of Garmin challenge (in CSV format) actually
         	let progressDistance = progressRate * gpxRoute.distance.total;
 
-    		// let gpxData = e.target;
     		let latLngs = e.target.getLayers()[0].getLayers()[0].getLatLngs();
 
             let distanceCumul = 0;
             let f = 0; // Index of closer waypoint latLng
             for(let i = 0; i < latLngs.length; i++) {
-                /*
-            	https://gis.stackexchange.com/a/261729
-
-            	polyline.getLatLngs(): Returns an array of the points in the path
-            	latLng1.distanceTo(latLng2): Returns the distance (in meters) to the given LatLng calculated using the [Spherical Law of Cosines] formula.
-            	*/
                 let distance = latLngs[i].distanceTo(latLngs[i+1]);
-
-                /*
-                console.debug("[%d > %d / %d]\n\
-                Intermediate distance: %f m\n\
-            	Cumul Distance : %f m\n\
-            	Progess distance: %f m (%d% %f)\
-            	", i, i+1, latLngs.length, distance, distanceCumul + distance, progressDistance, progressRate * 100, gpxRoute.distance.total);
-                */
 
             	if(distanceCumul + distance >= progressDistance) { // Progress overcome last waypoint
             	    f = i;
@@ -153,12 +133,6 @@ function strict() {
         	gpxData.routes[0].points.length = f + 1; // True last overcome waypoint is [f] ; [f+1] is going to be update with middle point
 
         	// TODO Add intermediate progress point (to be calculated from remaining distance)
-        	// Here just place middle point
-            /*
-        	let midLatLng = middlePoint(latLngs[f].lat, latLngs[f].lng, latLngs[f+1].lat, latLngs[f+1].lng);
-        	gpxData.routes[0].points[f+1].lat = midLatLng[0];
-        	gpxData.routes[0].points[f+1].lon = midLatLng[1];
-            */
 
             console.debug("gpx.Route.points: %o", gpxData.routes[0].points);
 
@@ -167,9 +141,6 @@ function strict() {
         	let geojson = gpxData.toGeoJSON();
 
         	/** ---------- **/
-
-    		// Just for the sake of comparison with GPXParser
-    		// console.log("[LeafletGPX] Total distance: " + gpxData.get_distance() + " m");
 
     		new L.geoJSON(geojson, {
     			pointToLayer: function(geoJsonPoint, latlng) {
@@ -199,26 +170,6 @@ function strict() {
 
     	});
 
-    	//console.debug("[LeafletGPX] Polylines:\n%o", lGpx._layers);
-    	let x = lGpx._layers;
-    	lGpx.eachLayer(function (layer) {
-            console.debug(layer);
-        });
-
-    	/*
-    	for (const prop in lGpx._layers) {
-            // `prop` contains the name of each property, i.e. `'code'` or `'items'`
-            // consequently, `data[prop]` refers to the value of each property, i.e.
-            // either `42` or the array
-            console.debug("%o", lGpx._layers[prop]);
-        };
-        Object.keys(lGpx._layers).forEach(function(prop) {
-          // `prop` is the property name
-          // `data[prop]` is the property value
-          console.debug("%o", lGpx._layers[prop]);
-        });
-        */
-
         lGpx.addTo(mymap);
 	}
 
@@ -236,10 +187,76 @@ function strict() {
 	}).addTo(mymap);
 
     /** Load data **/
-    // TODO Loop through all the GPX (and CSV) files
+
+    // TODO To be loaded from Garmin CSV data
+    var runners = [
+        {
+            id: 1,
+            region: 1,
+            progress: Math.random()
+        },
+        {
+            id: 2,
+            region: 2,
+            progress: Math.random()
+        },
+        {
+            id: 3,
+            region: 3,
+            progress: Math.random()
+        },
+        {
+            id: 4,
+            region: 4,
+            progress: Math.random()
+        },
+        {
+            id: 5,
+            region: 5,
+            progress: Math.random()
+        },
+        {
+            id: 6,
+            region: 6,
+            progress: Math.random()
+        },
+        {
+            id: 7,
+            region: 7,
+            progress: Math.random()
+        },
+        {
+            id: 8,
+            region: 8,
+            progress: Math.random()
+        },
+        {
+            id: 9,
+            region: 9,
+            progress: Math.random()
+        },
+        {
+            id: 10,
+            region: 10,
+            progress: Math.random()
+        },
+        {
+            id: 11,
+            region: 11,
+            progress: Math.random()
+        },
+        {
+            id: 12,
+            region: 12,
+            progress: Math.random()
+        }
+    ];
+
+    // CSV data (progress routes)
+    // loadCsvFile();
 
     // GPX data (complete routes)
-
+    // Must be ordered by region number (link with runners[*].region)
     const gpxFiles = [
         'data/craw/region-1-latin-america.gpx',
         'data/craw/region-2-andes.gpx',
@@ -257,12 +274,8 @@ function strict() {
 
     var globalRoutes = {};
 
-	for (const gpxFile of gpxFiles) {
-	    loadGpxFile(gpxFile);
+	for(let runner of runners) {
+	    loadGpxFile(runner, gpxFiles[runner.region - 1]); // Beware: index != length
     }
-
-    // CSV data (progress routes)
-
-    loadCsvFile();
 }
 strict();
