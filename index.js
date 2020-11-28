@@ -69,6 +69,17 @@ function strict() {
             /** Build progress GPX data from complete GPX track **/
 
             let progressDistance = runner.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
+
+            // OK but that's progress distance regarding true CRAW region total distance (not GPX drawing distance)...
+            let crawTotalDistance = regions[runner.region - 1] * 1000;
+            let progressRate = progressDistance / crawTotalDistance;
+            progressDistance = progressRate * gpxRoute.distance.total;
+
+            console.debug("[R-%i] Steps: %d m", runner.id, runner.steps);
+            console.debug("[R-%i] CRAW total distance: %d m", runner.id, crawTotalDistance);
+            console.debug("[R-%i] Progress rate: %d %", runner.id, progressRate * 100);
+            console.debug("[R-%i] Drawing progress distance: %d m", runner.id, progressDistance);
+
             if(progressDistance > gpxRoute.distance.total) { progressDistance = gpxRoute.distance.total; }
 
     		let latLngs = e.target.getLayers()[0].getLayers()[0].getLatLngs();
@@ -171,6 +182,22 @@ function strict() {
         'data/craw/region-11-great-white-north.gpx',
         'data/craw/region-12-lower-48.gpx'
     ];
+
+    // True CRAW regions data (especially distances)
+    const regions = [
+        4009,
+        4948,
+        5106,
+        5305,
+        4246,
+        3360,
+        3201,
+        2673,
+        3731,
+        4338,
+        4321,
+        3311
+    ]
 
     var runners = {};
     var globalRoutes = {};
