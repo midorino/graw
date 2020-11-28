@@ -357,12 +357,20 @@ Inspiration: https://stackoverflow.com/a/43017871
 
 * 2020-11-28
 
-* Full page view
+** Full page view
 
 Ref: http://bl.ocks.org/d3noob/7654694
 
-* Fractional zoom
+** Fractional zoom
 
 Ref: https://leafletjs.com/examples/zoom-levels/#fractional-zoom
 
 For now, best render with initial zoom at 1.75.
+
+** Additional data display
+
+Several methods used:
+
+- https://leafletjs.com/reference-1.7.1.html#marker
+- http://bl.ocks.org/d3noob/7678758
+- https://stackoverflow.com/questions/34775308/leaflet-how-to-add-a-text-label-to-a-custom-marker-icon

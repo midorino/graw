@@ -97,10 +97,7 @@ function strict() {
             	}
             }
 
-            console.debug("Last overcome waypoints: %d/%d %o", f, latLngs.length, latLngs[f]);
-
             let remainingDistance = progressDistance - distanceCumul; // From last covered waypoint
-            console.debug("Progress distance from last waypoint: %f m", remainingDistance);
 
             // Remove not covered points
         	// Surely a cleaner way to do this...
@@ -140,9 +137,15 @@ function strict() {
     		});
 
     		L.marker(gpxRoute.points[lastPosition], {
-    			icon: myIcon
-    		}).addTo(mymap);
-
+    			icon: myIcon,
+    			title: "Region "+runner.id+"\n"+gpxRoute.name
+    		})
+    		.bindTooltip("R"+runner.id, {permanent: true, direction: 'bottom'})
+    		.addTo(mymap)
+    		.bindPopup("<b>Region "+runner.id+" - "+gpxRoute.name+"</b><br>"
+    		+"Distance à parcourir : "+crawTotalDistance/1000+" km<br>"
+    		+"Distance parcourue : "+runner.steps/1000+" km ("+(progressRate*100).toFixed(2)+"%)<br>")
+            ;
     	});
 
         lGpx.addTo(mymap);
