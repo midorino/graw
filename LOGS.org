@@ -354,3 +354,15 @@ But (if possible) from total "polygones / lines" length displayed.
 - Marker position = coordinates of last line point drawed.
 
 Inspiration: https://stackoverflow.com/a/43017871
+
+* 2020-11-28
+
+* Full page view
+
+Ref: http://bl.ocks.org/d3noob/7654694
+
+* Fractional zoom
+
+Ref: https://leafletjs.com/examples/zoom-levels/#fractional-zoom
+
+For now, best render with initial zoom at 1.75.
