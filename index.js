@@ -103,9 +103,8 @@ function strict() {
 
             /** Build progress GPX data from complete GPX track **/
 
-            // Link between loaded region track and corresponding runner? (via 'runners.region')
-            let progressRate = runner.progress; // Will be calculated from steps of Garmin challenge (in CSV format) actually
-        	let progressDistance = progressRate * gpxRoute.distance.total;
+            let progressDistance = runner.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
+            if(progressDistance > gpxRoute.distance.total) { progressDistance = gpxRoute.distance.total; }
 
     		let latLngs = e.target.getLayers()[0].getLayers()[0].getLatLngs();
 
@@ -188,67 +187,71 @@ function strict() {
 
     /** Load data **/
 
+    function getRndInteger(min, max) {
+      return Math.floor(Math.random() * (max - min) ) + min;
+    }
+
     // TODO To be loaded from Garmin CSV data
     var runners = [
         {
             id: 1,
             region: 1,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12) // Between 100k and 500k for some months
         },
         {
             id: 2,
             region: 2,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 3,
             region: 3,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 4,
             region: 4,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 5,
             region: 5,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 6,
             region: 6,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 7,
             region: 7,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 8,
             region: 8,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 9,
             region: 9,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 10,
             region: 10,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 11,
             region: 11,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         },
         {
             id: 12,
             region: 12,
-            progress: Math.random()
+            steps: getRndInteger(100000, 500000) * getRndInteger(1, 12)
         }
     ];
 
