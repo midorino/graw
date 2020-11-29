@@ -7,7 +7,7 @@
     {
         "id": 2,
         "region": 2,
-        "steps": 0
+        "steps": 293258
     },
     {
         "id": 3,
@@ -17,22 +17,22 @@
     {
         "id": 4,
         "region": 4,
-        "steps": 421713
+        "steps": 445495
     },
     {
         "id": 5,
         "region": 5,
-        "steps": 272734
+        "steps": 286113
     },
     {
         "id": 6,
         "region": 6,
-        "steps": 209489
+        "steps": 221005
     },
     {
         "id": 7,
         "region": 7,
-        "steps": 228903
+        "steps": 235859
     },
     {
         "id": 8,
@@ -52,11 +52,11 @@
     {
         "id": 11,
         "region": 11,
-        "steps": 324873
+        "steps": 337300
     },
     {
         "id": 12,
         "region": 12,
-        "steps": 290277
+        "steps": 299825
     }
 ]
