@@ -374,3 +374,18 @@ Several methods used:
 - https://leafletjs.com/reference-1.7.1.html#marker
 - http://bl.ocks.org/d3noob/7678758
 - https://stackoverflow.com/questions/34775308/leaflet-how-to-add-a-text-label-to-a-custom-marker-icon
+
+* 2020-11-29
+
+** World copy jump
+
+If map is dragged oustide initial view, original displayed data do not appear in the new "view".
+
+Map may be initialized with +worldCopyJump+ option enabled ; now, if map is dragged enough (i.e. past "middle"), view rather seamlessly jumps to initial view (and displayed data).
+
+User experience is not perfect though - may be interesting to search further to enhance this.
+
+References:
+
+- https://stackoverflow.com/a/33524196
+- https://leafletjs.com/reference-1.7.1.html#map-worldcopyjump
