@@ -23,7 +23,7 @@ SCHEDULED: <2020-11-30 .+1w>
 :CREATED:  [2020-11-01]
 :END:
 
-* Regenerate favicon pack into subfolder
+* Move =LOGS.org= to logs/YYYYMMDD.org files
 
 * Waiting animation for Leaflet map loading
 
