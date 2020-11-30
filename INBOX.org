@@ -23,6 +23,8 @@ SCHEDULED: <2020-11-30 .+1w>
 :CREATED:  [2020-11-01]
 :END:
 
+* Regenerate favicon pack into subfolder
+
 * Waiting animation for Leaflet map loading
 
 - https://github.com/ebrelsford/Leaflet.loading
