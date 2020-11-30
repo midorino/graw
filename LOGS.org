@@ -389,3 +389,11 @@ References:
 
 - https://stackoverflow.com/a/33524196
 - https://leafletjs.com/reference-1.7.1.html#map-worldcopyjump
+
+* 2020-11-30
+
+** Update favicon
+
+Move favicon elements to subfolder =/favicon=.
+
+https://realfavicongenerator.net/
