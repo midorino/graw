@@ -19,6 +19,10 @@ SCHEDULED: <2020-11-30 .+1w>
 :CREATED:  [2020-11-01]
 :END:
 
+* Relative progress information
+
+In runner information display, add the optimal progress rate in comparison to the actual progress rate (function of data date).
+
 * View for informations
 
 From CHANGELOG, NEWS, VERSION, README files (=*.org=).
