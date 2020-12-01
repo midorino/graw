@@ -23,6 +23,9 @@ SCHEDULED: <2020-11-30 .+1w>
 
 If Leaflet GPX plugin is migrated to vanilla code, layers organization (eg: one for CRAW complete tracks, one for GRAW progress tracks, one for POI?) would be far easier too.
 
+Could be used to interactively update information layers.
+Ref: https://leanpub.com/leaflet-tips-and-tricks/read#leanpub-auto-overlaying-information-interactively-on-your-map.
+
 * From Leaflet GPX plugin to vanilla
 
 Consider import only necessary code chunks from Leaflet GPX plugin and (more simply) draw =polylines= from GPX data.
