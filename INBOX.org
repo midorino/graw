@@ -46,9 +46,11 @@ In runner information display, add the optimal progress rate in comparison to th
 
 From CHANGELOG, NEWS, VERSION, README files (=*.org=).
 
-* Strava / Garmin API (or alternative)
+* #A Strava / Garmin API (or alternative)
 
-(Semi)Automatic data crawling (/BeautifulSoup/)?
+For Garmin: https://github.com/cyberjunky/python-garminconnect
+
+Alt: (Semi)Automatic data crawling (/BeautifulSoup/)?
 
 * WhatsApp API?
 
