@@ -19,6 +19,10 @@ SCHEDULED: <2020-11-30 .+1w>
 :CREATED:  [2020-11-01]
 :END:
 
+* Full Window Map
+
+If update required: https://leanpub.com/leaflet-tips-and-tricks/read#leanpub-auto-make-your-map-full-screen.
+
 * Layers organization
 
 If Leaflet GPX plugin is migrated to vanilla code, layers organization (eg: one for CRAW complete tracks, one for GRAW progress tracks, one for POI?) would be far easier too.
