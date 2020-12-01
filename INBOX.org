@@ -19,6 +19,14 @@ SCHEDULED: <2020-11-30 .+1w>
 :CREATED:  [2020-11-01]
 :END:
 
+* From Leaflet GPX plugin to vanilla
+
+Consider import only necessary code chunks from Leaflet GPX plugin and (more simply) draw =polylines= from GPX data.
+Would ease post work with progress drawing too.
+
+Furthermore, GPX files loading really necessary?
+Could consider an export to GeoJSON (balance between upload size and processing speed) or even pure JSON/JS data?
+
 * Relative progress information
 
 In runner information display, add the optimal progress rate in comparison to the actual progress rate (function of data date).
