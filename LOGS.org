@@ -434,3 +434,25 @@ Other repositories depending on =garminconnect= with recent commits seems workin
 May be because of PythonAnyWhere test environment?
 
 Other resources: https://github.com/petergardfjall/garminexport, https://github.com/pe-st/garmin-connect-export
+
+*** Python =garmin-connect-export=
+
+Ref: https://github.com/pe-st/garmin-connect-export.
+
+Last commit on 2020-11-15.
+
+Most interesting code in [[https://github.com/pe-st/garmin-connect-export/blob/master/gcexport.py]] is +login_to_garmin_connect()+.
+
+Manually get code chunks to attempt login.
+
+Test failed:
+
+#+BEGIN_SRC python
+OSError: Tunnel connection failed: 403 Forbidden
+#+END_SRC
+(...)
+#+BEGIN_SRC python
+urllib.error.URLError: <urlopen error Tunnel connection failed: 403 Forbidden>
+#+END_SRC
+
+May confirm this is due to PythonAnyWhere test environment.
