@@ -1,0 +1,18 @@
+#+TITLE:     GRAW - Log - 2020-11-04
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-11-04
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-04
+CLOSED: [2020-11-04]
+:PROPERTIES:
+:CREATED:  [2020-11-04]
+:END:
+
+Quick study for Garmin API x Google Maps API.
+
+Only for business ; backup: manual (or semi-auto?) data transfers.

@@ -1,0 +1,20 @@
+#+TITLE:     GRAW - Log - 2020-11-30
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-11-30
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-30
+CLOSED: [2020-11-30]
+:PROPERTIES:
+:CREATED:  [2020-11-30]
+:END:
+
+** Update favicon
+
+Move favicon elements to subfolder =/favicon=.
+
+https://realfavicongenerator.net/

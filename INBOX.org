@@ -62,8 +62,6 @@ Better alternative: News on Garmin challenge + via integrated NEWS feed viewer.
 
 From current runner progress coordiantes - Open in new tab.
 
-* Move =LOGS.org= to logs/YYYYMMDD.org files
-
 * Waiting animation for Leaflet map loading
 
 - https://github.com/ebrelsford/Leaflet.loading

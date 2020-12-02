@@ -1,0 +1,91 @@
+#+TITLE:     GRAW - Log - 2020-12-01
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-12-01
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-12-01
+CLOSED: [2020-12-01]
+:PROPERTIES:
+:CREATED:  [2020-12-01]
+:END:
+
+** [FEAT-AAJ] Garmin Connect API
+
+Obj: Automatic export of Garmin challenge data
+
+*** Python =garminconnect=
+
+Test with Python module =garminconnect=.
+
+Ref: https://github.com/cyberjunky/python-garminconnect
+
+Install via +pip3 install garminconnect+ (note: pip*3*).
+
+Test with [[https://github.com/cyberjunky/python-garminconnect/blob/master/README.md][=README=]] usage script.
+
+Attention: login and password are (for now) "hard coding" required - must consider require via terminal input (eg: https://github.com/njkalish/garmin-proj/).
+
+Test failed:
+
+#+BEGIN_SRC python
+Garmin(email, password)
+----------------------------------------------------------------------------------------
+client.login()
+----------------------------------------------------------------------------------------
+DEBUG:garminconnect:Login to Garmin Connect using POST url https://sso.garmin.com/sso/signin
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sso.garmin.com:443
+Unknown error occurred during Garmin Connect Client login
+#+END_SRC
+
+Though the GitHub repository does not seem deprecated (last commit on 2020-09-20).
+Other repositories depending on =garminconnect= with recent commits seems working (eg: https://github.com/stratus-ss/garmin-influxdb, https://github.com/hacf-fr/home-assistant-core).
+
+May be because of PythonAnyWhere test environment?
+
+Other resources: https://github.com/petergardfjall/garminexport, https://github.com/pe-st/garmin-connect-export
+
+*** Python =garmin-connect-export=
+
+Ref: https://github.com/pe-st/garmin-connect-export.
+
+Last commit on 2020-11-15.
+
+Most interesting code in [[https://github.com/pe-st/garmin-connect-export/blob/master/gcexport.py]] is +login_to_garmin_connect()+.
+
+Manually get code chunks to attempt login.
+
+Test failed:
+
+#+BEGIN_SRC python
+OSError: Tunnel connection failed: 403 Forbidden
+#+END_SRC
+(...)
+#+BEGIN_SRC python
+urllib.error.URLError: <urlopen error Tunnel connection failed: 403 Forbidden>
+#+END_SRC
+
+May confirm this is due to PythonAnyWhere test environment.
+
+*** Python =garminexport=
+
+Ref: https://github.com/petergardfjall/garminexport.
+
+Last commit on 2020-11-07.
+
+Install via +pip3 install garminexport+ (note: pip*3*).
+
+Test with [[https://github.com/petergardfjall/garminexport/blob/master/samples/sample.py]] minus log and export of all activites.
+
+Test failed:
+
+#+BEGIN_SRC python
+2020-12-01 15:59:46,661 [INFO] authenticating user ...
+2020-12-01 15:59:46,665 [ERROR] failed with exception: HTTPSConnectionPool(host='sso.garmin.com', port=443): Max retries exceeded with url: /sso/signin?service=https%3A%2F%2Fconnect.garmin.com%2Fmodern (Caused by ProxyError('Cannot connect to proxy.', OSError('Tunnel connection failed: 403 Forbidden')))
+2020-12-01 15:59:46,666 [INFO] done
+#+END_SRC
+
+May confirm this is due to PythonAnyWhere test environment.

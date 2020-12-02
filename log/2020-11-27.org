@@ -1,0 +1,25 @@
+#+TITLE:     GRAW - Log - 2020-11-27
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-11-27
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-27
+CLOSED: [2020-11-27]
+:PROPERTIES:
+:CREATED:  [2020-11-27]
+:END:
+
+** [FEAT-AAI] Progress display
+
+Update progress marker calculus.
+Must not be calculated from number of waypoints.
+But (if possible) from total "polygones / lines" length displayed.
+
+- Line drawing = f(complete lines already drawed from GPX).
+- Marker position = coordinates of last line point drawed.
+
+Inspiration: https://stackoverflow.com/a/43017871

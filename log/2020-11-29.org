@@ -1,0 +1,27 @@
+#+TITLE:     GRAW - Log - 2020-11-29
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-11-29
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-29
+CLOSED: [2020-11-29]
+:PROPERTIES:
+:CREATED:  [2020-11-29]
+:END:
+
+** World copy jump
+
+If map is dragged oustide initial view, original displayed data do not appear in the new "view".
+
+Map may be initialized with +worldCopyJump+ option enabled ; now, if map is dragged enough (i.e. past "middle"), view rather seamlessly jumps to initial view (and displayed data).
+
+User experience is not perfect though - may be interesting to search further to enhance this.
+
+References:
+
+- https://stackoverflow.com/a/33524196
+- https://leafletjs.com/reference-1.7.1.html#map-worldcopyjump

@@ -1,0 +1,106 @@
+#+TITLE:     GRAW - Log - 2020-11-23
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-11-23
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-23
+CLOSED: [2020-11-23]
+:PROPERTIES:
+:CREATED:  [2020-11-23]
+:END:
+
+** [FEAT-AAF] First real CRAW GPX data test
+
+References:
+
+- [[https://d368g9lw5ileu7.cloudfront.net/races/race95983-customSectionAttachment5f311a4752e335.90672475.pdf][Circumpolar Race Around the World - Course Details]]
+- [[https://www.youtube.com/embed/OR2yG-cXvIk]]
+
+Consider the "Latin America" region for first test.
+Countries: Mexico, Guatemala, El Salvador, Honduras, Nicaragua, Costa Rica, Panama.
+Total distance : 4009 km.
+Need more details / waypoints.
+
+*** Directions with =Google Maps=
+
+Based on auto directions walking features ~ approximate tracks and total distance.
+
+Identified directions:
+
+- Brownsville, Texas, États-Unis
+- Veracruz, Mexique
+- Coatzacoalcos, Veracruz, Mexique
+- Tuxtla Gutiérrez, Chiapas, Mexique
+- Tapachula, Chiapas, Mexique
+- Escuintla, Guatemala
+- San Salvador, El Salvador
+- Managua, Nicaragua
+- Liberia, Guanacaste, Costa Rica
+- Jacó, Puntarenas, Costa Rica
+- David, Panama
+- Santiago de Veraguas, Panama
+- Panama
+- Colon
+
+Note: on CRAW map, the ferry track from Colon to Arboletes is displayed.
+
+Problem: Google Maps (Web GUI) is limited to 10 destination points.
+
+Hack: Use URL syntax =https://www.google.com/maps/dir/City1,+Country1/City2,+Country2/aso= (a priori, up to 25 points)
+
+Here: =https://www.google.com/maps/dir/Brownsville/Veracruz,+Mexique/Coatzacoalcos,+Veracruz,+Mexique/Tuxtla+Gutiérrez,+Chiapas,+Mexique/Tapachula,+Chiapas,+Mexique/Escuintla,+Guatemala/San+Salvador,+El+Salvador/Managua,+Nicaragua/Guanacaste,+Liberia,+Costa+Rica/Puntarenas,+Jacó,+Costa+Rica/David,+Panama/Santiago+de+Veraguas,+Panama=
+
+OK but cannot calculate complete walking directions (a priori, problem for "Santiago de Veraguas - Panama - Colon") - OK up to Santiago de Veraguas: 2368 miles (/ 2491 total miles).
+
+Solution: Fusion of two GPX? Second one export from driving directions:
+=https://www.google.com/maps/dir/Santiago+de+Veraguas,+Panama/Colón,+Panama=
+
+*** GPX generation with =Maps to GPX=
+
+[[https://mapstogpx.com/][Maps to GPX]]
+
+Settings:
+
+- =Route Points= (=Track Points= generates bigger files - 7.63 MB vs 57.9 KB for part 1, 518 KB vs 3.52 KB for part 2)
+- =Route Name=: name of the region (here: "Latin America")
+- =Advanced Settings=:
+  - =Create Start/End Waypoints=
+  - =Include Elevation= (TBC)
+  - =GPX Output=
+
+*** Confirmation with =GPS Vizualizer=
+
+[[www.gpsvisualizer.com][GPS Vizualizer]]
+
+*** Manual merge (specific)
+
+Manual merge of GPX files into one (=<metadata>=, =<wpt>=, =<rte>(<name>)=)
+
+*** PythonAnyWhere Test Server
+
+Even with "Beginner" account, it is possible to create /one/ Web App with =pythonanywhere.com=.
+
+Here, the setup is:
+
+- Manual configuration
+- =Static files=:
+  - =URL=: /
+  - =Directory=: ~/graw
+- Web App available at: =<login>.<domain>.pythonanywhere.com=
+- =Reload= when necessary (settings updates - not required for source code updates)
+
+Update JS to take new GPX file as input.
+Must also update GPXParser code because new GPX file structure does not contain +tracks+ but +routes+ (or possibly +waypoints+).
+
+** Code cleaning
+
+- All external libraries (JS, CSS, aso) in =lib= folder
+- All images in =img= folder
+- Remove test data from =data=
+- Update HTML <head>
+- Add favicon ([[https://medium.com/theagilemanager/how-to-add-a-favicon-to-github-pages-403935604460]] / [[https://realfavicongenerator.net]])
+- Move JS code to =index.js=

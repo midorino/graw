@@ -1,0 +1,32 @@
+#+TITLE:     GRAW - Log - 2020-11-28
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-11-28
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-11-28
+CLOSED: [2020-11-28]
+:PROPERTIES:
+:CREATED:  [2020-11-28]
+:END:
+
+** Full page view
+
+Ref: http://bl.ocks.org/d3noob/7654694
+
+** Fractional zoom
+
+Ref: https://leafletjs.com/examples/zoom-levels/#fractional-zoom
+
+For now, best render with initial zoom at 1.75.
+
+** Additional data display
+
+Several methods used:
+
+- https://leafletjs.com/reference-1.7.1.html#marker
+- http://bl.ocks.org/d3noob/7678758
+- https://stackoverflow.com/questions/34775308/leaflet-how-to-add-a-text-label-to-a-custom-marker-icon
