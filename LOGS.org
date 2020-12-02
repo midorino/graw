@@ -397,3 +397,40 @@ References:
 Move favicon elements to subfolder =/favicon=.
 
 https://realfavicongenerator.net/
+
+* 2020-12-01
+
+** [FEAT-AAJ] Garmin Connect API
+
+Obj: Automatic export of Garmin challenge data
+
+*** Python =garminconnect=
+
+Test with Python module =garminconnect=.
+
+Ref: https://github.com/cyberjunky/python-garminconnect
+
+Install via +pip3 install garminconnect+ (note: pip*3*).
+
+Test with [[https://github.com/cyberjunky/python-garminconnect/blob/master/README.md][=README=]] usage script.
+
+Attention: login and password are (for now) "hard coding" required - must consider require via terminal input (eg: https://github.com/njkalish/garmin-proj/).
+
+Test failed:
+
+#+BEGIN_SRC python
+Garmin(email, password)
+----------------------------------------------------------------------------------------
+client.login()
+----------------------------------------------------------------------------------------
+DEBUG:garminconnect:Login to Garmin Connect using POST url https://sso.garmin.com/sso/signin
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): sso.garmin.com:443
+Unknown error occurred during Garmin Connect Client login
+#+END_SRC
+
+Though the GitHub repository does not seem deprecated (last commit on 2020-09-20).
+Other repositories depending on =garminconnect= with recent commits seems working (eg: https://github.com/stratus-ss/garmin-influxdb, https://github.com/hacf-fr/home-assistant-core).
+
+May be because of PythonAnyWhere test environment?
+
+Other resources: https://github.com/petergardfjall/garminexport, https://github.com/pe-st/garmin-connect-export
