@@ -1,0 +1,58 @@
+#+TITLE:     GRAW - Log - 2020-12-02
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-12-02
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-12-02
+CLOSED: [2020-12-02]
+:PROPERTIES:
+:CREATED:  [2020-12-02]
+:END:
+
+** [FEAT-AAK] Load most recent JSON data file
+
+Initial idea roadmap:
+
+- List server-side files in folder (=data/graw=)
+- For each file, convert file name to date
+- Identify most recent JSON data file
+- Load data from most recent JSON data (already implemented)
+- Upgrade to file naming with date *and time*?
+- Code cleaning
+
+NB: data file must be manually feed with *total* sum of steps for each participant from challenge start (2020-11-01).
+
+But JS is client side only - cannnot list files without using server side technology.
+
+Alternative: unique file with all data (one node per export date) (+ archives?).
+
+New JSON structure:
+
+#+BEGIN_SRC json
+[
+	{
+		"datetime": "<DATETIME WITH ISO FORMAT YYYY-MM-DDTHH:MM:SSZ'>",
+		"data": [
+			{
+				"id": 1,
+				"region": 1,
+				"steps": 12131
+			},
+			(...)
+		]
+	},
+	(...)
+]
+#+END_SRC
+
+New roadmap:
+
+- Load unique JSON data file (=data/graw.json=)
+- Identify most recent JSON data node (with =datetime= field)
+- Transfer most recent data to already implemented process
+- Display most recent datetime in view
+- Code cleaning

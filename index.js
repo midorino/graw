@@ -18,8 +18,38 @@ function strict() {
 	}
 
 	async function loadJsonFile(jsonFilePath) {
-        var jsonTxt = await loadFile(jsonFilePath);
-        runners = JSON.parse(jsonTxt);
+        let jsonTxt = await loadFile(jsonFilePath);
+        let data = JSON.parse(jsonTxt);
+
+        let lastUpdate = new Date(0);
+        let lastUpdateIndex = 0;
+
+        console.debug(lastUpdate);
+
+        data.forEach(function (d, i) {
+            let datetimestr = d.datetime;
+            let datetime = new Date(datetimestr + "Z");
+
+            console.debug('%d: %o', i, d);
+
+            if(datetime > lastUpdate) {
+                lastUpdate = datetime;
+                lastUpdateIndex = i;
+            }
+
+            /*
+            console.debug("UTC string:  " + datetime.toUTCString());
+            console.debug("Local string:  " + datetime.toString());
+            console.debug("Hours local:  " + datetime.getHours());
+            console.debug("Hours UTC:   " + datetime.getUTCHours());
+            */
+        });
+
+        console.debug(lastUpdateIndex);
+
+        let runners = data[lastUpdateIndex].data;
+
+        console.debug(runners);
 
         for(let runner of runners) {
     	    loadGpxFile(runner, gpxFiles[runner.region - 1]); // Beware: index != length
@@ -169,8 +199,9 @@ function strict() {
 
     /** Load data **/
 
-    // TODO To be loaded from Garmin data (JSON or CSV)
-    const runnersJsonFile = 'data/graw/20201130.json';
+    var runnersJsonFile = 'data/graw.json';
+
+    // TODO Load most recent JSON data file
 
     // GPX data (complete routes)
     // Must be ordered by region number (link with runners[*].region)
