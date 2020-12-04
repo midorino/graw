@@ -49,7 +49,7 @@ function strict() {
     	gpxData.parse(gpxTxt);
     	var gpxRoute = gpxData.routes[0];
 
-        console.log("[GPXParser] <" + gpxRoute.name + "> Total distance: " + gpxRoute.distance.total + " m");
+        console.debug("[GPXParser] <" + gpxRoute.name + "> Total distance: " + gpxRoute.distance.total + " m");
 
     	/** ---------- **/
 
