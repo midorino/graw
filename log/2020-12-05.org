@@ -1,0 +1,95 @@
+#+TITLE:     GRAW - Log - 2020-12-05
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-12-05
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-12-05
+CLOSED: [2020-12-05]
+:PROPERTIES:
+:CREATED:  [2020-12-05]
+:END:
+
+** Update data scructures
+
+Following the first update of input GRAW challenge data structure, seems interesting to update all data structures.
+
+NB : for constant data (relative to application execution) (i.e. almost all data), consider moving it in dedicated files (JSON most likely).
+
+Process:
+
+- T1:
+    - Load regions data
+    - Load participants data
+- T2:
+    - Display regions view
+    - (Display participants view)
+    - Load progress data
+- T3:
+    - Display progress view
+
+*** Participants
+
+#+BEGIN_SRC json
+[
+	{
+		"id": 1,
+		"region": 1
+	},
+	(...)
+]
+#+END_SRC
+
+*** Regions
+
+Constant data:
+
+#+BEGIN_SRC json
+[
+	{
+        "id": 1,
+		"title": "Latin America",
+		"gpxFile": "region-1-latin-america.gpx", // only file name (directory is part of progam logic)
+		"distanceTrue": 4009000 // From CRAW real data (in meters)
+	},
+	(...)
+]
+#+END_SRC
+
+Variable data:
+
+#+BEGIN_SRC json
+[
+	{
+        "id": 1,
+		"region": "Latin America",
+		"distanceTrue": 4009000 // From CRAW real data (in meters)
+		"gpxFile": "data/craw/region-1-latin-america.gpx",
+		/* Additional calculated data after JSON loading */
+		"routes": [...],
+		"distanceDisplayed": 415687 // (in meters)
+	},
+	(...)
+]
+#+END_SRC
+
+*** Records
+
+#+BEGIN_SRC json
+[
+	{
+		"datetime": "<DATETIME WITH ISO FORMAT YYYY-MM-DDTHH:MM:SSZ'>",
+		"data": [
+			{
+				"participantId": 1,
+				"steps": 12131
+			},
+			(...)
+		]
+	},
+	(...)
+]
+#+END_SRC

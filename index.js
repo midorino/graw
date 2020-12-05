@@ -20,36 +20,20 @@ function strict() {
 	async function loadJsonFile(jsonFilePath) {
         let jsonTxt = await loadFile(jsonFilePath);
         let data = JSON.parse(jsonTxt);
-
-        let lastUpdateIndex = 0;
-
-        data.forEach(function (d, i) {
-            let datetimestr = d.datetime;
-            let datetime = new Date(datetimestr + "Z");
-
-            if(datetime > lastUpdate) {
-                lastUpdate = datetime;
-                lastUpdateIndex = i;
-            }
-        });
-
-        let runners = data[lastUpdateIndex].data;
-
-        for(let runner of runners) {
-    	    loadGpxFile(runner, gpxFiles[runner.region - 1]); // Beware: index != length
-        }
+        return data;
 	}
 
-	async function loadGpxFile(runner, gpxFilePath) {
+	async function displayRegion(region) {
+	    let gpxFilePath = "data/" + region.gpxFile;
         var gpxTxt = await loadFile(gpxFilePath);
 
         /** Parse GPX data **/
 
 	    var gpxData = new gpxParser();
     	gpxData.parse(gpxTxt);
-    	var gpxRoute = gpxData.routes[0];
 
-        console.debug("[GPXParser] <" + gpxRoute.name + "> Total distance: " + gpxRoute.distance.total + " m");
+    	// For now, only way to get data without risk to get undefined values for all the async calls...
+    	regions[region.id - 1].gpxData = gpxData;
 
     	/** ---------- **/
 
@@ -77,96 +61,119 @@ function strict() {
     		}
     	/** ---------- **/
     	}).on('loaded', function(e) {
-    	    /** Draw progress track **/
-    	    // Only after complete track drawing complete
+    	    // Must only be used for display actions (not logic) for this 'loaded' event and the logic async calls are not linked
+    	}).addTo(mymap);
 
-            /** Build progress GPX data from complete GPX track **/
+    	return lGpx;
+    }
 
-            let progressDistance = runner.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
+	async function displayRecord(datetime, data) {
+	    //var gpxRoute = gpxData.routes[0];
+        //regions[region.id-1].points = gpxRoute.points;
+    	//regions[region.id-1].distanceDisplayedTotal = gpxRoute.distance.total;
 
-            // OK but that's progress distance regarding true CRAW region total distance (not GPX drawing distance)...
-            let crawTotalDistance = regions[runner.region - 1] * 1000;
-            let progressRate = progressDistance / crawTotalDistance;
-            progressDistance = progressRate * gpxRoute.distance.total;
+        let record = data;
+        let participant = participants[record.id - 1]; // !!! ID != Index !!!
+        let region = regions[participant.region - 1]; // !!! ID != Index !!!
+        let gpxData = region.gpxData.routes[0];
 
-            console.debug("[R-%i] Steps: %d m", runner.id, runner.steps);
-            console.debug("[R-%i] CRAW total distance: %d m", runner.id, crawTotalDistance);
-            console.debug("[R-%i] Progress rate: %d %", runner.id, progressRate * 100);
-            console.debug("[R-%i] Drawing progress distance: %d m", runner.id, progressDistance);
+        // Record distance is relative to total actual CRAW distance (!= displayed distance)!
+        // There is 2 dimensions to consider: Actual/Displayed x Record/Total.
 
-            if(progressDistance > gpxRoute.distance.total) { progressDistance = gpxRoute.distance.total; }
+        let distanceActualTotal = region.distanceTrue;
+        let distanceActualRecord = record.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
 
-    		let latLngs = e.target.getLayers()[0].getLayers()[0].getLatLngs();
+        // Link between "actual" and "displayed" data
+        let rate = distanceActualRecord / distanceActualTotal;
 
-            let distanceCumul = 0;
-            let f = 0; // Index of closer waypoint latLng
-            for(let i = 0; i < latLngs.length; i++) {
-                let distance = latLngs[i].distanceTo(latLngs[i+1]);
+        let distanceDisplayedTotal = gpxData.distance.total;
+        let distanceDisplayedRecord = rate * distanceDisplayedTotal;
 
-            	if(distanceCumul + distance >= progressDistance) { // Progress overcome last waypoint
-            	    f = i;
-            	    break;
-            	} else {
-            	    distanceCumul += distance;
-            	}
-            }
+        console.debug("+ Actual distances:\n- Total: %f m\n- Record: %f m", distanceActualTotal, distanceActualRecord);
+        console.debug("+ Rate: %f %", rate * 100);
+        console.debug("+ Displayed distances:\n- Total: %f m\n- Record: %f m", distanceDisplayedTotal, distanceDisplayedRecord);
 
-            let remainingDistance = progressDistance - distanceCumul; // From last covered waypoint
+        if(distanceDisplayedRecord > distanceDisplayedTotal) { distanceDisplayedRecord = distanceDisplayedTotal; }
 
-            // Remove not covered points
-        	// Surely a cleaner way to do this...
-        	// Must be done on 'gpxData' object to be able to export to GeoJSON after
-        	gpxData.routes[0].points.length = f + 1; // True last overcome waypoint is [f] ; [f+1] is going to be update with middle point
+        // Get "record" waypoint
 
-        	// TODO Add intermediate progress point (to be calculated from remaining distance)
+        // Create a Leaflet LatLng array (in order to use 'distanceTo()')
+        let points = gpxData.points;
+        let latLngs = [];
+        points.forEach(function (point, i) {
+            let latLng = L.latLng(point.lat, point.lon);
+            latLngs.push(latLng);
+        });
 
-            console.debug("gpx.Route.points: %o", gpxData.routes[0].points);
+        // Calculate closer last waypoint
+        let distanceCumul = 0;
+        let f = 0; // Index of closer waypoint
+        for(let i = 0; i < latLngs.length; i++) {
+            let distance = latLngs[i].distanceTo(latLngs[i+1]);
 
-        	// Export trimmed progress data to GeoJSON
-        	// Easiest way for now to draw the progress track
-        	let geojson = gpxData.toGeoJSON();
+        	if(distanceCumul + distance >= distanceDisplayedRecord) { // Progress overcome last waypoint
+        	    f = i;
+        	    break;
+        	} else {
+        	    distanceCumul += distance;
+        	}
+        }
 
-        	/** ---------- **/
+        let distanceRemaining = distanceDisplayedRecord - distanceCumul; // From last covered waypoint
+        console.debug("Distance Remaining (since last waypoint %d): %f m", f, distanceRemaining);
 
-    		new L.geoJSON(geojson, {
-    			pointToLayer: function(geoJsonPoint, latlng) {
-    				// No waypoint drawing
-    				return null;
-    				// return L.marker(latlng, {icon: ...});
-    			},
-    			style: {
-    				color: 'blue',
-    				opacity: 1.0,
-    				weight: 5,
-    				lineCap: 'round'
-    			}
-    		}).addTo(mymap);
+        // Remove not covered points
+    	// Surely a cleaner way to do this...
+    	// Must be done on 'gpxData' object to be able to export to GeoJSON after
+    	let gpx = region.gpxData;
+    	gpx.routes[0].points.length = f + 1; // True last overcome waypoint is [f] ; [f+1] is going to be update with middle point
 
-    		// Add marker at current progress position
-    		let lastPosition = gpxRoute.points.length - 1;
+    	// TODO Add intermediate progress point (to be calculated from remaining distance)
 
-    		let myIcon = L.icon({
-    			iconUrl: 'img/pin-icon-runner.png',
-    			iconSize: [35, 35]
-    		});
+    	// Export trimmed progress data to GeoJSON
+    	// Easiest way for now to draw the progress track
+    	let geojson = gpx.toGeoJSON();
 
-    		L.marker(gpxRoute.points[lastPosition], {
-    			icon: myIcon,
-    			title: "Region "+runner.id+"\n"+gpxRoute.name
-    		})
-    		.bindTooltip("R"+runner.id, {permanent: true, direction: 'bottom'})
-    		.addTo(mymap)
-    		.bindPopup("<b>Region "+runner.id+" - "+gpxRoute.name+"</b><br>"
-    		+"Distance à parcourir : "+crawTotalDistance/1000+" km<br>"
-    		+"Distance parcourue : "+runner.steps/1000+" km ("+(progressRate*100).toFixed(2)+"%)<br>"
-    		+"Dernière MàJ : "+lastUpdate.toLocaleString())
-    		;
-    	});
+		new L.geoJSON(geojson, {
+			pointToLayer: function(geoJsonPoint, latlng) {
+				// No waypoint drawing
+				return null;
+				// return L.marker(latlng, {icon: ...});
+			},
+			style: {
+				color: 'blue',
+				opacity: 1.0,
+				weight: 5,
+				lineCap: 'round'
+			}
+		}).addTo(mymap);
 
-        lGpx.addTo(mymap);
+		// Add marker at current progress position
+		let lastPosition = gpx.routes[0].points.length - 1;
+
+		let myIcon = L.icon({
+			iconUrl: 'img/pin-icon-runner.png',
+			iconSize: [35, 35]
+		});
+
+		L.marker(latLngs[lastPosition], {
+			icon: myIcon,
+			title: "Region "+participant.id+"\n"+region.title
+		})
+		.bindTooltip("R"+participant.id, {permanent: true, direction: 'bottom'})
+		.addTo(mymap)
+		.bindPopup("<b>Region " + participant.id + " - " + region.title + "</b><br>"
+		+"Distance à parcourir : " + distanceActualTotal/1000 + " km<br>"
+		+"Distance parcourue : " + distanceActualRecord/1000 + " km (" + (rate*100).toFixed(2) + "%)<br>"
+		+"Dernière MàJ : " + datetime.toLocaleString())
+		;
 	}
 
-    /** Init Leaflet world map **/
+    /**--------------**/
+    /** MAIN PROGRAM **/
+    /**--------------**/
+
+    /** Init world map **/
 
 	var mymap = L.map('mapid', {
 	    zoomSnap: 0.25,
@@ -184,44 +191,76 @@ function strict() {
 
     /** Load data **/
 
-    const runnersJsonFile = 'data/graw.json';
+    // Data files
 
-    // GPX data (complete routes)
-    // Must be ordered by region number (link with runners[*].region)
-    const gpxFiles = [
-        'data/craw/region-1-latin-america.gpx',
-        'data/craw/region-2-andes.gpx',
-        'data/craw/region-3-pampas.gpx',
-        'data/craw/region-4-antarctica.gpx',
-        'data/craw/region-5-down-under.gpx',
-        'data/craw/region-6-the-islands.gpx',
-        'data/craw/region-7-malay-peninsula.gpx',
-        'data/craw/region-8-indian-subcontinent.gpx',
-        'data/craw/region-9-the-stans.gpx',
-        'data/craw/region-10-europe.gpx',
-        'data/craw/region-11-great-white-north.gpx',
-        'data/craw/region-12-lower-48.gpx'
-    ];
+    const dataFolder = 'data';
+    const participantsJsonFile = dataFolder + '/' + 'participants.json';
+    const regionsJsonFile = dataFolder + '/' +'regions.json';
+    const recordsJsonFile = dataFolder + '/' +'records.json';
 
-    // True CRAW regions data (especially distances)
-    const regions = [
-        4009,
-        4948,
-        5106,
-        5305,
-        4246,
-        3360,
-        3201,
-        2673,
-        3731,
-        4338,
-        4321,
-        3311
-    ]
+    // Data variables
 
-    var lastUpdate = new Date(0);
-    var globalRoutes = {};
+    var participants = [];
+    var regions = [];
+    var records = [];
 
-    loadJsonFile(runnersJsonFile);
+    // Logic variables
+
+    var loadingRegions, loadingParticipants, displayingRegions, loadingRecords;
+
+    // 1.a. Load regions data
+    loadingRegions = loadJsonFile(regionsJsonFile).then( function(data) {
+        regions = data;
+        console.debug("Loaded regions JSON data: %o", regions);
+    });
+
+    // 1.b. Load participants data
+    loadingParticipants = loadJsonFile(participantsJsonFile).then( function(data) {
+        participants = data;
+        console.debug("Loaded participants JSON data: %o", participants);
+    });
+
+    // Wait for previous operations (1.*)
+    // await Promise.all([loadingRegions, loadingParticipants]);
+    Promise.all([loadingRegions, loadingParticipants]).then(([a, b]) => {
+        // 2.a. Display regions view
+        displayingRegions = []
+        for(let region of regions) {
+    	    let displayingRegion = displayRegion(region).then( function() {
+    	        console.debug("Displayed and updated region data: %o", region);
+    	    });
+    	    displayingRegions.push(displayingRegion);
+        }
+
+        // 2.b. Load records data
+        loadingRecords = loadJsonFile(recordsJsonFile).then( function(data) {
+            records = data;
+            console.debug("Loaded records JSON data: %o", records);
+        });
+
+        // Wait for previous operations (2.*)
+        Promise.all([displayingRegions, loadingRecords]).then(([a, b]) => {
+            // 3. Display *last* record view
+            let lastUpdate = new Date(0);
+            let lastUpdateIndex = 0;
+
+            records.forEach(function (record, i) {
+                let datetimestr = record.datetime;
+                let datetime = new Date(datetimestr + "Z");
+
+                if(datetime > lastUpdate) {
+                    lastUpdate = datetime;
+                    lastUpdateIndex = i;
+                }
+            });
+
+            let lastRecord = records[lastUpdateIndex];
+            console.debug("Most recent record: %o", lastRecord);
+
+        	lastRecord.data.forEach(function (d, i) {
+        	    displayRecord(lastRecord.datetime, d);
+        	});
+        });
+    });
 }
 strict();

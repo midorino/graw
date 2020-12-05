@@ -1,0 +1,74 @@
+[
+	{
+	        "id": 1,
+		"title": "Latin America",
+		"gpxFile": "region-1-latin-america.gpx",
+		"distanceTrue": 4009000
+	},
+	{
+		"id": 2,
+		"title": "Andes",
+		"gpxFile": "region-2-andes.gpx",
+		"distanceTrue": 4948000
+	},
+	{
+	        "id": 3,
+		"title": "Pampas",
+		"gpxFile": "region-3-pampas.gpx",
+		"distanceTrue": 5106000
+	},
+	{
+		"id": 4,
+		"title": "Antarctica",
+		"gpxFile": "region-4-antarctica.gpx",
+		"distanceTrue": 5305000
+	},
+	{
+	        "id": 5,
+		"title": "Down Under",
+		"gpxFile": "region-5-down-under.gpx",
+		"distanceTrue": 4246000
+	},
+	{
+		"id": 6,
+		"title": "The Islands",
+		"gpxFile": "region-6-the-islands.gpx",
+		"distanceTrue": 3360000
+	},
+	{
+	        "id": 7,
+		"title": "Malay Peninsula",
+		"gpxFile": "region-7-malay-peninsula.gpx",
+		"distanceTrue": 3201000
+	},
+	{
+		"id": 8,
+		"title": "Indian Subcontinent",
+		"gpxFile": "region-8-indian-subcontinent.gpx",
+		"distanceTrue": 2673000
+	},
+	{
+	        "id": 9,
+		"title": "The Stans",
+		"gpxFile": "region-9-the-stans.gpx",
+		"distanceTrue": 3731000
+	},
+	{
+		"id": 10,
+		"title": "Europe",
+		"gpxFile": "region-10-europe.gpx",
+		"distanceTrue": 4338000
+	},
+	{
+	        "id": 11,
+		"title": "Great White North",
+		"gpxFile": "region-11-great-white-north.gpx",
+		"distanceTrue": 4321000
+	},
+	{
+		"id": 12,
+		"title": "Lower 48",
+		"gpxFile": "region-12-lower-48.gpx",
+		"distanceTrue": 3311000
+	}
+]
