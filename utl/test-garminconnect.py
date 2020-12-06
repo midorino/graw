@@ -8,7 +8,7 @@ from garminconnect import (
 )
 
 from datetime import date
-
+import getpass
 
 """
 Enable debug logging
@@ -18,6 +18,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 today = date.today()
 
+username = input("Username: ")
+password = getpass.getpass("Password: ")
+
 
 """
 Initialize Garmin client with credentials
@@ -25,8 +28,8 @@ Only needed when your program is initialized
 """
 print("Garmin(email, password)")
 print("----------------------------------------------------------------------------------------")
-try:
-    client = Garmin("LOGIN", "PASSWORD")
+try:    
+    client = Garmin(username, password)
 except (
     GarminConnectConnectionError,
     GarminConnectAuthenticationError,
