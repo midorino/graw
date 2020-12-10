@@ -1,0 +1,25 @@
+#+TITLE:     GRAW - Log - 2020-12-10
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-12-10
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-12-10
+CLOSED: [2020-12-10]
+:PROPERTIES:
+:CREATED:  [2020-12-10]
+:END:
+
+** Add "optimal" data comparison in view
+
+Simple yearly average relative ratio in view - pretty straightforward.
+
+#+BEGIN_SRC json
+let diffTimeSinceStart = Math.abs(datetime - new Date(2020,11,01).getTime()); // Here is considered the last update as a reference point (and not "today") ; also, challenge started on 2020-11-01.
+let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
+let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
+let rateOptimal = distanceActualOptimal / distanceActualTotal;
+#+END_SRC

@@ -148,6 +148,12 @@ function strict() {
 			}
 		}).addTo(mymap);
 
+        // Optimal data
+        let diffTimeSinceStart = Math.abs(datetime - new Date(2020,11,01).getTime()); // Here is considered the last update as a reference point (and not "today") ; also, challenge started on 2020-11-01.
+        let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
+        let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
+        let rateOptimal = distanceActualOptimal / distanceActualTotal;
+
 		// Add marker at current progress position
 		let lastPosition = gpx.routes[0].points.length - 1;
 
@@ -165,6 +171,7 @@ function strict() {
 		.bindPopup("<b>Region " + participant.id + " - " + region.title + "</b><br>"
 		+"Distance à parcourir : " + distanceActualTotal/1000 + " km<br>"
 		+"Distance parcourue : " + distanceActualRecord/1000 + " km (" + (rate*100).toFixed(2) + "%)<br>"
+		+"Distance optimale : " + distanceActualOptimal/1000 + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
 		+"Dernière MàJ : " + datetime.toLocaleString())
 		;
 	}
