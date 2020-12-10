@@ -18,7 +18,7 @@ CLOSED: [2020-12-10]
 Simple yearly average relative ratio in view - pretty straightforward.
 
 #+BEGIN_SRC json
-let diffTimeSinceStart = Math.abs(datetime - new Date(2020,11,01).getTime()); // Here is considered the last update as a reference point (and not "today") ; also, challenge started on 2020-11-01.
+let diffTimeSinceStart = Math.abs(new Date(datetime).getTime() - new Date("2020-11-01").getTime());  // Here is considered the last update as a reference point (and not "today") - also, challenge started on 2020-11-01.
 let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
 let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
 let rateOptimal = distanceActualOptimal / distanceActualTotal;
