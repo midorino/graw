@@ -15,7 +15,11 @@ CLOSED: [2020-12-11]
 
 ** [FEAT-AAL] Street View
 
-Initial consideration: Google Street View.
+*** SOTA
+
+**** Google Street View
+
+Initial consideration as most common tool.
 
 But API key required and possibly non free (TBC).
 
@@ -28,11 +32,18 @@ References:
 - https://stackoverflow.com/questions/387942/google-street-view-url
 - https://gis.stackexchange.com/questions/70636/incorporate-google-streetview-into-a-leaflet-map
 
------
+**** MapillaryJS
 
 Best alternative candidate: [[https://www.mapillary.com/mapillaryjs][MapillaryJS]].
 
 Not as much world map covered though.
+
+**** Other candidates
+
+- http://openstreetcam.org
+- https://yandex.com/maps
+
+*** Development
 
 Developer account created on [[https://www.mapillary.com]].
 
@@ -42,12 +53,13 @@ Following [[https://mapillary.github.io/mapillary-js/][MapillaryJS Documentation
 
 - [X] Add Mapillary CDN resources
 - [X] Add MapillaryJS viewer
-- [ ] Add MapillaryJS x Leaflet integration (https://bl.ocks.org/oscarlorentzon/0a11029a5627028c445a38016c76fb3a)
+- [ ] Add MapillaryJS x Leaflet integration
 - [ ] Update Mapillary resources to local
 
-----
+**** Leaflet integration
 
-Other candidates:
+Reference: [[MapillaryJS + Leaflet][https://bl.ocks.org/oscarlorentzon/0a11029a5627028c445a38016c76fb3a]].
 
-- http://openstreetcam.org
-- https://yandex.com/maps
+But previous reference must be adapted - here, an update on the MapillaryJS viewer fires an update on the Leaflet map.
+
+Desired case is somewhat simple: for each participant current marker, add an option to open a MapillaryJS viewer on its coordinates.

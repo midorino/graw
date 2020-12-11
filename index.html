@@ -34,6 +34,7 @@
     <script src='https://unpkg.com/mapillary-js@3.0.0/dist/mapillary.min.js'></script>
     <link href='https://unpkg.com/mapillary-js@3.0.0/dist/mapillary.min.css' rel='stylesheet' />
 
+    <!--
     <style>
         body {
             padding: 0;
@@ -44,14 +45,20 @@
             width: 100%;
         }
     </style>
+    -->
+    <style>
+        body { margin:0; padding:0; height: 100%; }
+        #mapid { position: absolute; height: 100%; width: 66%; top: 0; left: 0; bottom: 0; }
+        #mly { position: absolute; height: 100%; width: 33%; top: 0; right: 0; }
+    </style>
 </head>
 
 <body>
-    <!--<div id="mapid"></div>-->
+    <div id="mapid"></div>
 
     <!-- MapillaryJS viewer test -->
     <!-- Ref: "Check if MapillaryJS is supported" - https://bl.ocks.org/oscarlorentzon/c737167e64d52668bb4991167501bb84 -->
-    <div id='mly' style='width: 640px; height: 480px;'></div>
+    <div id='mly'></div>
     <div id="message"></div>
 
     <script>
@@ -107,7 +114,7 @@
         }
     </script>
 
-    <!--<script src="index.js"></script>-->
+    <script src="index.js"></script>
 </body>
 
 </html>
