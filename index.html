@@ -47,9 +47,67 @@
 </head>
 
 <body>
-    <div id="mapid"></div>
+    <!--<div id="mapid"></div>-->
 
-    <script src="index.js"></script>
+    <!-- MapillaryJS viewer test -->
+    <!-- Ref: "Check if MapillaryJS is supported" - https://bl.ocks.org/oscarlorentzon/c737167e64d52668bb4991167501bb84 -->
+    <div id='mly' style='width: 640px; height: 480px;'></div>
+    <div id="message"></div>
+
+    <script>
+        function setMessage(message) {
+            var messageContainer = document.getElementById('message');
+            messageContainer.innerHTML = message;
+        }
+
+        var componentOptions = null;
+
+        if (Mapillary.isSupported()) {
+            // Enable or disable any components, e.g. tag and popup which requires WebGL support
+            // or use the default components by not supplying any component options.
+            componentOptions = { /* Default options */ };
+
+            setMessage("MapillaryJS is fully supported by your browser.");
+        } else if (Mapillary.isFallbackSupported()) {
+            // On top of the disabled components below, also the popup, marker and tag
+            // components require WebGL support and should not be enabled (they are
+            // disabled by default so does not need to be specified below).
+            componentOptions = {
+                // Disable components requiring WebGL support
+                direction: false,
+                imagePlane: false,
+                keyboard: false,
+                mouse: false,
+                sequence: false,
+
+                // Enable fallback components
+                image: true,
+                navigation: true,
+            }
+
+            setMessage("MapillaryJS fallback functionality is supported by your browser.");
+        } else {
+            // Handle the fact that MapillaryJS is not supported in a way that is
+            // appropriate for your application.
+            setMessage("MapillaryJS is not supported by your browser.");
+        }
+
+        if (!!componentOptions) {
+            // Deactivate cover without interaction needed.
+            componentOptions.cover = false;
+            var clientId = "UlNMR2NIR1RGVWRYVkNySEtXOVZVZDo4Zjc4MzFlOGNiMTcyMDgw";
+            var mly = new Mapillary.Viewer({
+                container: "mly",
+                apiClient: clientId,
+                imageKey: '6ZcXjb82YuNEtPNA3fqBzA'
+            });
+
+            // Viewer size is dynamic so resize should be called every time the window size changes
+            window.addEventListener("resize", function() { mly.resize(); });
+        }
+    </script>
+
+    <!--<script src="index.js"></script>-->
 </body>
 
 </html>

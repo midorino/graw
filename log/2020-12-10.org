@@ -23,39 +23,3 @@ let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
 let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
 let rateOptimal = distanceActualOptimal / distanceActualTotal;
 #+END_SRC
-
-** [FEAT-AAL] Street View
-
-Initial consideration: Google Street View.
-
-But API key required and possibly non free (TBC).
-
-Furthermore, use of URL schemes construction without previous requirements against Google's terms of service.
-
-References:
-
-- https://developers.google.com/maps/documentation/javascript/streetview
-- https://gis.stackexchange.com/questions/86774/what-do-the-parameters-for-google-streetview-mean
-- https://stackoverflow.com/questions/387942/google-street-view-url
-- https://gis.stackexchange.com/questions/70636/incorporate-google-streetview-into-a-leaflet-map
-
------
-
-Best alternative candidate: [[https://www.mapillary.com/mapillaryjs][MapillaryJS]].
-
-Not as much world map covered though.
-
-Developer account created on [[https://www.mapillary.com]].
-
-Application with default parameters registered.
-
-Following [[https://mapillary.github.io/mapillary-js/][MapillaryJS Documentation]]:
-
-- Add Mapillary CDN resources
-
-----
-
-Other candidates:
-
-- http://openstreetcam.org
-- https://yandex.com/maps/
