@@ -168,17 +168,79 @@ function strict() {
 		})
 		.bindTooltip("R"+participant.id, {permanent: true, direction: 'bottom'})
 		.addTo(mymap)
-		.bindPopup("<b>Region " + participant.id + " - " + region.title + "</b><br>"
+		.bindPopup(
+		"<b>Region " + participant.id + " - " + region.title + "</b><br>"
 		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
 		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
 		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
-		+"Dernière MàJ : " + datetime.toLocaleString())
-		;
+		+"Dernière MàJ : " + datetime.toLocaleString()
+		).on('contextmenu', function(ev) {
+		    // Alt: HTML div with 'onclick' event (but more difficult to retrieve data like lat and lng)
+		    console.debug("Display Street View on %o", ev.latlng);
+		    mly.moveCloseTo(ev.latlng.lat, ev.latlng.lng) // Removed since MapillaryJS 3.0.0 -> Use of 'moveToKey' x API to get closest image ID (https://blog.mapillary.com/product/2017/04/12/how-to-retrieve-mapillary-images-to-use-in-external-tools.html)
+            .then(
+                function(node) { console.log(node.key); },
+                function(error) { console.error(error); }
+            );
+	    });
 	}
 
     /**--------------**/
     /** MAIN PROGRAM **/
     /**--------------**/
+
+    /** Init street view **/
+
+    function setMessage(message) {
+        var messageContainer = document.getElementById('message');
+        messageContainer.innerHTML = message;
+    }
+
+    var componentOptions = null;
+
+    if (Mapillary.isSupported()) {
+        // Enable or disable any components, e.g. tag and popup which requires WebGL support
+        // or use the default components by not supplying any component options.
+        componentOptions = { /* Default options */ };
+
+        setMessage("MapillaryJS is fully supported by your browser.");
+    } else if (Mapillary.isFallbackSupported()) {
+        // On top of the disabled components below, also the popup, marker and tag
+        // components require WebGL support and should not be enabled (they are
+        // disabled by default so does not need to be specified below).
+        componentOptions = {
+            // Disable components requiring WebGL support
+            direction: false,
+            imagePlane: false,
+            keyboard: false,
+            mouse: false,
+            sequence: false,
+
+            // Enable fallback components
+            image: true,
+            navigation: true,
+        }
+
+        setMessage("MapillaryJS fallback functionality is supported by your browser.");
+    } else {
+        // Handle the fact that MapillaryJS is not supported in a way that is
+        // appropriate for your application.
+        setMessage("MapillaryJS is not supported by your browser.");
+    }
+
+    if (!!componentOptions) {
+        // Deactivate cover without interaction needed.
+        componentOptions.cover = false;
+        var clientId = "UlNMR2NIR1RGVWRYVkNySEtXOVZVZDo4Zjc4MzFlOGNiMTcyMDgw";
+        var mly = new Mapillary.Viewer({
+            container: "mly",
+            apiClient: clientId,
+            imageKey: '6ZcXjb82YuNEtPNA3fqBzA'
+        });
+
+        // Viewer size is dynamic so resize should be called every time the window size changes
+        window.addEventListener("resize", function() { mly.resize(); });
+    }
 
     /** Init world map **/
 
