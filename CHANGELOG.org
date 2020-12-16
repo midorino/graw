@@ -4,6 +4,9 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) - though syntax has been adapted to Org-mode syntax,
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) - well trying actually.
 
+Futhermore, take note that, in general, if a change has no impact on "users", it is leaved out of this file.
+For more internal notes, it may be revelant to check the =LOG= files instead (inside =log= repository).
+
 ** [Unreleased]
 
 - 2.1.Z Update records data from steps to kilometers unit.
