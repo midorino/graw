@@ -230,6 +230,19 @@ function strict() {
     // Wait for previous operations (1.*)
     // await Promise.all([loadingRegions, loadingParticipants]);
     Promise.all([loadingRegions, loadingParticipants]).then(([a, b]) => {
+
+        /** TEST **/
+       loadJsonFile("data/region-1.geojson").then( function(data) {
+            var region1Geojson = data;
+            console.debug("Loaded GeoJSON data: %o", region1Geojson);
+
+            var region1Layer = L.geoJSON().addTo(mymap);
+            region1Layer.addData(region1Geojson);
+            console.debug("Loaded GeoJSON layer: %o", region1Layer);
+        });
+        /**-----**/
+
+        /*
         // 2.a. Display regions view
         displayingRegions = []
         for(let region of regions) {
@@ -244,7 +257,9 @@ function strict() {
             records = data;
             console.debug("Loaded records JSON data: %o", records);
         });
+        */
 
+        /*
         // Wait for previous operations (2.*)
         Promise.all([displayingRegions, loadingRecords]).then(([a, b]) => {
             // 3. Display *last* record view
@@ -269,6 +284,7 @@ function strict() {
         	    displayRecord(lastRecord.datetime, d);
         	});
         });
+        */
     });
 }
 strict();

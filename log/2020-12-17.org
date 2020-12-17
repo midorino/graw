@@ -44,5 +44,38 @@ To confirm this, with the same previous mock example, 13th participant was assig
 
 Thus, it may be required to advance drawing progress update (independent from Leaflet GPX plugin) in order to correctly progress any further.
 
-*** [2.2.0] Change drawing process
+** Note about branching management
 
+With the adoption of CHANGELOG, previous branch was named with the SemVer notation in mind.
+
+It may work in a single dev environment - but not in a concurrent one.
+
+So it is important to stick with the previous notation =[feat-abc]=.
+
+Though, it is possible to note the SemVer in addition to the branch name in the section headers of both =CHANGELOG= and =LOGS=.
+
+** [2.2.0] [feat-aam] Change drawing process
+
+In order to become independent from GPX (heavy file format and Leaflet plugin), focus on geoJSON.
+
+This format is indeed well handled by Leaflet ([[https://leafletjs.com/examples/geojson/]]) - but does it provide all the features required for this use cas (especially, easy access to the coordinates / points list).
+
+For testing purpose, first some GPX data already available is converted to geoJSON via external service ([[https://mapbox.github.io/togeojson/]]).
+
+For instance, =data/region-1-latin-america.gpx= (60.4 KB) is converted to =data/region-1.geojson= (88.8 KB) - size optimization does not seem to be an advantage here.
+
+It is possible to minify JSON data (with external service like [[https://codebeautify.org/jsonminifier]]) - here: =data/region-1.min.geojson= (19.9 KB).
+
+However, these new input formats use must be confirmed.
+
+For now, all level 2 and level 3 actions in main program are disabled and only region 1 drawing from geoJSON is tested with success.
+
+#+BEGIN_SRC js
+loadJsonFile("data/region.geojson").then( function(data) {
+    var regionGeojson = data;
+    var regionLayer = L.geoJSON().addTo(mymap);
+    regionLayer.addData(regionGeojson);
+});
+#+END_SRC
+
+Though, =regionLayer= does not seem to ease access to further necessary data (coordinates of all waypoints, seemingly located under =regionLayer._layers[]=) - thus, it should be useful to register both =regionGeojson= and =regionLayer= variables.
