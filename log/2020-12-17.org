@@ -109,3 +109,8 @@ Then, it is simple to draw the progress trace with a different style.
 
 *** Respective data for POI
 
+Remaining markers icons are linked to the progress GeoJSON data (deep) copy => POI data must be moved to specific file and process.
+
+A specific =region-1-poi.geojson= file has been created with corresponding data cut from =region-1.geojson=.
+
+A specific loading progress for POI has been added.
