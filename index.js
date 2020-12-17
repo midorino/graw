@@ -265,6 +265,7 @@ function strict() {
             console.debug("Most recent record: %o", lastRecord);
 
         	lastRecord.data.forEach(function (d, i) {
+        	    console.debug("Record %d: %o", i, d);
         	    displayRecord(lastRecord.datetime, d);
         	});
         });
