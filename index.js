@@ -243,6 +243,7 @@ function strict() {
             var region1Layer = L.geoJSON(region1Geojson, {
                 style: regionStyle
             }).addTo(mymap);
+
             console.debug("Region layer: %o", region1Layer);
 
             // var progressGeojson = region1Geojson; // Shallow copy
