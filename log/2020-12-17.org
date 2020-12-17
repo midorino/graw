@@ -56,6 +56,8 @@ Though, it is possible to note the SemVer in addition to the branch name in the 
 
 ** [2.2.0] [feat-aam] Change drawing process
 
+*** GPX to GeoJSON
+
 In order to become independent from GPX (heavy file format and Leaflet plugin), focus on geoJSON.
 
 This format is indeed well handled by Leaflet ([[https://leafletjs.com/examples/geojson/]]) - but does it provide all the features required for this use cas (especially, easy access to the coordinates / points list).
@@ -79,3 +81,28 @@ loadJsonFile("data/region.geojson").then( function(data) {
 #+END_SRC
 
 Though, =regionLayer= does not seem to ease access to further necessary data (coordinates of all waypoints, seemingly located under =regionLayer._layers[]=) - thus, it should be useful to register both =regionGeojson= and =regionLayer= variables.
+
+*** Progress drawing
+
+Main use cas to be tested is now the second progress trace drawing *over* the global region trace.
+
+For this, the previous loaded GeoJSON data is *cloned* into a new specific variable =progressGeojson=, which is then reduced to its first waypoints (eg: 100) for instance (and the "marked" waypoints too actually - by the way, maybe it will be better to move this POI to their own specific file).
+
+#+BEGIN_SRC js
+// var progressGeojson = region1Geojson; // Shallow copy
+var progressGeojson = JSON.parse(JSON.stringify(regionGeojson)); // Seems functional - for coordinates copy at least
+progressGeojson.features[0].geometry.coordinates.length = 50; // Probably not the cleanest way to do this
+console.debug("Progress GeoJSON data: %o", progressGeojson);
+console.debug("Region GeoJSON data: %o", regionGeojson); // Just to be sure - shallow copy vs deep copy!
+#+END_SRC
+
+The main concern here is to not create shallow copies of objects but deep copies (due to the geoJSON data complex structure).
+
+For now, JSON utils seem enough for this use case.
+
+Further readings on this last point:
+
+- https://medium.com/javascript-in-plain-english/how-to-deep-copy-objects-and-arrays-in-javascript-7c911359b089
+- https://www.javascripttutorial.net/object/3-ways-to-copy-objects-in-javascript/
+
+Then, it is simple to draw the progress trace with a different style.

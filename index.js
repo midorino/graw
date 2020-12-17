@@ -234,11 +234,28 @@ function strict() {
         /** TEST **/
        loadJsonFile("data/region-1.geojson").then( function(data) {
             var region1Geojson = data;
-            console.debug("Loaded GeoJSON data: %o", region1Geojson);
+            console.debug("Region GeoJSON data: %o", region1Geojson);
 
             var region1Layer = L.geoJSON().addTo(mymap);
             region1Layer.addData(region1Geojson);
-            console.debug("Loaded GeoJSON layer: %o", region1Layer);
+            console.debug("Region layer: %o", region1Layer);
+
+            // var progressGeojson = region1Geojson; // Shallow copy
+            var progressGeojson = JSON.parse(JSON.stringify(region1Geojson)); // Seems functional - for coordinates copy at least
+            progressGeojson.features[0].geometry.coordinates.length = 75; // Probably not the cleanest way to do this
+            console.debug("Progress GeoJSON data: %o", progressGeojson);
+            console.debug("Region GeoJSON data (shallow or deep copy?): %o", region1Geojson); // Just to be sure - shallow copy vs deep copy!
+
+            var progressStyle = {
+                "color": "#ff7800",
+                "weight": 5,
+                "opacity": 0.65
+            };
+
+            var progressLayer = L.geoJSON(progressGeojson, {
+                style: progressStyle
+            }).addTo(mymap);
+            console.debug("Progress layer: %o", progressLayer);
         });
         /**-----**/
 
