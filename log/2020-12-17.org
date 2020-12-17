@@ -106,3 +106,6 @@ Further readings on this last point:
 - https://www.javascripttutorial.net/object/3-ways-to-copy-objects-in-javascript/
 
 Then, it is simple to draw the progress trace with a different style.
+
+*** Respective data for POI
+

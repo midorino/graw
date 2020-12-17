@@ -240,8 +240,23 @@ function strict() {
                 "weight": 10
             };
 
+            // Custom marker style (for POI)
+
+            var geojsonMarkerOptions = {
+                icon: null,
+                radius: 5,
+                fillColor: "blue",
+                color: "blue",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            };
+
             var region1Layer = L.geoJSON(region1Geojson, {
-                style: regionStyle
+                style: regionStyle,
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
             }).addTo(mymap);
 
             console.debug("Region layer: %o", region1Layer);
@@ -261,6 +276,7 @@ function strict() {
             var progressLayer = L.geoJSON(progressGeojson, {
                 style: progressStyle
             }).addTo(mymap);
+
             console.debug("Progress layer: %o", progressLayer);
         });
         /**-----**/
