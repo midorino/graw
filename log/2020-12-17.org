@@ -43,3 +43,6 @@ Indeed, this first affectation to a local variable does not seem to prevent the 
 To confirm this, with the same previous mock example, 13th participant was assigned a lesser distance than 1st one and then both their traces were displayed - on the other hand, if 13th particpant record (registered after 1st particpant one in =records.json=) has a waypoint after 1st particpart (i.e. greater distance), its trace and marker are not displayed - supposedly for the corresponding GPX data is not reference / accessible anymore.
 
 Thus, it may be required to advance drawing progress update (independent from Leaflet GPX plugin) in order to correctly progress any further.
+
+*** [2.2.0] Change drawing process
+
