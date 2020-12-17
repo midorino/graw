@@ -81,7 +81,7 @@ function strict() {
         // There is 2 dimensions to consider: Actual/Displayed x Record/Total.
 
         let distanceActualTotal = region.distanceTrue;
-        let distanceActualRecord = record.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
+        let distanceActualRecord = record.distance;
 
         // Link between "actual" and "displayed" data
         let rate = distanceActualRecord / distanceActualTotal;

@@ -1,0 +1,23 @@
+#+TITLE:     GRAW - Log - 2020-12-17
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-12-17
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-12-17
+
+** [2.1.0] Change distance unit from step to meter.
+
+In order to prepare other participants sources incomings (eg: Strava).
+
+Actually, the distance unit already used is the meter (m).
+
+#+SRC_BEGIN js
+let distanceActualRecord = record.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
+#+SRC_END
+
+So, in fact, the main changement to be made is of a naming convention: both variables in the main logic =index.js= and fields in =records.json= data file must be me moved from "steps" to "distance".
+A simple search and replace is enough.
