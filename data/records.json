@@ -648,5 +648,70 @@
 				"steps": 478530
 			}
 		]
+	},
+	{
+		"datetime": "2020-12-18T09:40",
+		"data": [
+			{
+				"id": 1,
+				"region": 1,
+				"steps": 27707
+			},
+			{
+				"id": 2,
+				"region": 2,
+				"steps": 461208
+			},
+			{
+				"id": 3,
+				"region": 3,
+				"steps": 469483
+			},
+			{
+				"id": 4,
+				"region": 4,
+				"steps": 680903
+			},
+			{
+				"id": 5,
+				"region": 5,
+				"steps": 576344
+			},
+			{
+				"id": 6,
+				"region": 6,
+				"steps": 460746
+			},
+			{
+				"id": 7,
+				"region": 7,
+				"steps": 423990
+			},
+			{
+				"id": 8,
+				"region": 8,
+				"steps": 149759
+			},
+			{
+				"id": 9,
+				"region": 9,
+				"steps": 42373
+			},
+			{
+				"id": 10,
+				"region": 10,
+				"steps": 251504
+			},
+			{
+				"id": 11,
+				"region": 11,
+				"steps": 626958
+			},
+			{
+				"id": 12,
+				"region": 12,
+				"steps": 478530
+			}
+		]
 	}
 ]
