@@ -31,7 +31,7 @@ function strict() {
 
 
 	async function displayRegion(region) {
-	    let geojsonFilePath = "data/" + region.geojsonFile; // @TODO Absolute path...?
+	    let geojsonFilePath = dataFolder + '/' + region.geojsonFile; // @TODO Absolute path...?
 
 	    loadJsonFile(geojsonFilePath).then( function(data) {
             let regionGeojson = data;
@@ -54,7 +54,7 @@ function strict() {
 
 
 	async function displayPOI(region) {
-	    let poiFilePath = "data/" + region.poiFile; // @TODO Absolute path...?
+	    let poiFilePath = dataFolder + '/' + region.poiFile; // @TODO Absolute path...?
 
 	    loadJsonFile(poiFilePath).then( function(data) {
             var poiGeojson = data;

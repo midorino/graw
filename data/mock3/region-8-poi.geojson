@@ -1,0 +1,117 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Imphāl",
+                "desc": "Imphal, Manipur, India"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    93.9368439,
+                    24.8170111
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Dacca",
+                "desc": "Dhaka, Bangladesh"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    90.4125181,
+                    23.810332
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pakur",
+                "desc": "Pakur, Jharkhand 816107, India"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    87.8500644,
+                    24.6336908
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Patna",
+                "desc": "Patna, Bihar, India"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    85.1375645,
+                    25.5940947
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Lucknow",
+                "desc": "Lucknow, Uttar Pradesh, India"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    80.946166,
+                    26.8466937
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "New Delhi",
+                "desc": "New Delhi, Delhi, India"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    77.2090212,
+                    28.6139391
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Ludiana",
+                "desc": "Ludhiana, Punjab, India"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    75.8572758,
+                    30.900965
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Lahore",
+                "desc": "Lahore, Punjab, Pakistan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    74.3587473,
+                    31.5203696
+                ]
+            }
+        }
+    ]
+}

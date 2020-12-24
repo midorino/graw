@@ -1,0 +1,131 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Díli",
+                "desc": "Dili, Timor-Leste"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    125.5603143,
+                    -8.5568557
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Denpasar",
+                "desc": "Denpasar, Denpasar City, Bali, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    115.2126293,
+                    -8.6704582
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Surabaya",
+                "desc": "Surabaya, Surabaya City, East Java, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    112.7520883,
+                    -7.2574719
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Semarang",
+                "desc": "Semarang, Semarang City, Central Java, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    110.4381254,
+                    -7.0051453
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Cirebon",
+                "desc": "Cirebon, Cirebon City, West Java, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    108.5523164,
+                    -6.7320229
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Jakarta",
+                "desc": "Jakarta, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    106.845599,
+                    -6.2087634
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Jambi",
+                "desc": "Jambi, Jambi City, Jambi, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    103.6131203,
+                    -1.6101229
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pekanbaru",
+                "desc": "Pekanbaru, Pekanbaru City, Riau, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    101.4477793,
+                    0.5070677
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Dumai",
+                "desc": "Dumai, Dumai City, Riau, Indonesia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    101.4001855,
+                    1.6666349
+                ]
+            }
+        }
+    ]
+}
