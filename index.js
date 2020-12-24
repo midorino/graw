@@ -24,6 +24,74 @@ function strict() {
 	}
 
 	async function displayRegion(region) {
+	    let geojsonFilePath = "data/" + region.geojsonFile;
+
+	    loadJsonFile(geojsonFilePath).then( function(data) {
+            let regionGeojson = data;
+            console.debug("Region GeoJSON data: %o", regionGeojson);
+
+            let regionStyle = {
+                "weight": 10
+            };
+
+            let regionLayer = L.geoJSON(regionGeojson, {
+                style: regionStyle
+            });
+
+            regionOverlays[region.id] = regionLayer;
+            regionOverlays[region.id].addTo(mymap);
+
+            console.debug("Region %d overlay: %o", region.id, regionOverlays[region.id]);
+        });
+	}
+
+	async function displayPOI() {
+	    loadJsonFile("data/region-1-poi.geojson").then( function(data) {
+            var region1PoiGeojson = data;
+            console.debug("Region POI GeoJSON data: %o", region1PoiGeojson);
+
+            var geojsonMarkerOptions = {
+                icon: null,
+                radius: 5,
+                fillColor: "blue",
+                color: "blue",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            };
+
+            var region1PoiLayer = L.geoJSON(region1PoiGeojson, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+            }).addTo(mymap);
+
+            console.debug("Region POI layer: %o", region1PoiLayer);
+
+        });
+	}
+
+	async function displayProgress() {
+	    // var progressGeojson = region1Geojson; // Shallow copy
+        let progressGeojson = JSON.parse(JSON.stringify(region1Geojson)); // Seems functional - for coordinates copy at least
+        progressGeojson.features[0].geometry.coordinates.length = 75; // Probably not the cleanest way to do this
+        console.debug("Progress GeoJSON data: %o", progressGeojson);
+        console.debug("Region GeoJSON data (shallow or deep copy?): %o", region1Geojson); // Just to be sure - shallow copy vs deep copy!
+
+        var progressStyle = {
+            "color": "orange",
+            "weight": 5,
+            "opacity": 0.9
+        };
+
+        var progressLayer = L.geoJSON(progressGeojson, {
+            style: progressStyle
+        }).addTo(mymap);
+
+        console.debug("Progress layer: %o", progressLayer);
+	}
+
+	async function _displayRegion(region) {
 	    let gpxFilePath = "data/" + region.gpxFile;
         var gpxTxt = await loadFile(gpxFilePath);
 
@@ -187,7 +255,7 @@ function strict() {
 	    worldCopyJump: true
 	}).setView([0, 0], 1.75);
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+	var baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 		maxZoom: 18,
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/streets-v11',
@@ -195,6 +263,26 @@ function strict() {
 		zoomOffset: -1,
 		accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
 	}).addTo(mymap);
+
+    var regionOverlays = [];
+    var poiOverlays = [];
+    var progressOverlays = [];
+
+    /* TODO: Layers Leaflet organization
+    var layers = {
+        "Base": baseLayer
+    };
+
+    var regionOverlays = L.layerGroup();
+    var poiOverlays = L.layerGroup();
+
+    var overlays = {
+        "Regions": regionOverlays,
+        "Points Of Interest": poiOverlays
+    };
+
+    L.control.layers(layers, overlays).addTo(mymap);
+    */
 
     /** Load data **/
 
@@ -231,66 +319,6 @@ function strict() {
     // await Promise.all([loadingRegions, loadingParticipants]);
     Promise.all([loadingRegions, loadingParticipants]).then(([a, b]) => {
 
-        /** TEST **/
-       loadJsonFile("data/region-1.geojson").then( function(data) {
-            var region1Geojson = data;
-            console.debug("Region GeoJSON data: %o", region1Geojson);
-
-            var regionStyle = {
-                "weight": 10
-            };
-
-            var region1Layer = L.geoJSON(region1Geojson, {
-                style: regionStyle
-            }).addTo(mymap);
-
-            console.debug("Region layer: %o", region1Layer);
-
-            // var progressGeojson = region1Geojson; // Shallow copy
-            var progressGeojson = JSON.parse(JSON.stringify(region1Geojson)); // Seems functional - for coordinates copy at least
-            progressGeojson.features[0].geometry.coordinates.length = 75; // Probably not the cleanest way to do this
-            console.debug("Progress GeoJSON data: %o", progressGeojson);
-            console.debug("Region GeoJSON data (shallow or deep copy?): %o", region1Geojson); // Just to be sure - shallow copy vs deep copy!
-
-            var progressStyle = {
-                "color": "#ff7800",
-                "weight": 5,
-                "opacity": 0.65
-            };
-
-            var progressLayer = L.geoJSON(progressGeojson, {
-                style: progressStyle
-            }).addTo(mymap);
-
-            console.debug("Progress layer: %o", progressLayer);
-        });
-
-        loadJsonFile("data/region-1-poi.geojson").then( function(data) {
-            var region1PoiGeojson = data;
-            console.debug("Region POI GeoJSON data: %o", region1PoiGeojson);
-
-            var geojsonMarkerOptions = {
-                icon: null,
-                radius: 5,
-                fillColor: "blue",
-                color: "blue",
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.8
-            };
-
-            var region1PoiLayer = L.geoJSON(region1PoiGeojson, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, geojsonMarkerOptions);
-                }
-            }).addTo(mymap);
-
-            console.debug("Region POI layer: %o", region1PoiLayer);
-
-        });
-        /**-----**/
-
-        /*
         // 2.a. Display regions view
         displayingRegions = []
         for(let region of regions) {
@@ -299,6 +327,8 @@ function strict() {
     	    });
     	    displayingRegions.push(displayingRegion);
         }
+
+        /*
 
         // 2.b. Load records data
         loadingRecords = loadJsonFile(recordsJsonFile).then( function(data) {
