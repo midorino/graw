@@ -247,7 +247,7 @@ function strict() {
 
     // Data files
 
-    const dataFolder = 'data/mock3'; // PROD: 'data' ; DEBUG: 'data/mock*'
+    const dataFolder = 'data'; // PROD: 'data' ; DEBUG: 'data/mock*'
     const participantsJsonFile = dataFolder + '/' + 'participants.json';
     const regionsJsonFile = dataFolder + '/' +'regions.json';
     const recordsJsonFile = dataFolder + '/' +'records.json';

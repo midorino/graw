@@ -2,7 +2,6 @@
 	{
         "id": 1,
 		"title": "Latin America",
-		"gpxFile": "region-1-latin-america.gpx",
 		"geojsonFile": "region-1.geojson",
 		"poiFile": "region-1-poi.geojson",
 		"distanceTrue": 4009000
@@ -10,67 +9,78 @@
 	{
 		"id": 2,
 		"title": "Andes",
-		"gpxFile": "region-2-andes.gpx",
+		"geojsonFile": "region-2.geojson",
+		"poiFile": "region-2-poi.geojson",
 		"distanceTrue": 4948000
 	},
 	{
-	        "id": 3,
+	    "id": 3,
 		"title": "Pampas",
-		"gpxFile": "region-3-pampas.gpx",
+		"geojsonFile": "region-3.geojson",
+		"poiFile": "region-3-poi.geojson",
 		"distanceTrue": 5106000
 	},
 	{
 		"id": 4,
 		"title": "Antarctica",
-		"gpxFile": "region-4-antarctica.gpx",
+		"geojsonFile": "region-4.geojson",
+		"poiFile": "region-4-poi.geojson",
 		"distanceTrue": 5305000
 	},
 	{
-	        "id": 5,
+	    "id": 5,
 		"title": "Down Under",
-		"gpxFile": "region-5-down-under.gpx",
+		"geojsonFile": "region-5.geojson",
+		"poiFile": "region-5-poi.geojson",
 		"distanceTrue": 4246000
 	},
 	{
 		"id": 6,
 		"title": "The Islands",
-		"gpxFile": "region-6-the-islands.gpx",
+		"geojsonFile": "region-6.geojson",
+		"poiFile": "region-6-poi.geojson",
 		"distanceTrue": 3360000
 	},
 	{
-	        "id": 7,
+	    "id": 7,
 		"title": "Malay Peninsula",
-		"gpxFile": "region-7-malay-peninsula.gpx",
+		"geojsonFile": "region-7.geojson",
+		"poiFile": "region-7-poi.geojson",
 		"distanceTrue": 3201000
 	},
 	{
 		"id": 8,
 		"title": "Indian Subcontinent",
-		"gpxFile": "region-8-indian-subcontinent.gpx",
+		"geojsonFile": "region-8.geojson",
+		"poiFile": "region-8-poi.geojson",
 		"distanceTrue": 2673000
 	},
 	{
-	        "id": 9,
+	    "id": 9,
 		"title": "The Stans",
-		"gpxFile": "region-9-the-stans.gpx",
+		"geojsonFile": "region-9.geojson",
+		"poiFile": "region-9-poi.geojson",
 		"distanceTrue": 3731000
 	},
 	{
 		"id": 10,
 		"title": "Europe",
-		"gpxFile": "region-10-europe.gpx",
+		"geojsonFile": "region-10.geojson",
+		"poiFile": "region-10-poi.geojson",
 		"distanceTrue": 4338000
 	},
 	{
-	        "id": 11,
+	    "id": 11,
 		"title": "Great White North",
-		"gpxFile": "region-11-great-white-north.gpx",
+		"geojsonFile": "region-11.geojson",
+		"poiFile": "region-11-poi.geojson",
 		"distanceTrue": 4321000
 	},
 	{
 		"id": 12,
 		"title": "Lower 48",
-		"gpxFile": "region-12-lower-48.gpx",
+		"geojsonFile": "region-12.geojson",
+		"poiFile": "region-12-poi.geojson",
 		"distanceTrue": 3311000
 	}
 ]
