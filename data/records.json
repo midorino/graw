@@ -655,62 +655,62 @@
 			{
 				"id": 1,
 				"region": 1,
-				"steps": 27707
+				"distance": 27707
 			},
 			{
 				"id": 2,
 				"region": 2,
-				"steps": 461208
+				"distance": 461208
 			},
 			{
 				"id": 3,
 				"region": 3,
-				"steps": 469483
+				"distance": 469483
 			},
 			{
 				"id": 4,
 				"region": 4,
-				"steps": 680903
+				"distance": 680903
 			},
 			{
 				"id": 5,
 				"region": 5,
-				"steps": 576344
+				"distance": 576344
 			},
 			{
 				"id": 6,
 				"region": 6,
-				"steps": 460746
+				"distance": 460746
 			},
 			{
 				"id": 7,
 				"region": 7,
-				"steps": 423990
+				"distance": 423990
 			},
 			{
 				"id": 8,
 				"region": 8,
-				"steps": 149759
+				"distance": 149759
 			},
 			{
 				"id": 9,
 				"region": 9,
-				"steps": 42373
+				"distance": 42373
 			},
 			{
 				"id": 10,
 				"region": 10,
-				"steps": 251504
+				"distance": 251504
 			},
 			{
 				"id": 11,
 				"region": 11,
-				"steps": 626958
+				"distance": 626958
 			},
 			{
 				"id": 12,
 				"region": 12,
-				"steps": 478530
+				"distance": 478530
 			}
 		]
 	},
@@ -720,62 +720,62 @@
 			{
 				"id": 1,
 				"region": 1,
-				"steps": 38555
+				"distance": 38555
 			},
 			{
 				"id": 2,
 				"region": 2,
-				"steps": 473587
+				"distance": 473587
 			},
 			{
 				"id": 3,
 				"region": 3,
-				"steps": 469483
+				"distance": 469483
 			},
 			{
 				"id": 4,
 				"region": 4,
-				"steps": 734148
+				"distance": 734148
 			},
 			{
 				"id": 5,
 				"region": 5,
-				"steps": 623172
+				"distance": 623172
 			},
 			{
 				"id": 6,
 				"region": 6,
-				"steps": 471031
+				"distance": 471031
 			},
 			{
 				"id": 7,
 				"region": 7,
-				"steps": 438204
+				"distance": 438204
 			},
 			{
 				"id": 8,
 				"region": 8,
-				"steps": 162402
+				"distance": 162402
 			},
 			{
 				"id": 9,
 				"region": 9,
-				"steps": 42373
+				"distance": 42373
 			},
 			{
 				"id": 10,
 				"region": 10,
-				"steps": 251504
+				"distance": 251504
 			},
 			{
 				"id": 11,
 				"region": 11,
-				"steps": 647934
+				"distance": 647934
 			},
 			{
 				"id": 12,
 				"region": 12,
-				"steps": 527759
+				"distance": 527759
 			}
 		]
 	},
@@ -785,62 +785,62 @@
 			{
 				"id": 1,
 				"region": 1,
-				"steps": 50737
+				"distance": 50737
 			},
 			{
 				"id": 2,
 				"region": 2,
-				"steps": 474622
+				"distance": 474622
 			},
 			{
 				"id": 3,
 				"region": 3,
-				"steps": 469483
+				"distance": 469483
 			},
 			{
 				"id": 4,
 				"region": 4,
-				"steps": 754010
+				"distance": 754010
 			},
 			{
 				"id": 5,
 				"region": 5,
-				"steps": 643691
+				"distance": 643691
 			},
 			{
 				"id": 6,
 				"region": 6,
-				"steps": 487867
+				"distance": 487867
 			},
 			{
 				"id": 7,
 				"region": 7,
-				"steps": 444656
+				"distance": 444656
 			},
 			{
 				"id": 8,
 				"region": 8,
-				"steps": 162402
+				"distance": 162402
 			},
 			{
 				"id": 9,
 				"region": 9,
-				"steps": 68135
+				"distance": 68135
 			},
 			{
 				"id": 10,
 				"region": 10,
-				"steps": 327718
+				"distance": 327718
 			},
 			{
 				"id": 11,
 				"region": 11,
-				"steps": 662326
+				"distance": 662326
 			},
 			{
 				"id": 12,
 				"region": 12,
-				"steps": 527759
+				"distance": 527759
 			}
 		]
 	}
