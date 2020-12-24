@@ -1,0 +1,9 @@
+[
+	{
+        "id": 1,
+		"title": "Latin America",
+		"geojsonFile": "region-1.geojson",
+		"poiFile": "region-1-poi.geojson",
+		"distanceTrue": 4009000
+	}
+]
