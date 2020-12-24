@@ -45,10 +45,12 @@ function strict() {
         });
 	}
 
-	async function displayPOI() {
-	    loadJsonFile("data/region-1-poi.geojson").then( function(data) {
-            var region1PoiGeojson = data;
-            console.debug("Region POI GeoJSON data: %o", region1PoiGeojson);
+	async function displayPOI(region) {
+	    let poiFilePath = "data/" + region.poiFile;
+
+	    loadJsonFile(poiFilePath).then( function(data) {
+            var poiGeojson = data;
+            console.debug("POI GeoJSON data: %o", poiGeojson);
 
             var geojsonMarkerOptions = {
                 icon: null,
@@ -60,13 +62,16 @@ function strict() {
                 fillOpacity: 0.8
             };
 
-            var region1PoiLayer = L.geoJSON(region1PoiGeojson, {
+            var poiLayer = L.geoJSON(poiGeojson, {
                 pointToLayer: function (feature, latlng) {
                     return L.circleMarker(latlng, geojsonMarkerOptions);
                 }
-            }).addTo(mymap);
+            });
 
-            console.debug("Region POI layer: %o", region1PoiLayer);
+            poiOverlays[region.id] = poiLayer;
+            poiOverlays[region.id].addTo(mymap);
+
+            console.debug("POI for region %d overlay: %o", region.id, poiOverlays[region.id]);
 
         });
 	}
@@ -325,7 +330,12 @@ function strict() {
     	    let displayingRegion = displayRegion(region).then( function() {
     	        console.debug("Displayed and updated region data: %o", region);
     	    });
+
     	    displayingRegions.push(displayingRegion);
+
+    	    displayPOI(region).then( function() {
+    	        console.debug("POI");
+    	    });
         }
 
         /*
