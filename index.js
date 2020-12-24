@@ -126,7 +126,7 @@ function strict() {
         let distanceCumul = 0;
         let f = 0; // Index of closer waypoint
 
-        for(let i = 0; i < latLngs.length; i++) {
+        for(let i = 0; i < latLngs.length-1; i++) {
             let distance = latLngs[i].distanceTo(latLngs[i+1]);
 
         	if(distanceCumul + distance >= distanceDisplayedRecord) { // Progress overcome last waypoint
