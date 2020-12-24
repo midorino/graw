@@ -1,0 +1,14 @@
+#+TITLE:     GRAW - Log - 2020-12-24
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-12-24
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-12-24
+
+** [2.2.0] [feat-aam] Change drawing process
+
+Previous test code is progressively moved to specific functions.

@@ -2,20 +2,25 @@
 function strict() {
 	'use strict';
 
+
+
 	function loadFile(filePath) {
 	    return new Promise(resolve => {
 	        var result = null;
 	        var xmlhttp = new XMLHttpRequest();
-    		xmlhttp.open("GET", filePath, false);
-    		xmlhttp.send();
+    		xmlhttp.open("GET", filePath, false); // 3rd parameter = synchronous
+    		xmlhttp.overrideMimeType("text/plain");
+    		xmlhttp.send(null);
     		if(xmlhttp.status === 200) {
     			result = xmlhttp.responseText;
     		} else {
-    		    // TODO Handle error
+    		    console.error("Error loading file '%s'", filePath);
     		}
     		resolve(result);
 	    });
 	}
+
+
 
 	async function loadJsonFile(jsonFilePath) {
         let jsonTxt = await loadFile(jsonFilePath);
@@ -23,91 +28,104 @@ function strict() {
         return data;
 	}
 
+
+
 	async function displayRegion(region) {
-	    let gpxFilePath = "data/" + region.gpxFile;
-        var gpxTxt = await loadFile(gpxFilePath);
+	    let geojsonFilePath = dataFolder + '/' + region.geojsonFile; // @TODO Absolute path...?
 
-        /** Parse GPX data **/
+	    loadJsonFile(geojsonFilePath).then( function(data) {
+            let regionGeojson = data;
 
-	    var gpxData = new gpxParser();
-    	gpxData.parse(gpxTxt);
+            regionGeojsons[region.id] = JSON.parse(JSON.stringify(regionGeojson));
 
-    	// For now, only way to get data without risk to get undefined values for all the async calls...
-    	regions[region.id - 1].gpxData = gpxData;
+            let regionStyle = {
+                "weight": 10
+            };
 
-    	/** ---------- **/
+            let regionLayer = L.geoJSON(regionGeojson, {
+                style: regionStyle
+            });
 
-        /** Draw complete track **/
+            regionOverlays[region.id] = regionLayer;
+            regionOverlays[region.id].addTo(mymap);
+        });
+	}
 
-    	let lGpx = new L.GPX(gpxFilePath, {
-    		async: true,
-    		gpx_options: {
-    			parseElements: ['route']
-    		},
-    		polyline_options: {
-    			color: 'red',
-    			opacity: 0.75,
-    			weight: 3,
-    			lineCap: 'square'
-    		},
-    		marker_options: {
-    			startIconUrl: 'img/pin-icon-start.png',
-    			endIconUrl: 'img/pin-icon-end.png',
-    			shadowUrl: 'img/pin-shadow.png',
-    			wptIconUrls: {
-    				// img/pin-icon-wpt.png
-    				// Useless if gpx_options / parseElements does not contain 'waypoints'
-    			}
-    		}
-    	/** ---------- **/
-    	}).on('loaded', function(e) {
-    	    // Must only be used for display actions (not logic) for this 'loaded' event and the logic async calls are not linked
-    	}).addTo(mymap);
 
-    	return lGpx;
-    }
 
-	async function displayRecord(datetime, data) {
-	    //var gpxRoute = gpxData.routes[0];
-        //regions[region.id-1].points = gpxRoute.points;
-    	//regions[region.id-1].distanceDisplayedTotal = gpxRoute.distance.total;
+	async function displayPOI(region) {
+	    let poiFilePath = dataFolder + '/' + region.poiFile; // @TODO Absolute path...?
 
+	    loadJsonFile(poiFilePath).then( function(data) {
+            var poiGeojson = data;
+
+            var geojsonMarkerOptions = {
+                icon: null,
+                radius: 5,
+                fillColor: "blue",
+                color: "blue",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            };
+
+            var poiLayer = L.geoJSON(poiGeojson, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, geojsonMarkerOptions);
+                }
+            });
+
+            poiOverlays[region.id] = poiLayer;
+            poiOverlays[region.id].addTo(mymap);
+        });
+	}
+
+
+
+    async function displayRecord(datetime, data) {
         let record = data;
         let participant = participants[record.id - 1]; // !!! ID != Index !!!
         let region = regions[participant.region - 1]; // !!! ID != Index !!!
-        let gpxData = region.gpxData.routes[0];
+
+        let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
 
         // Record distance is relative to total actual CRAW distance (!= displayed distance)!
         // There is 2 dimensions to consider: Actual/Displayed x Record/Total.
 
         let distanceActualTotal = region.distanceTrue;
-        let distanceActualRecord = record.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
+        let distanceActualRecord = record.distance;
 
         // Link between "actual" and "displayed" data
         let rate = distanceActualRecord / distanceActualTotal;
 
-        let distanceDisplayedTotal = gpxData.distance.total;
-        let distanceDisplayedRecord = rate * distanceDisplayedTotal;
+        // Calculate total displayed distance
 
-        console.debug("+ Actual distances:\n- Total: %f m\n- Record: %f m", distanceActualTotal, distanceActualRecord);
-        console.debug("+ Rate: %f %", rate * 100);
-        console.debug("+ Displayed distances:\n- Total: %f m\n- Record: %f m", distanceDisplayedTotal, distanceDisplayedRecord);
+        let distanceDisplayedTotal = 0;
+        let coordinates = progressGeojson.features[0].geometry.coordinates;
 
-        if(distanceDisplayedRecord > distanceDisplayedTotal) { distanceDisplayedRecord = distanceDisplayedTotal; }
-
-        // Get "record" waypoint
-
-        // Create a Leaflet LatLng array (in order to use 'distanceTo()')
-        let points = gpxData.points;
+        // (1) Create a L.latLng array for easy distance calculus with "distanceTo()"
         let latLngs = [];
-        points.forEach(function (point, i) {
-            let latLng = L.latLng(point.lat, point.lon);
+
+        coordinates.forEach(function (coord, i) {
+            let latLng = L.latLng(coord[1], coord[0]); // !!! GeoJSON != Leaflet for (lat, lng) variables order !!!
             latLngs.push(latLng);
         });
 
+        // (2) Now actually calculate total distance
+        for(let i = 0; i < latLngs.length-1; i++) {
+            let distance = latLngs[i].distanceTo(latLngs[i+1]);
+        	distanceDisplayedTotal += distance;
+        }
+
+        let distanceDisplayedRecord = rate * distanceDisplayedTotal;
+
+        if(distanceDisplayedRecord > distanceDisplayedTotal) { distanceDisplayedRecord = distanceDisplayedTotal; }
+
         // Calculate closer last waypoint
+
         let distanceCumul = 0;
         let f = 0; // Index of closer waypoint
+
         for(let i = 0; i < latLngs.length; i++) {
             let distance = latLngs[i].distanceTo(latLngs[i+1]);
 
@@ -119,43 +137,51 @@ function strict() {
         	}
         }
 
+        let lastWaypointIndex = f;
+        progressGeojson.features[0].geometry.coordinates.length = lastWaypointIndex + 1; // Probably not the cleanest way to do this
+
         let distanceRemaining = distanceDisplayedRecord - distanceCumul; // From last covered waypoint
-        console.debug("Distance Remaining (since last waypoint %d): %f m", f, distanceRemaining);
-
-        // Remove not covered points
-    	// Surely a cleaner way to do this...
-    	// Must be done on 'gpxData' object to be able to export to GeoJSON after
-    	let gpx = region.gpxData;
-    	gpx.routes[0].points.length = f + 1; // True last overcome waypoint is [f] ; [f+1] is going to be update with middle point
-
-    	// TODO Add intermediate progress point (to be calculated from remaining distance)
-
-    	// Export trimmed progress data to GeoJSON
-    	// Easiest way for now to draw the progress track
-    	let geojson = gpx.toGeoJSON();
-
-		new L.geoJSON(geojson, {
-			pointToLayer: function(geoJsonPoint, latlng) {
-				// No waypoint drawing
-				return null;
-				// return L.marker(latlng, {icon: ...});
-			},
-			style: {
-				color: 'blue',
-				opacity: 1.0,
-				weight: 5,
-				lineCap: 'round'
-			}
-		}).addTo(mymap);
 
         // Optimal data
+
         let diffTimeSinceStart = Math.abs(new Date(datetime).getTime() - new Date("2020-11-01").getTime());  // Here is considered the last update as a reference point (and not "today") - also, challenge started on 2020-11-01.
         let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
         let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
         let rateOptimal = distanceActualOptimal / distanceActualTotal;
 
-		// Add marker at current progress position
-		let lastPosition = gpx.routes[0].points.length - 1;
+        let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from '+ datetime.toLocaleString() + ' ***\n';
+        msg += '+ Actual distances:\n';
+        msg += '- Total: ' + distanceActualTotal + ' m\n';
+        msg += '- Record: ' + distanceActualRecord + ' m\n';
+        msg += '+ Displayed distances:\n';
+        msg += '- Total: ' + distanceDisplayedTotal + ' m\n';
+        msg += '- Record: ' + distanceDisplayedRecord + ' m\n';
+        msg += '+ Rate: ' + rate * 100 + ' %\n';
+        msg += '********************\n';
+        msg += '+ Last waypoint: N°' + lastWaypointIndex + ' / ' + progressGeojson.features[0].geometry.coordinates[lastWaypointIndex] + '\n';
+        msg += '+ Remaining distance (since last waypoint): ' + distanceRemaining + ' m\n';
+        msg += '********************\n';
+        msg += '+ Days since start: ' + diffDaysSinceStart + ' d\n';
+        msg += '+ Optimal actual distance: ' + distanceActualOptimal + ' m\n';
+        msg += '+ Optimal rate: ' + rateOptimal * 100 + ' %\n';
+        msg += '************************************************************';
+        console.debug(msg);
+
+        /** Display **/
+
+        let progressStyle = {
+            "color": "orange",
+            "weight": 5,
+            "opacity": 0.9
+        };
+
+        let progressLayer = L.geoJSON(progressGeojson, {
+            style: progressStyle
+        }).addTo(mymap);
+
+		// Add marker at current progress position with information
+
+		let lastPosition = progressGeojson.features[0].geometry.coordinates.length - 1;
 
 		let myIcon = L.icon({
 			iconUrl: 'img/pin-icon-runner.png',
@@ -166,15 +192,15 @@ function strict() {
 			icon: myIcon,
 			title: "Region "+participant.id+"\n"+region.title
 		})
-		.bindTooltip("R"+participant.id, {permanent: true, direction: 'bottom'})
+		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
 		.addTo(mymap)
-		.bindPopup("<b>Region " + participant.id + " - " + region.title + "</b><br>"
+		.bindPopup("<b>Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")</b><br>"
 		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
 		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
 		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
 		+"Dernière MàJ : " + datetime.toLocaleString())
 		;
-	}
+    }
 
     /**--------------**/
     /** MAIN PROGRAM **/
@@ -187,7 +213,7 @@ function strict() {
 	    worldCopyJump: true
 	}).setView([0, 0], 1.75);
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+	var baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 		maxZoom: 18,
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox/streets-v11',
@@ -196,14 +222,38 @@ function strict() {
 		accessToken: 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw'
 	}).addTo(mymap);
 
+    /* TODO: Layers Leaflet organization
+    var layers = {
+        "Base": baseLayer
+    };
+
+    var regionOverlays = L.layerGroup();
+    var poiOverlays = L.layerGroup();
+
+    var overlays = {
+        "Regions": regionOverlays,
+        "Points Of Interest": poiOverlays
+    };
+
+    L.control.layers(layers, overlays).addTo(mymap);
+    */
+
+    var regionOverlays = [];
+    var poiOverlays = [];
+    var progressOverlays = [];
+    var regionGeojsons = [];
+
     /** Load data **/
 
     // Data files
 
-    const dataFolder = 'data';
+    const dataFolder = 'data'; // PROD: 'data' ; DEBUG: 'data/mock*'
     const participantsJsonFile = dataFolder + '/' + 'participants.json';
     const regionsJsonFile = dataFolder + '/' +'regions.json';
     const recordsJsonFile = dataFolder + '/' +'records.json';
+
+    console.debug("Data folder: '%s'", dataFolder);
+    console.debug("Data files: '%s'", [participantsJsonFile, regionsJsonFile, recordsJsonFile]);
 
     // Data variables
 
@@ -213,41 +263,49 @@ function strict() {
 
     // Logic variables
 
-    var loadingRegions, loadingParticipants, displayingRegions, loadingRecords;
+    var loadingRegions, loadingParticipants, displayingRegions, loadingRecords; // Promises
 
-    // 1.a. Load regions data
+    console.debug("[1.A] Loading regions data ('%s')...", regionsJsonFile);
     loadingRegions = loadJsonFile(regionsJsonFile).then( function(data) {
         regions = data;
-        console.debug("Loaded regions JSON data: %o", regions);
+        console.debug("[1.A] Loaded regions data: %o", regions);
     });
 
-    // 1.b. Load participants data
+    console.debug("[1.B] Loading participants data ('%s')...", participantsJsonFile);
     loadingParticipants = loadJsonFile(participantsJsonFile).then( function(data) {
         participants = data;
-        console.debug("Loaded participants JSON data: %o", participants);
+        console.debug("[1.B] Loaded participants data: %o", participants);
     });
 
-    // Wait for previous operations (1.*)
-    // await Promise.all([loadingRegions, loadingParticipants]);
+    console.debug("Waiting for previous operations [1.*]...");
     Promise.all([loadingRegions, loadingParticipants]).then(([a, b]) => {
-        // 2.a. Display regions view
+
+        console.debug("[2.A] Displaying regions view...");
         displayingRegions = []
         for(let region of regions) {
+            console.debug("[2.A.%d.a] Displaying region %d...", region.id, region.id);
     	    let displayingRegion = displayRegion(region).then( function() {
-    	        console.debug("Displayed and updated region data: %o", region);
+    	        console.debug("[2.A.%d.a] Displayed region %d", region.id, region.id);
     	    });
+
     	    displayingRegions.push(displayingRegion);
+
+    	    console.debug("[2.A.%d.b] Displaying POI of region %d...", region.id, region.id);
+    	    displayPOI(region).then( function() {
+    	        console.debug("[2.A.%d.b] Displayed POI of region %d", region.id, region.id);
+    	    });
         }
 
-        // 2.b. Load records data
+        console.debug("[2.B] Loading records data...");
         loadingRecords = loadJsonFile(recordsJsonFile).then( function(data) {
             records = data;
-            console.debug("Loaded records JSON data: %o", records);
+            console.debug("[2.B] Loaded records data: %o", records);
         });
 
-        // Wait for previous operations (2.*)
+        console.debug("Waiting for previous operations [2.*]...");
         Promise.all([displayingRegions, loadingRecords]).then(([a, b]) => {
-            // 3. Display *last* record view
+
+            console.debug("[3.A] Finding last record...");
             let lastUpdate = new Date(0);
             let lastUpdateIndex = 0;
 
@@ -262,10 +320,16 @@ function strict() {
             });
 
             let lastRecord = records[lastUpdateIndex];
-            console.debug("Most recent record: %o", lastRecord);
+
+            console.debug("[3.A] Found last record: %o", lastRecord);
+
+            console.debug("[3.B] Displaying last record...");
 
         	lastRecord.data.forEach(function (d, i) {
-        	    displayRecord(lastRecord.datetime, d);
+        	    console.debug("[3.B.%d] Displaying last record data %d...", i, i);
+        	    displayRecord(lastRecord.datetime, d).then( function() {
+        	        console.debug("[3.B.%d] Displayed last record data %d", i, i);
+        	    });
         	});
         });
     });

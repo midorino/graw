@@ -1,0 +1,131 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Arboletes",
+                "desc": "Arboletes, Antioquia, Colombia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.427089,
+                    8.850104
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Medellín",
+                "desc": "Medellín, Medellin, Antioquia, Colombia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -75.5658153,
+                    6.2476376
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Cali",
+                "desc": "Cali, Valle del Cauca, Colombia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.5319854,
+                    3.4516467
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Quito",
+                "desc": "Quito, Ecuador"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -78.4678382,
+                    -0.1806532
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Guayaquil",
+                "desc": "Guayaquil, Ecuador"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.8890662,
+                    -2.1894128
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Trujillo",
+                "desc": "Trujillo, Peru"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -79.0329727,
+                    -8.1060428
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Huánuco",
+                "desc": "Huánuco, Peru"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.2410843,
+                    -9.9207648
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pisco",
+                "desc": "Pisco, Peru"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -76.1841701,
+                    -13.7134562
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Tacna",
+                "desc": "Tacna, Peru"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -70.2462741,
+                    -18.0065679
+                ]
+            }
+        }
+    ]
+}

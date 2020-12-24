@@ -9,11 +9,25 @@ For more internal notes, it may be revelant to check the =LOG= files instead (in
 
 ** [Unreleased]
 
-- 2.1.Z Update records data from steps to kilometers unit.
-- 2.2.Z: Add distinct participants to a region.
-- 2.3.Z: Add participants group / team to a region.
-- 2.4.Z: Update drawing process to better actual location rendering.
+- 2.3.Z: Add distinct participants to a region.
+- 2.4.Z: Add participants group / team to a region.
 - 2.5.Z: Update data location / backend.
+
+*** [2.2.0] - 2020-12-24
+
+*** Changed
+
+- Drawing process to better actual location rendering.
+
+** 2.2.0 Add multiple participants for one region [YANKED]
+
+GPS traces drawing must be completely reviewed before any other changes.
+
+** [2.1.0] - 2020-12-17
+
+*** Changed
+
+- Distance unit from step to meter.
 
 ** [1.3.1] - 2020-12-16
 

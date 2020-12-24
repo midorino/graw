@@ -1,0 +1,117 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Tacna",
+            "desc": "Tacna, Peru"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -70.2462741,
+                -18.0065679
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Calama",
+            "desc": "Calama, Antofagasta, Chile"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -68.9293819,
+                -22.4543923
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Salta",
+            "desc": "Salta, Salta Province, Argentina"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -65.4231976,
+                -24.7821269
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Córdoba",
+            "desc": "Cordoba, Argentina"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -64.2009018,
+                -31.4354727
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Buenos Aires",
+            "desc": "Buenos Aires, Argentina"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -58.3815591,
+                -34.6036844
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Comodoro Rivadavia",
+            "desc": "Comodoro Rivadavia, Chubut Province, Argentina"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -67.4822429,
+                -45.8656149
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Río Gallegos",
+            "desc": "Rio Gallegos, Santa Cruz Province, Argentina"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -69.2168291,
+                -51.6230485
+            ]
+        }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+            "name": "Ushuaia",
+            "desc": "Ushuaia, Tierra del Fuego Province, Argentina"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -68.3029511,
+                -54.8019121
+            ]
+        }
+    }
+]
+}

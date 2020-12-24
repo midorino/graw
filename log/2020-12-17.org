@@ -1,0 +1,116 @@
+#+TITLE:     GRAW - Log - 2020-12-17
+#+SUBTITLE:  Garmin Race Around the World - Log - 2020-12-17
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+DESCRIPTION: What has been done
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2020-12-17
+
+** [2.1.0] Change distance unit from step to meter
+
+In order to prepare other participants sources incomings (eg: Strava).
+
+Actually, the distance unit already used is the meter (m).
+
+#+BEGIN_SRC js
+let distanceActualRecord = record.steps / 1000 * 1000; // Just to remind that 1 step ~ 1 m but also all calculus below are in meters (not km).
+#+END_SRC
+
+So, in fact, the main changement to be made is of a naming convention: both variables in the main logic =index.js= and fields in =records.json= data file must be me moved from "steps" to "distance".
+A simple search and replace is enough.
+
+** 2.2.0 Add multiple participants for one region [YANKED]
+
+Actually, there is a duplicate information (and possibly a source for future conflicts) between =participants.json= and =records.json= data files.
+Indeed, each data couple "Particpant (ID)" - "Region (ID)" is registered in both of these files.
+
+However, for now, during the display process, even though =records.json= is necessarily loaded, it is in fact the =participants.json= data that are used for the participant and the region.
+To confirm this, both files were mocked with a new (13th) participant to region 1 - but, in =participants.json=, this new particpant is linked to region 13 (non-existant) - and then, invert the process with =records.json=.
+
+To conclude on this point, seems more appropriate for the link "Participant - Region" to be only registered in =participants.json= - =records.json= should only be used to registered distance progress from external services (Garmin, Strava, aso).
+
+Finally, as already suspected, another problem has been spotted with the GPX data reduction to draw current progress trace:
+
+#+BEGIN_SRC js
+let gpx = region.gpxData;
+gpx.routes[0].points.length = f + 1;
+#+END_SRC
+
+Indeed, this first affectation to a local variable does not seem to prevent the second one to update the original vriable =region.gpxData= (by reference, and not by value).
+To confirm this, with the same previous mock example, 13th participant was assigned a lesser distance than 1st one and then both their traces were displayed - on the other hand, if 13th particpant record (registered after 1st particpant one in =records.json=) has a waypoint after 1st particpart (i.e. greater distance), its trace and marker are not displayed - supposedly for the corresponding GPX data is not reference / accessible anymore.
+
+Thus, it may be required to advance drawing progress update (independent from Leaflet GPX plugin) in order to correctly progress any further.
+
+** Note about branching management
+
+With the adoption of CHANGELOG, previous branch was named with the SemVer notation in mind.
+
+It may work in a single dev environment - but not in a concurrent one.
+
+So it is important to stick with the previous notation =[feat-abc]=.
+
+Though, it is possible to note the SemVer in addition to the branch name in the section headers of both =CHANGELOG= and =LOGS=.
+
+** [2.2.0] [feat-aam] Change drawing process
+
+*** GPX to GeoJSON
+
+In order to become independent from GPX (heavy file format and Leaflet plugin), focus on geoJSON.
+
+This format is indeed well handled by Leaflet ([[https://leafletjs.com/examples/geojson/]]) - but does it provide all the features required for this use cas (especially, easy access to the coordinates / points list).
+
+For testing purpose, first some GPX data already available is converted to geoJSON via external service ([[https://mapbox.github.io/togeojson/]]).
+
+For instance, =data/region-1-latin-america.gpx= (60.4 KB) is converted to =data/region-1.geojson= (88.8 KB) - size optimization does not seem to be an advantage here.
+
+It is possible to minify JSON data (with external service like [[https://codebeautify.org/jsonminifier]]) - here: =data/region-1.min.geojson= (19.9 KB).
+
+However, these new input formats use must be confirmed.
+
+For now, all level 2 and level 3 actions in main program are disabled and only region 1 drawing from geoJSON is tested with success.
+
+#+BEGIN_SRC js
+loadJsonFile("data/region.geojson").then( function(data) {
+    var regionGeojson = data;
+    var regionLayer = L.geoJSON().addTo(mymap);
+    regionLayer.addData(regionGeojson);
+});
+#+END_SRC
+
+Though, =regionLayer= does not seem to ease access to further necessary data (coordinates of all waypoints, seemingly located under =regionLayer._layers[]=) - thus, it should be useful to register both =regionGeojson= and =regionLayer= variables.
+
+*** Progress drawing
+
+Main use cas to be tested is now the second progress trace drawing *over* the global region trace.
+
+For this, the previous loaded GeoJSON data is *cloned* into a new specific variable =progressGeojson=, which is then reduced to its first waypoints (eg: 100) for instance (and the "marked" waypoints too actually - by the way, maybe it will be better to move this POI to their own specific file).
+
+#+BEGIN_SRC js
+// var progressGeojson = region1Geojson; // Shallow copy
+var progressGeojson = JSON.parse(JSON.stringify(regionGeojson)); // Seems functional - for coordinates copy at least
+progressGeojson.features[0].geometry.coordinates.length = 50; // Probably not the cleanest way to do this
+console.debug("Progress GeoJSON data: %o", progressGeojson);
+console.debug("Region GeoJSON data: %o", regionGeojson); // Just to be sure - shallow copy vs deep copy!
+#+END_SRC
+
+The main concern here is to not create shallow copies of objects but deep copies (due to the geoJSON data complex structure).
+
+For now, JSON utils seem enough for this use case.
+
+Further readings on this last point:
+
+- https://medium.com/javascript-in-plain-english/how-to-deep-copy-objects-and-arrays-in-javascript-7c911359b089
+- https://www.javascripttutorial.net/object/3-ways-to-copy-objects-in-javascript/
+
+Then, it is simple to draw the progress trace with a different style.
+
+*** Respective data for POI
+
+Remaining markers icons are linked to the progress GeoJSON data (deep) copy => POI data must be moved to specific file and process.
+
+A specific =region-1-poi.geojson= file has been created with corresponding data cut from =region-1.geojson=.
+
+A specific loading progress for POI has been added.

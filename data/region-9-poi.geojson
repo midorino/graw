@@ -1,0 +1,130 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Lahore",
+                "desc": "Lahore, Punjab, Pakistan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    74.3587473,
+                    31.5203696
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Islamabad",
+                "desc": "Islamabad, Islamabad Capital Territory, Pakistan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    73.0478848,
+                    33.6844202
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Kaboul",
+                "desc": "Kabul, Afghanistan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    69.207486,
+                    34.5553494
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Termez",
+                "desc": "Termez, Uzbekistan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    67.3086236,
+                    37.2610694
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Boukhara",
+                "desc": "Bukhara, Uzbekistan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.4555769,
+                    39.7680827
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Ourguentch",
+                "desc": "Urgench, Uzbekistan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.6248891,
+                    41.5345323
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "44.79813236391235"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    56.1367529,
+                    44.7981324
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Atyraou",
+                "desc": "Atyrau, Kazakhstan"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    51.9238373,
+                    47.0944959
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Astrakhan",
+                "desc": "Astrakhan, Astrakhan Oblast, Russia"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    48.0569483,
+                    46.3586008
+                ]
+            }
+        }
+    ]
+}
