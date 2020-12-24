@@ -192,7 +192,7 @@ function strict() {
 			icon: myIcon,
 			title: "Region "+participant.id+"\n"+region.title
 		})
-		.bindTooltip("["+participant.id+"]", {permanent: true, direction: 'bottom'})
+		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
 		.addTo(mymap)
 		.bindPopup("<b>Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")</b><br>"
 		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
@@ -247,7 +247,7 @@ function strict() {
 
     // Data files
 
-    const dataFolder = 'data/mock2'; // PROD: 'data' ; DEBUG: 'data/mock*'
+    const dataFolder = 'data/mock3'; // PROD: 'data' ; DEBUG: 'data/mock*'
     const participantsJsonFile = dataFolder + '/' + 'participants.json';
     const regionsJsonFile = dataFolder + '/' +'regions.json';
     const recordsJsonFile = dataFolder + '/' +'records.json';
