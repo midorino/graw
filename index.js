@@ -163,7 +163,7 @@ function strict() {
         msg += '********************\n';
         msg += '+ Days since start: ' + diffDaysSinceStart + ' d\n';
         msg += '+ Optimal actual distance: ' + distanceActualOptimal + ' m\n';
-        msg += '+ Optimal rate: ' + rateOptimal + ' %\n';
+        msg += '+ Optimal rate: ' + rateOptimal * 100 + ' %\n';
         msg += '************************************************************';
         console.debug(msg);
 
@@ -247,7 +247,7 @@ function strict() {
 
     // Data files
 
-    const dataFolder = 'data/mock'; // PROD: 'data' ; DEBUG: 'data/mock'
+    const dataFolder = 'data/mock2'; // PROD: 'data' ; DEBUG: 'data/mock*'
     const participantsJsonFile = dataFolder + '/' + 'participants.json';
     const regionsJsonFile = dataFolder + '/' +'regions.json';
     const recordsJsonFile = dataFolder + '/' +'records.json';
