@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Sweet Grass","desc":"Sweet Grass, Montana 59484, USA"},"geometry":{"type":"Point","coordinates":[-111.9675751,48.9961099]}},{"type":"Feature","properties":{"name":"Brownsville","desc":"Brownsville, Texas, USA"},"geometry":{"type":"Point","coordinates":[-97.4974838,25.9017472]}}]}
