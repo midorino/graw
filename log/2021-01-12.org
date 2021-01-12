@@ -126,3 +126,83 @@ This hypothesis was verified by modifying "data/participants.json" and "data/rec
 
 The system would be functional this way. However, the "best" method would be to search for the correct data through a loop on "particpants" global variable (resp. "region" global variable) and comparison with "participant.id" (resp. "region.id"). Thus, process would be freed from JSON data index, order, aso.
 
+There are multiple ways to search in an array of objects with JS - some references are listed below:
+
+- https://usefulangle.com/post/3/javascript-search-array-of-objects
+- https://www.digitalocean.com/community/tutorials/js-array-search-methods
+- https://flaviocopes.com/javascript-loops-map-filter-reduce-find/
+
+We especially note that "map()", "filter()" and "reduce()" are part of ES5 - so can safely be used by every browser. However, "find()" was introduced in ES6/ES2015.
+
+For now, we use the "filter()" method:
+
+#BEGIN_SRC js
+let participant = participants.filter((participant) => participant.id === record.id).shift();
+#END_SRC js
+
+First test with "ordered" data is a success.
+
+Second test with "unordered" data (in "data/participants.json") is also a success:
+
+#BEGIN_SRC
+<index.js:277:17>
+[1.B] Loaded participants data:
+[
+  {
+    "id": 13,
+    "region": 1
+  },
+  {
+    "id": 1,
+    "region": 1
+  },
+  // (...)
+]
+#END_SRC
+
+#BEGIN_SRC
+<index.js:324:21>
+[3.A] Found last record:
+{
+  "datetime": "2021-10-31T23:59",
+  "data": [
+    {
+      "id": 13,
+      "region": 1,
+      "distance": 1234
+    },
+    {
+      "id": 1,
+      "region": 1,
+      "distance": 69021
+    },
+    // (...)
+  ]
+}
+#END_SRC
+
+#BEGIN_SRC
+<index.js:329:22>
+[3.B.0] Displaying last record data 0...
+<index.js:168:17>
+*** Record from participant 13 for region 1 from 2021-10-31T23:59 ***
++ Actual distances:
+- Total: 4009000 m
+- Record: 1234 m
++ Displayed distances:
+- Total: 3576244.04847902 m
+- Record: 1100.7945013277902 m
++ Rate: 0.030780743327513096 %
+********************
++ Last waypoint: N°3 / -97.4977978,25.8984674
++ Remaining distance (since last waypoint): 596.0700707536805 m
+********************
++ Days since start: 365 d
++ Optimal actual distance: 4008999.9999999995 m
++ Optimal rate: 99.99999999999999 %
+************************************************************
+#END_SRC
+
+We note by the way that the process is then functional also for unordered data in "data/records.json"!
+
+Finally, process was also tested with particpant identified "0" (no order modification though) with success.

@@ -84,7 +84,7 @@ function strict() {
 
     async function displayRecord(datetime, data) {
         let record = data;
-        let participant = participants[record.id - 1]; // !!! ID != Index !!!
+        let participant = participants.filter((participant) => participant.id === record.id).shift();
         let region = regions[participant.region - 1]; // !!! ID != Index !!!
 
         let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
