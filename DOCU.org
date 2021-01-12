@@ -16,6 +16,34 @@ Other possible inspirations:
 - https://medium.com/@patrickporto/4-branching-workflows-for-git-30d0aaee7bf
 - https://nvie.com/posts/a-successful-git-branching-model/
 
+** Initial configuration
+
+git config --global user.name "Name"
+git config --global user.email "Email"
+less ~/.gitconfig
+
+** Every day
+
+Create a new log file "log/YYYY-MM-DD.org".
+
+** New feature
+
+git branch feat-abc
+git branch --list
+git checkout feat-abc
+
+with "abc" the feature ID (cf. logs and documentation).
+
+Add feature section to log file:
+
+[X.Y.Z] [feat-abc] Change distance unit from step to meter
+
+Add feature publication to CHANGELOG:
+
+[X.Y.Z] - 2020-12-24
+
+Feature ID is not published for it is an intern process element only.
+
 * Maintenance Page
 
 Page generated via "Better Error Pages" free service (provided by [[https://www.statuspage.io/][Statuspage]]) but without all scripts.

@@ -1,0 +1,128 @@
+#+TITLE:     GRAW - Log - 2021-01-12
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2021-01-12
+
+** [2.3.0] [feat-aan] Add multiple (but distincts - no team) participants to the same region
+
+Now that the drawing process has been updated (cf. [feat-aam]), we may firstly test the application behaviour with just a new participant (for instance, on region 1) addition to "data/participants.json" and "data/records.json":
+
+- with (far) less progress than current participant on the same region ;
+- with approximately same progress than current participant on the same region ;
+- with (far) more progress than current participant on the same region.
+
+With first test, we note that:
+
+- test participant (id: 0) is displayed on region 1 but with incorrect progress data (seems to be data of participant 1) ;
+- participant "1" is displayed on region 1 but with incorrect progress data (seems to be data of participant 2) ;
+- particpant "2" is displayed on region 2 but with incorrect progress data (seems to be data of participant 3) ;
+- aso ;
+- no particpant is displayed on region 12.
+
+Clearly there is a disconnection between actual data and their displaying.
+
+From looking directly at the resources (requested files) or at the console logs, loaded data is correct:
+
+#+BEGIN_SRC
+<index.js:324:21>
+[3.A] Found last record:
+{
+  "datetime": "2021-10-31T23:59",
+  "data": [
+    {
+      "id": 0,
+      "region": 1,
+      "distance": 1234
+    },
+    {
+      "id": 1,
+      "region": 1,
+      "distance": 69021
+    },
+    // (...)
+  ]
+}
+#+END_SRC
+
+But it is during the process of loaded data that things seems to go wrong:
+
+#+BEGIN_SRC
+<index.js:329:22>
+[3.B.1] Displaying last record data 1...
+<index.js:168:17>
+*** Record from participant 0 for region 1 from 2021-10-31T23:59 ***
++ Actual distances:
+- Total: 4009000 m
+- Record: 69021 m
++ Displayed distances:
+- Total: 3576244.04847902 m
+- Record: 61570.45160141443 m
++ Rate: 1.7216512846096284 %
+********************
++ Last waypoint: N°9 / -97.5927331,25.6787294
++ Remaining distance (since last waypoint): 34532.83256765281 m
+********************
++ Days since start: 365 d
++ Optimal actual distance: 4008999.9999999995 m
++ Optimal rate: 99.99999999999999 %
+************************************************************
+#END_SRC
+
+Indeed, we note that for participant 0, the logged "recorded actual distance" is in fact the one of participant 1.
+
+Via code analysis, the problem seems to come from the data initialization inside the "displayRecord()" function:
+
+#+BEGIN_SRC js
+let participant = participants[record.id - 1]; // !!! ID != Index !!!
+#END_SRC
+
+Here, we indeed use directly the particpant id as an index indicator.
+
+Note that the same may be concluded (with less impact nonetheless) for the region data getting.
+
+#BEGIN_SRC js
+let region = regions[participant.region - 1]; // !!! ID != Index !!!
+#END SRC
+
+We suspect that if the previous test was based on a new participant added to the end (here: participant 13), displaying would have worked according to our expectations.
+This hypothesis was verified by modifying "data/participants.json" and "data/records.json" accordingly:
+
+#BEGIN_SRC js
+// data/participants.json
+// (...)
+[
+	{ "id": 1, "region": 1 },
+	// (...)
+	{ "id": 12, "region": 12 },
+	{ "id": 13, "region": 1 }
+]
+// (...)
+#END_SRC
+
+#BEGIN_SRC js
+// data/records.json
+// (...)
+{
+		"datetime": "2021-10-31T23:59",
+		"data": [
+		    {
+				"id": 13,
+				"region": 1,
+				"distance": 1234
+			},
+			{
+				"id": 1,
+				"region": 1,
+				"distance": 69021
+			},
+			// (...)
+}
+// (...)
+#END_SRC
+
+The system would be functional this way. However, the "best" method would be to search for the correct data through a loop on "particpants" global variable (resp. "region" global variable) and comparison with "participant.id" (resp. "region.id"). Thus, process would be freed from JSON data index, order, aso.
+
