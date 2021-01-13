@@ -1,15 +1,15 @@
 [
-	{ "id": 1, "region": 1 },
-	{ "id": 2, "region": 2 },
-	{ "id": 3, "region": 3 },
-	{ "id": 4, "region": 4 },
-	{ "id": 5, "region": 5 },
-	{ "id": 6, "region": 6 },
-	{ "id": 7, "region": 7 },
-	{ "id": 8, "region": 8 },
-	{ "id": 9, "region": 9 },
-	{ "id": 10, "region": 10 },
-	{ "id": 11, "region": 11 },
-	{ "id": 12, "region": 12 },
-	{ "id": 13, "region": 7 }
+	{ "id": 1, "region": 1, "name": "Vetro Johan" },
+	{ "id": 2, "region": 2, "name": "Greg" },
+	{ "id": 3, "region": 3, "name": "drux" },
+	{ "id": 4, "region": 4, "name": "Midorino" },
+	{ "id": 5, "region": 5, "name": "Chriscpt47" },
+	{ "id": 6, "region": 6, "name": "Devillard" },
+	{ "id": 7, "region": 7, "name": "Alex" },
+	{ "id": 8, "region": 8, "name": "Jojo" },
+	{ "id": 9, "region": 9, "name": "Denis P." },
+	{ "id": 10, "region": 10, "name": "GG" },
+	{ "id": 11, "region": 11, "name": "David Doudou" },
+	{ "id": 12, "region": 12, "name": "michel" },
+	{ "id": 13, "region": 7, "name": "Alien Warfare" }
 ]
