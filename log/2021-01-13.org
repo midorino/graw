@@ -30,3 +30,5 @@ L.marker(latLngs[lastPosition], {
 let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
 (...)
 #END_SRC
+
+Let us push things even further by replacing the label with a logo inside the popup.
