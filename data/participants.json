@@ -11,5 +11,7 @@
 	{ "id": 10, "region": 10, "name": "GG" },
 	{ "id": 11, "region": 11, "name": "David Doudou" },
 	{ "id": 12, "region": 12, "name": "michel" },
-	{ "id": 13, "region": 7, "name": "Alien Warfare" }
+	{ "id": 13, "region": 7, "name": "Alien Warfare" },
+	{ "id": 14, "region": 7, "name": "Christo Le Tonneau" },
+	{ "id": 15, "region": 10, "name": "Estelle Jean" }
 ]
