@@ -192,7 +192,7 @@ function strict() {
         if(participant.type === "Garmin") {
             typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
         } else if (participant.type === "Strava") {
-            typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strav0.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
+            typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
         }
 
 		L.marker(latLngs[lastPosition], {
