@@ -1,0 +1,8 @@
+#+TITLE:     GRAW - Log - 2021-01-13
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2021-01-13
