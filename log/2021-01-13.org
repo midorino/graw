@@ -32,3 +32,23 @@ let msg = '*** Record from participant ' + participant.id + ' for region ' + reg
 #END_SRC
 
 Let us push things even further by replacing the label with a logo inside the popup.
+
+#BEGIN_SRC js
+let typeImgDiv = "";
+if(participant.type === "Garmin") {
+    typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
+} else if (participant.type === "Strava") {
+    typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strav0.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
+}
+#END_SRC
+
+#BEGIN_SRC js
+L.marker(latLngs[lastPosition], {
+	icon: myIcon,
+	title: "Region "+participant.id+"\n"+region.title
+})
+.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
+.addTo(mymap)
+.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
+// (...)
+#END_SRC

@@ -188,13 +188,20 @@ function strict() {
 			iconSize: [35, 35]
 		});
 
+        let typeImgDiv = "";
+        if(participant.type === "Garmin") {
+            typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
+        } else if (participant.type === "Strava") {
+            typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strav0.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
+        }
+
 		L.marker(latLngs[lastPosition], {
 			icon: myIcon,
 			title: "Region "+participant.id+"\n"+region.title
 		})
 		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
 		.addTo(mymap)
-		.bindPopup("<b>Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + " [" + participant.type + "]</b><br>"
+		.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
 		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
 		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
 		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
