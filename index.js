@@ -149,7 +149,7 @@ function strict() {
         let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
         let rateOptimal = distanceActualOptimal / distanceActualTotal;
 
-        let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from '+ datetime.toLocaleString() + ' ***\n';
+        let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
         msg += '+ Actual distances:\n';
         msg += '- Total: ' + distanceActualTotal + ' m\n';
         msg += '- Record: ' + distanceActualRecord + ' m\n';
@@ -194,7 +194,7 @@ function strict() {
 		})
 		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
 		.addTo(mymap)
-		.bindPopup("<b>Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")</b><br>"
+		.bindPopup("<b>Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + " [" + participant.type + "]</b><br>"
 		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
 		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
 		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"

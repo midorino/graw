@@ -1,0 +1,32 @@
+#+TITLE:     GRAW - Log - 2021-01-13
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2021-01-13
+
+** [2.4.0] [feat-aao] Add distinction between Garmin and Strava participants
+
+Participants data structure has actually already been updated - a new field "type" (possible values "Garmin" or "Strava") has been added for every participant in "data/participants.json".
+
+The objective would be to add some annotation or logo - based on the value of this field "type" - inside the participation details popup.
+
+First, we simply add a new label ("Garmin" or "Strava") in the already existing popup.
+
+#BEGIN_SRC js
+L.marker(latLngs[lastPosition], {
+	icon: myIcon,
+	title: "Region "+participant.id+"\n"+region.title
+})
+.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
+.addTo(mymap)
+.bindPopup("<b>Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + " [" + participant.type + "]</b><br>"
+// (...)
+#END_SRC
+
+#BEGIN_SRC js
+let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
+(...)
+#END_SRC
