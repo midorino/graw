@@ -13,5 +13,6 @@
 	{ "id": 12, "region": 12, "name": "michel" },
 	{ "id": 13, "region": 7, "name": "Alien Warfare" },
 	{ "id": 14, "region": 7, "name": "Christo Le Tonneau" },
-	{ "id": 15, "region": 10, "name": "Estelle Jean" }
+	{ "id": 15, "region": 10, "name": "Estelle Jean" },
+	{ "id": 16, "region": 8, "name": "Sebastoune" }
 ]
