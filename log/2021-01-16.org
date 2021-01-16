@@ -1,0 +1,135 @@
+#+TITLE:     GRAW - Log - 2021-01-16
+#+AUTHOR:    Midorino
+#+EMAIL:     midorino@protonmail.com
+#+LANGUAGE:  en
+
+#+HTML_LINK_HOME: https://midorino.github.io
+
+* 2021-01-16
+
+** Process update
+
+Please note that we are now working with the [[http://danielkummer.github.io/git-flow-cheatsheet/][git-flow]] tool.
+
+Branching model is still the same though, actions are just easier now.
+
+** [feature/aap] Teams of multiple participants on same region
+
+Mainly because Strava participants are disadvantaged (indeed, only their recorded running or walking activities are counted - not all the steps the may perform daily like Garmin participants), we want to offer the possibility for several participants to gather in a team on the same region.
+This may also more simply be useful for participants who are not convinced to be able to complete a region by themselves.
+
+Additional objective would be to minimize impacts to already existing code and data structures.
+First ideas to achieve this feature are:
+
+- Consider a "team" as a "participant" (with of course some specificities);
+- Update "Participants" ("data/participants.json") data structure by adding new objects "teams";
+- Do not update "data/records.json" structure and process;
+- Update main code ("index.js") accordingly.
+
+Well, this was the idea at first...
+
+*** Update data structures
+
+#BEGIN_SRC js
+// data/participants.json
+[
+	{ "id": 1, "region": 1, "name": "Vetro Johan", "type": "Garmin" },
+	// (...)
+	{ "id": 12, "region": 12, "name": "michel", "type": "Garmin" },
+	{ "team": true, "id": "AA", "region": 7, "name": "Thunder Barrels", "participants": [
+	    { "id": 13, "region": 7, "name": "Alien Warfare", "type": "Strava" },
+	    { "id": 14, "region": 7, "name": "Christo Le Tonneau", "type": "Strava" }
+	]},
+	// (...)
+]
+#END_SRC
+
+Data structure could then be uniformized for all objects (for solo participants, by setting "team" field to "false").
+
+This would be the best way but actually process is too much centered for now around "Records" and not "Participants" - main loop should be updated to match the previous idea.
+For now, as a proof of concept, we are switching our first considerations by updating also "Records" data structure - and adding a simple conditional structure in "displayRecord()" to clearly divide both cases.
+
+#BEGIN_SRC js
+// data/participants.json
+[
+	{ "id": 1, "region": 1, "name": "Vetro Johan", "type": "Garmin" },
+	// (...)
+	{ "id": 13, "region": 7, "name": "Alien Warfare", "type": "Strava" },
+	{ "id": 14, "region": 7, "name": "Christo Le Tonneau", "type": "Strava" },
+    // (...)
+	{ "id": 16, "region": 8, "name": "Sebastoune", "type": "Garmin" },
+	{ "id": "AA", "region": 7, "name": "Thunder Barrels", "type": "Team" }
+]
+#END_SRC
+
+Please note here:
+
+- the "Team" object does not specify for now which participants are part of the team (here, they are participants 13 and 14);
+- the team organization is actually specified in the "Record" data structure;
+- the participants part of a team should still be specified as separated "Participant" objects.
+
+#BEGIN_SRC js
+// data/records.json
+{
+	"datetime": "2021-10-31T23:59",
+	"data": [
+		{
+			"id": 1,
+			"region": 1,
+			"distance": 69021
+		},
+		// (...)
+		{
+			"id": 12,
+			"region": 12,
+			"distance": 805638
+		},
+		{
+		    "id": "AA",
+		    "region": 7,
+		    "participants": [
+		        { "id": 13, "distance": 62600 },
+		        { "id": 14, "distance": 61400 }
+	        ]
+		},
+		{
+			"id": 15,
+			"region": 10,
+			"distance": 160900
+		},
+		// (...)
+	]
+}
+#END_SRC
+
+Please note here that - in opposition to "data/participants.json" - records of team participants have been nested inside the global team record.
+
+*** Update process accordingly
+
+In "disaplyRecord()", we take the already existing process step by step and push each one to "team" conditional branch - later, we may refactor similar code blocks with "solo" conditional branch.
+
+First main difference is on "distanceActualRecord" variable which is now the sum of all the team participants individual progress distances.
+
+#BEGIN_SCR js
+let distanceActualRecord = 0;
+
+for(let p of record.participants){
+    distanceActualRecord += p.distance;
+}
+#END_SRC
+
+Note here that it is not a "for ... in" loop that is used but rather a "for ... of" for "record.participants" is an array (of objects, but it is not an object itself).
+
+Following calculation process is identical to already existing code - the final updates must simply be made with the displaying.
+
+*** Update display accordingly
+
+For instance, the "runner" icon is updated to a version with several runners (and a slightly bigger "img" display size).
+
+By the way, this new icon is now also used as the title icon of the details canvas.
+
+Small other changes are made ("Participant" -> "Team", team name display, ...).
+
+Finally, we add the team participants list at the bottom of the details canvas - based on the previous code used for console debug logging.
+
+Bonus: we noted that the details popup width was too small for longer text used during tests - we thus forced the Leaflet "popup" configuration field "maxWidth" to 600 px (double of the default which seems to be 300 px).
