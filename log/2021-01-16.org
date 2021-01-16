@@ -131,3 +131,5 @@ By the way, this new icon is now also used as the title icon of the details canv
 Small other changes are made ("Participant" -> "Team", team name display, ...).
 
 Finally, we add the team participants list at the bottom of the details canvas - based on the previous code used for console debug logging.
+
+Bonus: we noted that the details popup width was too small for longer text used during tests - we thus forced the Leaflet "popup" configuration field "maxWidth" to 600 px (double of the default which seems to be 300 px).

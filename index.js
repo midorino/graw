@@ -232,7 +232,10 @@ function strict() {
     		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
     		+"Dernière MàJ : " + datetime.toLocaleString() + "<br>"
     		+"Participants :" + "<br>"
-    		+ participantsDiv
+    		+ participantsDiv,
+    		{
+    		    maxWidth : "600"
+    		}
     		)
     		;
         }
