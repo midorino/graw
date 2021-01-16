@@ -452,10 +452,13 @@ function strict() {
 
     	    displayingRegions.push(displayingRegion);
 
+            /*
+            @TODO POI feature
     	    console.debug("[2.A.%d.b] Displaying POI of region %d...", region.id, region.id);
     	    displayPOI(region).then( function() {
     	        console.debug("[2.A.%d.b] Displayed POI of region %d", region.id, region.id);
     	    });
+    	    */
         }
 
         console.debug("[2.B] Loading records data...");
