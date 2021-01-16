@@ -121,3 +121,8 @@ for(let p of record.participants){
 Note here that it is not a "for ... in" loop that is used but rather a "for ... of" for "record.participants" is an array (of objects, but it is not an object itself).
 
 Following calculation process is identical to already existing code - the final updates must simply be made with the displaying.
+
+*** Update display accordingly
+
+For instance, the "runner" icon is updated to a version with several runners (and a slightly bigger "img" display size).
+

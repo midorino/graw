@@ -196,8 +196,8 @@ function strict() {
     		let lastPosition = progressGeojson.features[0].geometry.coordinates.length - 1;
 
     		let myIcon = L.icon({
-    			iconUrl: 'img/pin-icon-runner.png',
-    			iconSize: [35, 35]
+    			iconUrl: 'img/pin-icon-runner-team.png',
+    			iconSize: [45, 45]
     		});
 
             let typeImgDiv = "";
