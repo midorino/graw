@@ -119,3 +119,5 @@ for(let p of record.participants){
 #END_SRC
 
 Note here that it is not a "for ... in" loop that is used but rather a "for ... of" for "record.participants" is an array (of objects, but it is not an object itself).
+
+Following calculation process is identical to already existing code - the final updates must simply be made with the displaying.

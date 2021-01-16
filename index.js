@@ -87,6 +87,7 @@ function strict() {
         let participant = participants.filter((participant) => participant.id === record.id).shift();
         let region = regions[participant.region - 1]; // !!! ID != Index !!!
 
+        /*** TEAM ***/
         if(participant.type === "Team") {
             let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
 
@@ -177,7 +178,50 @@ function strict() {
             msg += '+ Optimal rate: ' + rateOptimal * 100 + ' %\n';
             msg += '************************************************************';
             console.debug(msg);
-        } else {
+
+            /** Display **/
+
+            let progressStyle = {
+                "color": "orange",
+                "weight": 5,
+                "opacity": 0.9
+            };
+
+            let progressLayer = L.geoJSON(progressGeojson, {
+                style: progressStyle
+            }).addTo(mymap);
+
+    		// Add marker at current progress position with information
+
+    		let lastPosition = progressGeojson.features[0].geometry.coordinates.length - 1;
+
+    		let myIcon = L.icon({
+    			iconUrl: 'img/pin-icon-runner.png',
+    			iconSize: [35, 35]
+    		});
+
+            let typeImgDiv = "";
+            if(participant.type === "Garmin") {
+                typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
+            } else if (participant.type === "Strava") {
+                typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
+            }
+
+    		L.marker(latLngs[lastPosition], {
+    			icon: myIcon,
+    			title: "Region "+participant.id+"\n"+region.title
+    		})
+    		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
+    		.addTo(mymap)
+    		.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
+    		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
+    		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
+    		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
+    		+"Dernière MàJ : " + datetime.toLocaleString())
+    		;
+        }
+        /*** SOLO ***/
+        else {
             let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
 
             // Record distance is relative to total actual CRAW distance (!= displayed distance)!
