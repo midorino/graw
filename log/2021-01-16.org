@@ -129,3 +129,5 @@ For instance, the "runner" icon is updated to a version with several runners (an
 By the way, this new icon is now also used as the title icon of the details canvas.
 
 Small other changes are made ("Participant" -> "Team", team name display, ...).
+
+Finally, we add the team participants list at the bottom of the details canvas - based on the previous code used for console debug logging.

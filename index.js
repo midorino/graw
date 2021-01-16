@@ -201,13 +201,23 @@ function strict() {
     		});
 
             let typeImgDiv = "";
-            if(participant.type === "Garmin") {
-                typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
-            } else if (participant.type === "Strava") {
-                typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
-            } else if (participant.type === "Team") {
+            if (participant.type === "Team") {
                 typeImgDiv = '<img style="vertical-align: middle;" src="img/pin-icon-runner-team.png" alt="[Team]" title="Pour les participants en équipe sur une même région, les distances sont cumulées." width="24" height="24"></img>';
             }
+
+            let participantsDiv = "";
+            for(let p of record.participants){
+                let pp = participants.filter((participant) => participant.id === p.id).shift();
+
+                let ppDiv = "";
+                if(pp.type === "Garmin") {
+                    ppDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="16" height="16"></img>';
+                } else if (pp.type === "Strava") {
+                    ppDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="16" height="16"></img>';
+                }
+
+                participantsDiv += "<div> - " + ppDiv + " <span style='vertical-align: middle;'>Participant " + pp.id + "</span></div>";
+            };
 
     		L.marker(latLngs[lastPosition], {
     			icon: myIcon,
@@ -215,11 +225,15 @@ function strict() {
     		})
     		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
     		.addTo(mymap)
-    		.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Team '" + participant.name + "' - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
+    		.bindPopup(
+    		"<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Team '" + participant.name + "' - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
     		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
     		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
     		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
-    		+"Dernière MàJ : " + datetime.toLocaleString())
+    		+"Dernière MàJ : " + datetime.toLocaleString() + "<br>"
+    		+"Participants :" + "<br>"
+    		+ participantsDiv
+    		)
     		;
         }
         /*** SOLO ***/
