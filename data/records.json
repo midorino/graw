@@ -2113,14 +2113,12 @@
 				"distance": 814331
 			},
 			{
-				"id": 13,
-				"region": 7,
-				"distance": 62600
-			},
-			{
-				"id": 14,
-				"region": 7,
-				"distance": 61400
+			    "id": "A",
+			    "region": 7,
+			    "participants": [
+			        { "id": 13, "distance": 62600 },
+			        { "id": 14, "distance": 61400 }
+		        ]
 			},
 			{
 				"id": 15,
