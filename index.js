@@ -87,126 +87,281 @@ function strict() {
         let participant = participants.filter((participant) => participant.id === record.id).shift();
         let region = regions[participant.region - 1]; // !!! ID != Index !!!
 
-        let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
+        /*** TEAM ***/
+        if(participant.type === "Team") {
+            let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
 
-        // Record distance is relative to total actual CRAW distance (!= displayed distance)!
-        // There is 2 dimensions to consider: Actual/Displayed x Record/Total.
+            // Record distance is relative to total actual CRAW distance (!= displayed distance)!
+            // There is 2 dimensions to consider: Actual/Displayed x Record/Total.
 
-        let distanceActualTotal = region.distanceTrue;
-        let distanceActualRecord = record.distance;
+            let distanceActualTotal = region.distanceTrue;
 
-        // Link between "actual" and "displayed" data
-        let rate = distanceActualRecord / distanceActualTotal;
+            let distanceActualRecord = 0;
 
-        // Calculate total displayed distance
+            for(let p of record.participants){
+                distanceActualRecord += p.distance;
+            }
 
-        let distanceDisplayedTotal = 0;
-        let coordinates = progressGeojson.features[0].geometry.coordinates;
+            // Link between "actual" and "displayed" data
+            let rate = distanceActualRecord / distanceActualTotal;
 
-        // (1) Create a L.latLng array for easy distance calculus with "distanceTo()"
-        let latLngs = [];
+            // Calculate total displayed distance
 
-        coordinates.forEach(function (coord, i) {
-            let latLng = L.latLng(coord[1], coord[0]); // !!! GeoJSON != Leaflet for (lat, lng) variables order !!!
-            latLngs.push(latLng);
-        });
+            let distanceDisplayedTotal = 0;
+            let coordinates = progressGeojson.features[0].geometry.coordinates;
 
-        // (2) Now actually calculate total distance
-        for(let i = 0; i < latLngs.length-1; i++) {
-            let distance = latLngs[i].distanceTo(latLngs[i+1]);
-        	distanceDisplayedTotal += distance;
+            // (1) Create a L.latLng array for easy distance calculus with "distanceTo()"
+            let latLngs = [];
+
+            coordinates.forEach(function (coord, i) {
+                let latLng = L.latLng(coord[1], coord[0]); // !!! GeoJSON != Leaflet for (lat, lng) variables order !!!
+                latLngs.push(latLng);
+            });
+
+            // (2) Now actually calculate total distance
+            for(let i = 0; i < latLngs.length-1; i++) {
+                let distance = latLngs[i].distanceTo(latLngs[i+1]);
+            	distanceDisplayedTotal += distance;
+            }
+
+            let distanceDisplayedRecord = rate * distanceDisplayedTotal;
+
+            if(distanceDisplayedRecord > distanceDisplayedTotal) { distanceDisplayedRecord = distanceDisplayedTotal; }
+
+            // Calculate closer last waypoint
+
+            let distanceCumul = 0;
+            let f = 0; // Index of closer waypoint
+
+            for(let i = 0; i < latLngs.length-1; i++) {
+                let distance = latLngs[i].distanceTo(latLngs[i+1]);
+
+            	if(distanceCumul + distance >= distanceDisplayedRecord) { // Progress overcome last waypoint
+            	    f = i;
+            	    break;
+            	} else {
+            	    distanceCumul += distance;
+            	}
+            }
+
+            let lastWaypointIndex = f;
+            progressGeojson.features[0].geometry.coordinates.length = lastWaypointIndex + 1; // Probably not the cleanest way to do this
+
+            let distanceRemaining = distanceDisplayedRecord - distanceCumul; // From last covered waypoint
+
+            // Optimal data
+
+            let diffTimeSinceStart = Math.abs(new Date(datetime).getTime() - new Date("2020-11-01").getTime());  // Here is considered the last update as a reference point (and not "today") - also, challenge started on 2020-11-01.
+            let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
+            let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
+            let rateOptimal = distanceActualOptimal / distanceActualTotal;
+
+            let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
+            msg += '+ Participants:\n';
+            for(let p of record.participants){
+                let pp = participants.filter((participant) => participant.id === p.id).shift();
+                msg += '- Participant ' + pp.id + ': "' + pp.name + '"' + '\n';
+            };
+            msg += '+ Actual distances:\n';
+            msg += '- Total: ' + distanceActualTotal + ' m\n';
+            msg += '- Record: ' + distanceActualRecord + ' m\n';
+            msg += '+ Displayed distances:\n';
+            msg += '- Total: ' + distanceDisplayedTotal + ' m\n';
+            msg += '- Record: ' + distanceDisplayedRecord + ' m\n';
+            msg += '+ Rate: ' + rate * 100 + ' %\n';
+            msg += '********************\n';
+            msg += '+ Last waypoint: N°' + lastWaypointIndex + ' / ' + progressGeojson.features[0].geometry.coordinates[lastWaypointIndex] + '\n';
+            msg += '+ Remaining distance (since last waypoint): ' + distanceRemaining + ' m\n';
+            msg += '********************\n';
+            msg += '+ Days since start: ' + diffDaysSinceStart + ' d\n';
+            msg += '+ Optimal actual distance: ' + distanceActualOptimal + ' m\n';
+            msg += '+ Optimal rate: ' + rateOptimal * 100 + ' %\n';
+            msg += '************************************************************';
+            console.debug(msg);
+
+            /** Display **/
+
+            let progressStyle = {
+                "color": "orange",
+                "weight": 5,
+                "opacity": 0.9
+            };
+
+            let progressLayer = L.geoJSON(progressGeojson, {
+                style: progressStyle
+            }).addTo(mymap);
+
+    		// Add marker at current progress position with information
+
+    		let lastPosition = progressGeojson.features[0].geometry.coordinates.length - 1;
+
+    		let myIcon = L.icon({
+    			iconUrl: 'img/pin-icon-runner-team.png',
+    			iconSize: [45, 45]
+    		});
+
+            let typeImgDiv = "";
+            if (participant.type === "Team") {
+                typeImgDiv = '<img style="vertical-align: middle;" src="img/pin-icon-runner-team.png" alt="[Team]" title="Pour les participants en équipe sur une même région, les distances sont cumulées." width="24" height="24"></img>';
+            }
+
+            let participantsDiv = "";
+            for(let p of record.participants){
+                let pp = participants.filter((participant) => participant.id === p.id).shift();
+
+                let ppDiv = "";
+                if(pp.type === "Garmin") {
+                    ppDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="16" height="16"></img>';
+                } else if (pp.type === "Strava") {
+                    ppDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="16" height="16"></img>';
+                }
+
+                participantsDiv += "<div> - " + ppDiv + " <span style='vertical-align: middle;'>Participant " + pp.id + "</span></div>";
+            };
+
+    		L.marker(latLngs[lastPosition], {
+    			icon: myIcon,
+    			title: "Region "+participant.id+"\n"+region.title
+    		})
+    		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
+    		.addTo(mymap)
+    		.bindPopup(
+    		"<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Team " + participant.id + " '" + participant.name + "' - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
+    		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
+    		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
+    		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
+    		+"Dernière MàJ : " + datetime.toLocaleString() + "<br>"
+    		+"Participants :" + "<br>"
+    		+ participantsDiv,
+    		{
+    		    maxWidth : "600"
+    		}
+    		)
+    		;
         }
+        /*** SOLO ***/
+        else {
+            let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
 
-        let distanceDisplayedRecord = rate * distanceDisplayedTotal;
+            // Record distance is relative to total actual CRAW distance (!= displayed distance)!
+            // There is 2 dimensions to consider: Actual/Displayed x Record/Total.
 
-        if(distanceDisplayedRecord > distanceDisplayedTotal) { distanceDisplayedRecord = distanceDisplayedTotal; }
+            let distanceActualTotal = region.distanceTrue;
+            let distanceActualRecord = record.distance;
 
-        // Calculate closer last waypoint
+            // Link between "actual" and "displayed" data
+            let rate = distanceActualRecord / distanceActualTotal;
 
-        let distanceCumul = 0;
-        let f = 0; // Index of closer waypoint
+            // Calculate total displayed distance
 
-        for(let i = 0; i < latLngs.length-1; i++) {
-            let distance = latLngs[i].distanceTo(latLngs[i+1]);
+            let distanceDisplayedTotal = 0;
+            let coordinates = progressGeojson.features[0].geometry.coordinates;
 
-        	if(distanceCumul + distance >= distanceDisplayedRecord) { // Progress overcome last waypoint
-        	    f = i;
-        	    break;
-        	} else {
-        	    distanceCumul += distance;
-        	}
+            // (1) Create a L.latLng array for easy distance calculus with "distanceTo()"
+            let latLngs = [];
+
+            coordinates.forEach(function (coord, i) {
+                let latLng = L.latLng(coord[1], coord[0]); // !!! GeoJSON != Leaflet for (lat, lng) variables order !!!
+                latLngs.push(latLng);
+            });
+
+            // (2) Now actually calculate total distance
+            for(let i = 0; i < latLngs.length-1; i++) {
+                let distance = latLngs[i].distanceTo(latLngs[i+1]);
+            	distanceDisplayedTotal += distance;
+            }
+
+            let distanceDisplayedRecord = rate * distanceDisplayedTotal;
+
+            if(distanceDisplayedRecord > distanceDisplayedTotal) { distanceDisplayedRecord = distanceDisplayedTotal; }
+
+            // Calculate closer last waypoint
+
+            let distanceCumul = 0;
+            let f = 0; // Index of closer waypoint
+
+            for(let i = 0; i < latLngs.length-1; i++) {
+                let distance = latLngs[i].distanceTo(latLngs[i+1]);
+
+            	if(distanceCumul + distance >= distanceDisplayedRecord) { // Progress overcome last waypoint
+            	    f = i;
+            	    break;
+            	} else {
+            	    distanceCumul += distance;
+            	}
+            }
+
+            let lastWaypointIndex = f;
+            progressGeojson.features[0].geometry.coordinates.length = lastWaypointIndex + 1; // Probably not the cleanest way to do this
+
+            let distanceRemaining = distanceDisplayedRecord - distanceCumul; // From last covered waypoint
+
+            // Optimal data
+
+            let diffTimeSinceStart = Math.abs(new Date(datetime).getTime() - new Date("2020-11-01").getTime());  // Here is considered the last update as a reference point (and not "today") - also, challenge started on 2020-11-01.
+            let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
+            let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
+            let rateOptimal = distanceActualOptimal / distanceActualTotal;
+
+            let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
+            msg += '+ Actual distances:\n';
+            msg += '- Total: ' + distanceActualTotal + ' m\n';
+            msg += '- Record: ' + distanceActualRecord + ' m\n';
+            msg += '+ Displayed distances:\n';
+            msg += '- Total: ' + distanceDisplayedTotal + ' m\n';
+            msg += '- Record: ' + distanceDisplayedRecord + ' m\n';
+            msg += '+ Rate: ' + rate * 100 + ' %\n';
+            msg += '********************\n';
+            msg += '+ Last waypoint: N°' + lastWaypointIndex + ' / ' + progressGeojson.features[0].geometry.coordinates[lastWaypointIndex] + '\n';
+            msg += '+ Remaining distance (since last waypoint): ' + distanceRemaining + ' m\n';
+            msg += '********************\n';
+            msg += '+ Days since start: ' + diffDaysSinceStart + ' d\n';
+            msg += '+ Optimal actual distance: ' + distanceActualOptimal + ' m\n';
+            msg += '+ Optimal rate: ' + rateOptimal * 100 + ' %\n';
+            msg += '************************************************************';
+            console.debug(msg);
+
+            /** Display **/
+
+            let progressStyle = {
+                "color": "orange",
+                "weight": 5,
+                "opacity": 0.9
+            };
+
+            let progressLayer = L.geoJSON(progressGeojson, {
+                style: progressStyle
+            }).addTo(mymap);
+
+    		// Add marker at current progress position with information
+
+    		let lastPosition = progressGeojson.features[0].geometry.coordinates.length - 1;
+
+    		let myIcon = L.icon({
+    			iconUrl: 'img/pin-icon-runner.png',
+    			iconSize: [35, 35]
+    		});
+
+            let typeImgDiv = "";
+            if(participant.type === "Garmin") {
+                typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
+            } else if (participant.type === "Strava") {
+                typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
+            }
+
+    		L.marker(latLngs[lastPosition], {
+    			icon: myIcon,
+    			title: "Region "+participant.id+"\n"+region.title
+    		})
+    		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
+    		.addTo(mymap)
+    		.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
+    		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
+    		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
+    		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
+    		+"Dernière MàJ : " + datetime.toLocaleString())
+    		;
         }
-
-        let lastWaypointIndex = f;
-        progressGeojson.features[0].geometry.coordinates.length = lastWaypointIndex + 1; // Probably not the cleanest way to do this
-
-        let distanceRemaining = distanceDisplayedRecord - distanceCumul; // From last covered waypoint
-
-        // Optimal data
-
-        let diffTimeSinceStart = Math.abs(new Date(datetime).getTime() - new Date("2020-11-01").getTime());  // Here is considered the last update as a reference point (and not "today") - also, challenge started on 2020-11-01.
-        let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
-        let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
-        let rateOptimal = distanceActualOptimal / distanceActualTotal;
-
-        let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
-        msg += '+ Actual distances:\n';
-        msg += '- Total: ' + distanceActualTotal + ' m\n';
-        msg += '- Record: ' + distanceActualRecord + ' m\n';
-        msg += '+ Displayed distances:\n';
-        msg += '- Total: ' + distanceDisplayedTotal + ' m\n';
-        msg += '- Record: ' + distanceDisplayedRecord + ' m\n';
-        msg += '+ Rate: ' + rate * 100 + ' %\n';
-        msg += '********************\n';
-        msg += '+ Last waypoint: N°' + lastWaypointIndex + ' / ' + progressGeojson.features[0].geometry.coordinates[lastWaypointIndex] + '\n';
-        msg += '+ Remaining distance (since last waypoint): ' + distanceRemaining + ' m\n';
-        msg += '********************\n';
-        msg += '+ Days since start: ' + diffDaysSinceStart + ' d\n';
-        msg += '+ Optimal actual distance: ' + distanceActualOptimal + ' m\n';
-        msg += '+ Optimal rate: ' + rateOptimal * 100 + ' %\n';
-        msg += '************************************************************';
-        console.debug(msg);
-
-        /** Display **/
-
-        let progressStyle = {
-            "color": "orange",
-            "weight": 5,
-            "opacity": 0.9
-        };
-
-        let progressLayer = L.geoJSON(progressGeojson, {
-            style: progressStyle
-        }).addTo(mymap);
-
-		// Add marker at current progress position with information
-
-		let lastPosition = progressGeojson.features[0].geometry.coordinates.length - 1;
-
-		let myIcon = L.icon({
-			iconUrl: 'img/pin-icon-runner.png',
-			iconSize: [35, 35]
-		});
-
-        let typeImgDiv = "";
-        if(participant.type === "Garmin") {
-            typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
-        } else if (participant.type === "Strava") {
-            typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
-        }
-
-		L.marker(latLngs[lastPosition], {
-			icon: myIcon,
-			title: "Region "+participant.id+"\n"+region.title
-		})
-		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
-		.addTo(mymap)
-		.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
-		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
-		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
-		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
-		+"Dernière MàJ : " + datetime.toLocaleString())
-		;
     }
 
     /**--------------**/
