@@ -126,3 +126,5 @@ Following calculation process is identical to already existing code - the final 
 
 For instance, the "runner" icon is updated to a version with several runners (and a slightly bigger "img" display size).
 
+By the way, this new icon is now also used as the title icon of the details canvas.
+

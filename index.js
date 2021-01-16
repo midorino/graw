@@ -205,6 +205,8 @@ function strict() {
                 typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-garmin-connect.png" alt="[Garmin]" title="Pour les participants Garmin (avec montre), tous les pas réalisés sont pris en compte." width="24" height="24"></img>';
             } else if (participant.type === "Strava") {
                 typeImgDiv = '<img style="vertical-align: middle;" src="img/logo-strava.png" alt="[Strava]" title="Pour les participants Strava, seules les activités de course ou marche sont pris en compte." width="24" height="24"></img>';
+            } else if (participant.type === "Team") {
+                typeImgDiv = '<img style="vertical-align: middle;" src="img/pin-icon-runner-team.png" alt="[Team]" title="Pour les participants en équipe sur une même région, les distances sont cumulées." width="24" height="24"></img>';
             }
 
     		L.marker(latLngs[lastPosition], {
