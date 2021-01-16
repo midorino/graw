@@ -103,3 +103,19 @@ Please note here:
 #END_SRC
 
 Please note here that - in opposition to "data/participants.json" - records of team participants have been nested inside the global team record.
+
+*** Update process accordingly
+
+In "disaplyRecord()", we take the already existing process step by step and push each one to "team" conditional branch - later, we may refactor similar code blocks with "solo" conditional branch.
+
+First main difference is on "distanceActualRecord" variable which is now the sum of all the team participants individual progress distances.
+
+#BEGIN_SCR js
+let distanceActualRecord = 0;
+
+for(let p of record.participants){
+    distanceActualRecord += p.distance;
+}
+#END_SRC
+
+Note here that it is not a "for ... in" loop that is used but rather a "for ... of" for "record.participants" is an array (of objects, but it is not an object itself).

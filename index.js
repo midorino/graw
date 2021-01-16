@@ -88,11 +88,31 @@ function strict() {
         let region = regions[participant.region - 1]; // !!! ID != Index !!!
 
         if(participant.type === "Team") {
+            let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
+
+            // Record distance is relative to total actual CRAW distance (!= displayed distance)!
+            // There is 2 dimensions to consider: Actual/Displayed x Record/Total.
+
+            let distanceActualTotal = region.distanceTrue;
+
+            let distanceActualRecord = 0;
+
+            for(let p of record.participants){
+                distanceActualRecord += p.distance;
+            }
+
             let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
+            msg += '+ Participants:\n';
+            for(let p of record.participants){
+                let pp = participants.filter((participant) => participant.id === p.id).shift();
+                msg += '- Participant ' + pp.id + ': "' + pp.name + '"' + '\n';
+            };
+            msg += '+ Actual distances:\n';
+            msg += '- Total: ' + distanceActualTotal + ' m\n';
+            msg += '- Record: ' + distanceActualRecord + ' m\n';
             msg += '************************************************************';
             console.debug(msg);
         } else {
-
             let progressGeojson = JSON.parse(JSON.stringify(regionGeojsons[region.id])); // "Deep" copy - Seems functional - for coordinates copy at least
 
             // Record distance is relative to total actual CRAW distance (!= displayed distance)!
