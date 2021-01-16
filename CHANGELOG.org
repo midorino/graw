@@ -9,8 +9,13 @@ For more internal notes, it may be revelant to check the =LOG= files instead (in
 
 ** [Unreleased]
 
-- 2.4.Z: Add participants group / team to a region.
 - 2.5.Z: Update data location / backend.
+
+** [2.4.0] - 2021-01-16
+
+*** Added
+
+- Add participants group / team to the same region.
 
 ** [2.3.0] - 2021-01-12
 
