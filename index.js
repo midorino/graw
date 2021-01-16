@@ -215,7 +215,7 @@ function strict() {
     		})
     		.bindTooltip(""+participant.id+"", {permanent: true, direction: 'bottom'})
     		.addTo(mymap)
-    		.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Participant " + participant.id + " - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
+    		.bindPopup("<div>" + typeImgDiv + "<span style='vertical-align: middle;'><b> Team '" + participant.name + "' - Region " + region.id + " (" + region.title + ")" + "</b></span></div>"
     		+"Distance à parcourir : " + (distanceActualTotal/1000).toFixed(2) + " km<br>"
     		+"Distance parcourue : " + (distanceActualRecord/1000).toFixed(2) + " km (" + (rate*100).toFixed(2) + "%)<br>"
     		+"Distance optimale (" + diffDaysSinceStart + "J) : " + (distanceActualOptimal/1000).toFixed(2) + " km (" + (rateOptimal*100).toFixed(2) + "%)<br>"
