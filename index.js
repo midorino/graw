@@ -101,6 +101,60 @@ function strict() {
                 distanceActualRecord += p.distance;
             }
 
+            // Link between "actual" and "displayed" data
+            let rate = distanceActualRecord / distanceActualTotal;
+
+            // Calculate total displayed distance
+
+            let distanceDisplayedTotal = 0;
+            let coordinates = progressGeojson.features[0].geometry.coordinates;
+
+            // (1) Create a L.latLng array for easy distance calculus with "distanceTo()"
+            let latLngs = [];
+
+            coordinates.forEach(function (coord, i) {
+                let latLng = L.latLng(coord[1], coord[0]); // !!! GeoJSON != Leaflet for (lat, lng) variables order !!!
+                latLngs.push(latLng);
+            });
+
+            // (2) Now actually calculate total distance
+            for(let i = 0; i < latLngs.length-1; i++) {
+                let distance = latLngs[i].distanceTo(latLngs[i+1]);
+            	distanceDisplayedTotal += distance;
+            }
+
+            let distanceDisplayedRecord = rate * distanceDisplayedTotal;
+
+            if(distanceDisplayedRecord > distanceDisplayedTotal) { distanceDisplayedRecord = distanceDisplayedTotal; }
+
+            // Calculate closer last waypoint
+
+            let distanceCumul = 0;
+            let f = 0; // Index of closer waypoint
+
+            for(let i = 0; i < latLngs.length-1; i++) {
+                let distance = latLngs[i].distanceTo(latLngs[i+1]);
+
+            	if(distanceCumul + distance >= distanceDisplayedRecord) { // Progress overcome last waypoint
+            	    f = i;
+            	    break;
+            	} else {
+            	    distanceCumul += distance;
+            	}
+            }
+
+            let lastWaypointIndex = f;
+            progressGeojson.features[0].geometry.coordinates.length = lastWaypointIndex + 1; // Probably not the cleanest way to do this
+
+            let distanceRemaining = distanceDisplayedRecord - distanceCumul; // From last covered waypoint
+
+            // Optimal data
+
+            let diffTimeSinceStart = Math.abs(new Date(datetime).getTime() - new Date("2020-11-01").getTime());  // Here is considered the last update as a reference point (and not "today") - also, challenge started on 2020-11-01.
+            let diffDaysSinceStart = Math.ceil(diffTimeSinceStart / (1000 * 3600 * 24));
+            let distanceActualOptimal = distanceActualTotal / 365 * diffDaysSinceStart;
+            let rateOptimal = distanceActualOptimal / distanceActualTotal;
+
             let msg = '*** Record from participant ' + participant.id + ' for region ' + region.id + ' from ' + participant.type + ' at ' + datetime.toLocaleString() + ' ***\n';
             msg += '+ Participants:\n';
             for(let p of record.participants){
@@ -110,6 +164,17 @@ function strict() {
             msg += '+ Actual distances:\n';
             msg += '- Total: ' + distanceActualTotal + ' m\n';
             msg += '- Record: ' + distanceActualRecord + ' m\n';
+            msg += '+ Displayed distances:\n';
+            msg += '- Total: ' + distanceDisplayedTotal + ' m\n';
+            msg += '- Record: ' + distanceDisplayedRecord + ' m\n';
+            msg += '+ Rate: ' + rate * 100 + ' %\n';
+            msg += '********************\n';
+            msg += '+ Last waypoint: N°' + lastWaypointIndex + ' / ' + progressGeojson.features[0].geometry.coordinates[lastWaypointIndex] + '\n';
+            msg += '+ Remaining distance (since last waypoint): ' + distanceRemaining + ' m\n';
+            msg += '********************\n';
+            msg += '+ Days since start: ' + diffDaysSinceStart + ' d\n';
+            msg += '+ Optimal actual distance: ' + distanceActualOptimal + ' m\n';
+            msg += '+ Optimal rate: ' + rateOptimal * 100 + ' %\n';
             msg += '************************************************************';
             console.debug(msg);
         } else {
