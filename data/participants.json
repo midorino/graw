@@ -14,5 +14,6 @@
 	{ "id": 13, "region": 7, "name": "Alien Warfare", "type": "Strava" },
 	{ "id": 14, "region": 7, "name": "Christo Le Tonneau", "type": "Strava" },
 	{ "id": 15, "region": 10, "name": "Estelle Jean", "type": "Strava" },
-	{ "id": 16, "region": 8, "name": "Sebastoune", "type": "Garmin" }
+	{ "id": 16, "region": 8, "name": "Sebastoune", "type": "Garmin" },
+	{ "id": "AA", "region": 7, "name": "Thunder Barrels", "type": "Team" }
 ]
