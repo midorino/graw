@@ -17,5 +17,7 @@
 	{ "id": 16, "region": 8, "name": "Sebastoune", "type": "Garmin" },
 	{ "id": 17, "region": 3, "name": "Nina De Winter", "type": "Garmin" },
 	{ "id": 18, "region": 1, "name": "Pierre Lemordant", "type": "Strava" },
-	{ "id": "A", "region": 7, "name": "Thunder Barrels", "type": "Team" }
+	{ "id": 19, "region": 1, "name": "DD", "type": "Garmin" },
+	{ "id": "A", "region": 7, "name": "Thunder Barrels", "type": "Team" },
+	{ "id": "B", "region": 10, "name": "Picoti-Picota", "type": "Team" }
 ]
