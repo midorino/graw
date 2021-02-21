@@ -19,5 +19,5 @@
 	{ "id": 18, "region": 1, "name": "Pierre Lemordant", "type": "Strava" },
 	{ "id": 19, "region": 1, "name": "DD", "type": "Garmin" },
 	{ "id": "A", "region": 7, "name": "Thunder Barrels", "type": "Team" },
-	{ "id": "B", "region": 10, "name": "Picoti-Picota", "type": "Team" }
+	{ "id": "B", "region": 10, "name": "Never Crêyps", "type": "Team" }
 ]
